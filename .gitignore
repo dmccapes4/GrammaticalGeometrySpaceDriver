@@ -9,8 +9,6 @@ venv/
 # Run artifacts
 runs/
 *.jsonl
-!morphgnt/probe_output/**
-probe_output/
 
 # Tools temp
 tools/sblgnt/

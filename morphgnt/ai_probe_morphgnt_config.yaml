@@ -72,20 +72,20 @@ embedding_contexts:
     git_aware: false
     root: .
     exclude:
-      - .git/**
-      - __pycache__/**
-      - .pytest_cache/**
-      - probe_output/**
-      - *.pyc
-      - *.pyo
-      - *.so
-      - *.zip
-      - *.tar
-      - *.gz
-      - *.DS_Store
-      - *.png
-      - *.jpg
-      - *.pdf
+      - ".git/**"
+      - "__pycache__/**"
+      - ".pytest_cache/**"
+      - "probe_output/**"
+      - "*.pyc"
+      - "*.pyo"
+      - "*.so"
+      - "*.zip"
+      - "*.tar"
+      - "*.gz"
+      - "*.DS_Store"
+      - "*.png"
+      - "*.jpg"
+      - "*.pdf"
 
 # ----- PROBE QUERIES -------------------------------------------------------
 # Each topic drives one LLM analysis pass over ANN + TS search results.
