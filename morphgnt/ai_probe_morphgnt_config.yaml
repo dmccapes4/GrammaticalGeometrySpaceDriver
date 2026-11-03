@@ -1,0 +1,257 @@
+# MorphGNT Bias & Fidelity Probe Config
+# Used by FullMetalPacket/ai_probe with AI_PROBE_OUTPUT_DIR pointing to
+# GrammaticalGeometrySpaceDriver/morphgnt/probe_output/
+# Target: GrammaticalGeometrySpaceDriver/morphgnt/
+# Goal: Assess whether MorphGNT is compatible with GGSD's goals —
+#       specifically: lemmatization fidelity, tradition bias, disambiguation
+#       conventions, and suitability as a hint_lemma source.
+
+chunk_size: 2000
+chunk_overlap: 200
+max_context_chars: 160000
+n_ann: 60
+n_ts: 60
+openai_model_embeddings: text-embedding-3-small
+openai_model_gap: gpt-4.1
+openai_model_probe: gpt-4.1
+openai_model_report: gpt-4.1
+
+semantic_chunking:
+  strategy: balanced
+  soft_ceiling_ratio: 0.8
+  allow_overflow: true
+
+chunk_agent:
+  model: gpt-4.1
+  auto_skip_below_confidence: 0.1
+  checkpoint_below_confidence: 0.35
+
+exclusion_agent:
+  model: gpt-4.1
+  checkpoint_below_confidence: 0.35
+
+hitl:
+  enabled: false
+  show_max_items: 20
+
+invariants:
+  enabled: false
+  path: invariants/system_invariants.yaml
+
+conversation:
+  enabled: false
+  compression: true
+  max_tokens: 16000
+  persistence: logarithmic
+  decay:
+    target_ratio: 0.5
+    weights:
+      recent: 1.0
+      flags: 0.8
+      invariants: 0.9
+      preferences: 0.9
+      reasoning: 0.3
+      noise: 0.1
+
+embedding_caps:
+  max_chunks: 50000
+  max_files: 10000
+  max_tokens: 50000000
+  soft_ratio: 0.9
+
+embedding:
+  lean: false
+  lean_allow_code: false
+  lean_max_ratio: 0.7
+  truncation:
+    strategy: not_allowed
+    max_tokens: 8000
+
+embedding_contexts:
+  target_repo:
+    git_aware: false
+    root: .
+    exclude:
+      - .git/**
+      - __pycache__/**
+      - .pytest_cache/**
+      - probe_output/**
+      - *.pyc
+      - *.pyo
+      - *.so
+      - *.zip
+      - *.tar
+      - *.gz
+      - *.DS_Store
+      - *.png
+      - *.jpg
+      - *.pdf
+
+# ----- PROBE QUERIES -------------------------------------------------------
+# Each topic drives one LLM analysis pass over ANN + TS search results.
+# Focus: bias, fidelity, tradition, provenance, GGSD compatibility.
+
+probe_queries:
+
+  - topic: "Textual-critical tradition and SBLGNT editorial stance"
+    ts_terms:
+      - variant
+      - apparatus
+      - manuscript
+      - tradition
+      - Byzantine
+      - Alexandrian
+      - eclectic
+      - SBLGNT
+      - critical text
+      - NA28
+      - TR
+      - Majority Text
+      - text-critical
+      - textual
+
+  - topic: "Lemmatization methodology and lexical authority"
+    ts_terms:
+      - lemma
+      - lexeme
+      - headword
+      - BDAG
+      - Mounce
+      - Danker
+      - Dodson
+      - dictionary form
+      - citation form
+      - normalization
+      - Strongs
+      - GK number
+      - full-citation-form
+
+  - topic: "Morphological parsing ambiguity and disambiguation conventions"
+    ts_terms:
+      - ambiguous
+      - disambiguation
+      - parse
+      - parsing code
+      - POS
+      - morphcat
+      - morphological category
+      - voice
+      - mood
+      - tense
+      - case
+      - number
+      - gender
+      - degree
+      - person
+
+  - topic: "Coverage gaps and missing lexicon entries"
+    ts_terms:
+      - missing
+      - absent
+      - gap
+      - unknown
+      - coverage
+      - missing_bdag
+      - missing_mounce
+      - missing_danker
+      - missing_dodson
+      - not burdensome
+      - forms
+
+  - topic: "Data provenance, versioning, and CCAT inheritance"
+    ts_terms:
+      - version
+      - changelog
+      - provenance
+      - CCAT
+      - deprecated
+      - inherit
+      - Tauber
+      - edition
+      - release
+      - v6
+      - source
+
+  - topic: "Normalized vs surface form discrepancies and apparatus markers"
+    ts_terms:
+      - normalized
+      - apparatus
+      - punctuation
+      - accent
+      - variant marker
+      - text
+      - word
+      - diacritic
+      - macron
+      - elision
+      - iota subscript
+      - breathing
+
+  - topic: "Numeral lemmatization and cardinal number handling (εἷς fidelity)"
+    ts_terms:
+      - numeral
+      - cardinal
+      - ordinal
+      - one
+      - εἷς
+      - indeclinable
+      - number word
+      - A-
+      - adjective
+      - pronoun adjective
+
+  - topic: "GGSD compatibility — can MorphGNT hint_lemma be trusted as-is?"
+    ts_terms:
+      - hint
+      - lemma
+      - trust
+      - accuracy
+      - error
+      - correction
+      - override
+      - fallback
+      - verify
+      - fidelity
+      - gloss
+      - pos
+
+# ----- TS SEARCH TERMS (flat list for ts_search.py) -------------------------
+
+ts_search_terms:
+  - lemma
+  - lexeme
+  - headword
+  - BDAG
+  - Mounce
+  - Danker
+  - Dodson
+  - missing
+  - variant
+  - apparatus
+  - CCAT
+  - deprecated
+  - disambiguation
+  - ambiguous
+  - parse
+  - morphcat
+  - normalized
+  - normalization
+  - tradition
+  - Byzantine
+  - Alexandrian
+  - eclectic
+  - provenance
+  - version
+  - Tauber
+  - SBLGNT
+  - correction
+  - error
+  - accuracy
+  - coverage
+  - numeral
+  - cardinal
+  - indeclinable
+  - gloss
+  - strongs
+  - derivation
+  - full-citation-form
