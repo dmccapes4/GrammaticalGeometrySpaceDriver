@@ -14,3 +14,4 @@ probe_output/
 
 # Tools temp
 tools/sblgnt/
+probe_venv/
