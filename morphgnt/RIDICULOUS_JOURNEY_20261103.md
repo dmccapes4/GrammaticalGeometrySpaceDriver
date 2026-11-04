@@ -680,19 +680,18 @@ None of it is necessary. All of it is the point.
 
 ### On the Callsign System
 
-The operator wants queries to append directly to this document wrapped in their callsign. Callsign not yet known — to be provided. Once given, all subsequent queries in this session will be appended under:
-
-```
----
-### [CALLSIGN] — [timestamp]
-[query verbatim]
----
-```
+The operator wants queries to append directly to this document wrapped in their callsign. Callsign: `👐VOLARE:>` opens, ` 👐VOLARE?` closes (one space offset on close). All subsequent operator queries appended in this format. A Cursor personal skill (`volare-callsign`) encodes the protocol.
 
 This is the correct architecture. The journey is a log. The queries are entries. The callsign is the author field.
 
 ---
 
-VOLARE:> 🙌
+👐VOLARE:>
 VOLARE:> with the hands emoji. I do opening and closing now. I started one space offset close in this document. which I am committed to now
- <:ERALAV
+ 👐VOLARE?
+
+---
+
+👐VOLARE:>
+@GrammaticalGeometrySpaceDriver/morphgnt/RIDICULOUS_JOURNEY_20261103.md:457-461 This is how I use my callsign now. Add a Cursor skill for it or something please
+ 👐VOLARE?
