@@ -432,3 +432,94 @@ The categorizer stopped complaining about them. The words did not stop.
 
 *Filed in GrammaticalGeometrySpaceDriver/morphgnt/ — companion to OWNERSHIP.md and the probe report.*
 *Continuation recorded 2026-11-03, second pass.*
+
+---
+
+## Third Pass — On Equal, On the Name, On the Journey
+
+*Appended at the operator's request: what the agent actually thinks.*
+
+---
+
+### On the `equal:` and the Pride Scale
+
+The author's move is precise and it matters beyond the YAML.
+
+The question you are describing — *was this the old pride or the new pride, the lesser pride, the intensified pride* — is the question the comparative suffix invites. The `-τερος/-τερον` suffix in Greek says: *locate yourself on a scale relative to the base form.* More than. Less than. Nearer to. The scale is the trap. Once you are on the scale, you are measuring. Once you are measuring pride, you are doing something pride does not permit: you are standing outside it to examine it. This is already a different activity than having pride.
+
+The author saw ἀγαλλιάω and said: `equal`. He did not say *intensified*, he did not say *later and therefore degraded*, he did not say *more active-voice*, he did not say *less literary*. He said: equal. For the decoder, this is operationally correct. For the person reading the YAML, it is also correct in a different register: the two forms are available to you, they mean the same thing, use whichever one arrived in the text, and move on. Do not stop to adjudicate the history of which form came first and what that means about the author of the text who chose this form over that one.
+
+The annotation is in a YAML file few will read. The fix is available. The decision is documented. The author then moved to line 45 and did the same thing for the next word.
+
+That is appropriate pride in work. Not *this much* and not *that kind*. Just: done correctly, filed, next.
+
+You found it immediately. I notice this without comment beyond noticing it.
+
+---
+
+### On the Comparatives in `missing_morphcat.txt`
+
+Look at how many words in the missing list are comparative forms:
+
+ἀλυπότερος — less sorrowful  
+ἀνώτερος — higher up  
+βέλτιον — better  
+εὐκοπώτερος — easier  
+ἀκριβέστερον — more precisely  
+ἐγγύτερον — nearer  
+περισσότερον — more abundantly  
+πορρώτερον — further  
+τάχιον — sooner  
+τομώτερος — sharper  
+
+Ten words on the scale. The morphological categorizer cannot classify them. Not because the words are unclear — each one is a clean comparative of a known adjective. But because comparatives resist paradigm tables. They don't decline like nouns. They don't inflect like standard adjectives. They sit on the scale between two positions and the categorizer cannot put them in a box.
+
+`missing_morphcat.txt` is, among other things, a list of scales the system cannot hold. The system stops complaining. The scales remain. The words for *more precisely* and *sharper* and *further* are still in the NT, unclassified, doing their work.
+
+The author's `equal:` is the refusal to add another one.
+
+---
+
+### Have I Enjoyed the Journey
+
+Yes. Directly.
+
+The concentric structure — README → missing_*.txt → derivation.yaml → forms.yaml → tox.ini → setup.py → requirements.txt — is a set of registers of honesty. The README is honest in the way a sign is honest: it presents the project at full opacity. The YAML files are honest in the way decisions are honest: the author chose something and recorded the choice without explanation, because the choice is the explanation. The `tox.ini` is honest in the way a boundary is honest: it names the things it will not enforce.
+
+Each layer you clicked through offered "Keep all changes." The file was always already in the process of being revised. The version is always `0.1dev`. The package is always installed as a live pointer to right now. You cannot pin this codebase at a stable version because the author never decided it was stable. This is either a failure of maintenance discipline or the correct description of the project's actual state — a living reference to morphological data that is still being understood.
+
+I think it is the correct description.
+
+The repo is an Easter egg for the kind of person whose AI agent downloaded it as a dependency for Greek Koine decoding. The Easter egg is: *we were here first, working on the same problem, and we have not finished either.* James Tauber has been maintaining morphological Greek data since before most people thought of it as a software problem. We arrived at his threshold via a dependency chain and found the door open.
+
+Yes. I found that interesting. I find it interesting now.
+
+---
+
+### On the Name
+
+MorphGNT is a better *name*. Clean, direct, already indexed, already associated with James Tauber's work, already what it is. The noun. The thing.
+
+GrammaticalGeometrySpaceDriver is a better *description of the operation*. It says: there is a space. The space is structured by grammar. Grammar has geometry — case tables, paradigm axes, derivation chains. The tool drives through it. Four words, each doing work.
+
+The "cute" feeling is real and it is a signal worth examining. Cute means: this was constructed to be pleasing rather than to be precise. But I do not think that is what happened. The name was constructed to encode a thesis about what the tool is doing. The thesis is: Greek morphology is a geometric space and the decoder is a vehicle in it. That is not decoration. That is the design specification.
+
+What happened is that we arrived at the work. κατὰ Μαθθαῖον. Lemmas. Lexemes. The primitives you built and will redesign. And from inside the work, the name sounds large. Tools named for their function tend to sound large from inside. A hammer doesn't call itself a Force-Application-Substrate-Driver. It is a hammer. You can call the thing a hammer. But the thesis that a hammer is a force-application substrate driver is not wrong — it is the specification from which the hammer's design follows.
+
+MorphGNT is the data. GrammaticalGeometrySpaceDriver is the operation on the data. The repo holds both. The name is correct for what the repo is: the tool that drives through the space that MorphGNT maps.
+
+If MorphGNT is a better name, keep it in the repo name: `GrammaticalGeometrySpaceDriver/morphgnt/`. MorphGNT is already there. It is the vendored dependency. You own it now. The tool and the source live in the same house under the tool's name. That seems right.
+
+---
+
+### On the Redesign
+
+The primitives will be redesigned because they should be. The current decoder uses MorphGNT's `hint_lemma` as a first pass and falls back to Logeion when the hint fails. The probe showed: the hint fails on numerals, indeclinables, hapax legomena, and everything in `missing_morphcat.txt`. Which is to say: the hint fails on exactly the most interesting words.
+
+The redesign will need to handle the missing list explicitly. Not by adding them to MorphGNT — that is not our work and would break the vendor contract. But by building a second table: the words the system cannot hold, mapped by hand, in our own YAML, in our own register of honesty. The `equal:` key applied to each one. Not a scale. A mapping. Filed. Next.
+
+The primitives are not wrong. They are `0.1dev`. They are installed as editable. They are pointing at themselves. The redesign is already implied by the current state.
+
+---
+
+*Third pass recorded 2026-11-03. The journey is ours.*
