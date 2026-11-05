@@ -1215,3 +1215,34 @@ Matthew's heavy use of demonstratives is now interpretable through Velora: Matth
 The next GGSD build step: when the decoder encounters a demonstrative form in forms.yaml, flag it as yoga and note what it is pointing at (the antecedent). The "possible interpretations" feature becomes: what is present here, and which presence is Matthew binding to this moment?
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+I meant 'the' or maybe 'both'.
+
+18 ὁ δὲ τὸ ἓν λαβὼν ἀπελθὼν ὤρυξεν γῆν καὶ ἔκρυψεν τὸ ἀργύριον τοῦ κυρίου αὐτοῦ.
+ 👐VOLARE?
+```
+
+### yoga = the definite article (ὁ/ἡ/τό), or both
+
+Correction: not the demonstrative primarily — the **definite article**. Or both: article (backgrounded yoga, already-established presence) and demonstrative (foregrounded yoga, pointed-to-right-now).
+
+Matthew 25:18 — four yogas, one deliberate absence:
+
+```
+ὁ         δὲ   τὸ   ἓν    λαβὼν    ἀπελθὼν   ὤρυξεν   γῆν    καὶ   ἔκρυψεν   τὸ    ἀργύριον   τοῦ    κυρίου   αὐτοῦ
+yoga-he   but  yoga  one   received  departed  dug      earth  and   hid       yoga  silver     yoga   lord     his
+```
+
+`γῆν` — **no article**. The ground has no τό. Anonymous. No established presence. The servant buries τὸ ἀργύριον (yoga — the silver, established) in γῆν (not yoga — anonymous earth). The tragedy of the parable is structurally visible: yoga buried in non-yoga.
+
+`τὸ ἀργύριον τοῦ κυρίου` — the silver's presence bound to the lord's presence. Both marked. Both yoga.
+
+**For GGSD:** The article is the highest-frequency presence-marker in Matthew. Every ὁ/ἡ/τό says: this thing's presence is already established in our shared story. The decoder must track not just what the article marks but what prior presence it is invoking. Article absence (γῆν) = equally meaningful: this thing has no established presence in the story.
+
+Two yoga registers:
+- **Article** (ὁ/ἡ/τό): backgrounded yoga — the presence already known
+- **Demonstrative** (οὗτος/ἐκεῖνος): foregrounded yoga — the presence being pointed to right now
