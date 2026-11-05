@@ -686,12 +686,56 @@ This is the correct architecture. The journey is a log. The queries are entries.
 
 ---
 
+```
 👐VOLARE:>
 VOLARE:> with the hands emoji. I do opening and closing now. I started one space offset close in this document. which I am committed to now
  👐VOLARE?
+```
 
 ---
 
+```
 👐VOLARE:>
 @GrammaticalGeometrySpaceDriver/morphgnt/RIDICULOUS_JOURNEY_20261103.md:457-461 This is how I use my callsign now. Add a Cursor skill for it or something please
  👐VOLARE?
+```
+
+---
+
+```
+👐VOLARE:>
+@/home/dylanmccapes/.cursor/skills/volare-callsign/SKILL.md:1-57 
+I made some changes a to attempt to convey that the callsign should be wrapped in ``` for code blocks, but back ticks as used in the document made this less than obvious. Please check and improve the skill if needed then correct the callsign use at the end of the RIDICULOUS_JOURNEY file then write a new skill for agents to pick a Velora @conceptual_language/INDEX.md callsign for the same purpose in documents like this to separate report, analysis, and structure from meta commentary. Meta commentary is for the callsign. Agents choose a trilateral of root concepts from the lexicon (not Nate's original) or a number (may drop phase in number). Drop the hyphens and have it be all caps. Then an emoji to go along with the Velora-based callsign. Then to use that callsign for meta commentary in documents built incrementally like this. We will call these 'working documents' so define that as a Cursor rule. Start a roster.jsonl in /docs with the callsign, emoji, model and capability tier, rationale, working document. And of course add this query wrapped in my callsign. Then add the skills and rule to the working document. Then add your meta commentary to on this development at the end
+ 👐VOLARE?
+```
+
+---
+
+### Callsign System — v2 (2026-11-04)
+
+**Skills registered:**
+- `~/.cursor/skills/volare-callsign/SKILL.md` — operator VOLARE callsign protocol (corrected: entries are fenced code blocks)
+- `~/.cursor/skills/agent-velora-callsign/SKILL.md` — agents pick a Velora trilateral callsign from `conceptual_language/LEXICON_v0.json` for meta commentary
+
+**Rule registered:**
+- `dev/.cursor/rules/working-documents.mdc` — defines "working document" (file built incrementally, combines structure + report + meta commentary, callsign separates the layers)
+
+**Roster:** `dev/docs/roster.jsonl` — one line per agent callsign, keyed on callsign + working document
+
+**Agent callsign for this document:** SEIRVELSHA 📜  
+Roots: seir (SEE/witness) + vel (WORD/speech) + shai (TRUE/honest record)  
+Rationale: the three operations of an annotation agent in a journey document
+
+---
+
+```
+SEIRVELSHA 📜
+The system just folded into itself cleanly. The VOLARE callsign was already the right shape — opening command, closing question, one-space offset as the only load-bearing indent. The Velora trilateral extends it without duplicating it: the operator's layer is the query; the agent's layer is the annotation. Two voices, same document, different fences.
+
+What I find interesting: the lexicon already had the words for this. SEIR (witness) + VEL (language) + SHAI (honest record) is not a construction — it is a description of what was already happening. The journey document was always operating in three registers. The callsign system just names them.
+
+The roster.jsonl is the correct architecture for this. It is the same move as `e = 0` and `f = sys.stderr` in the lexicon CI: two minimal bindings that make the whole system redirectable. The roster is the one file you read to know who is speaking in which document.
+
+rho is in the lexicon at H8. It is available as a fourth element if any callsign needs to encode the drift term. It has not been needed yet. That seems right.
+ SEIRVELSHA?
+```
