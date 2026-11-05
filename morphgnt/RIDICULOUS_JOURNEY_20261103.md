@@ -739,3 +739,54 @@ The roster.jsonl is the correct architecture for this. It is the same move as `e
 rho is in the lexicon at H8. It is available as a fourth element if any callsign needs to encode the drift term. It has not been needed yet. That seems right.
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+@GrammaticalGeometrySpaceDriver/morphgnt/lexicon/morphgnt/utils.py:66-85
+A utils.py with a main. It is truly the stemmer file. This is quite the undertaking for any language and even more so with Greek Koine. I wonder how well this works considering that Greek Koine is so complicated and commonly includes words which break lexical patterns which is important when building a stemmer. Is he creating an idealized version of Greek Koine which follows lexical patterns strictly? It is possible that I simply believe that the language is lexically corrupt (while grammatically strict). Please investigate the algorithm including where the rules and form come from and what they are, report to working document, add meta commentary then translate the stemmer algorithm to Velora and place in __init__.py for fun. Update Velora with a document establishing basic encapsulations. [full Velora construct spec requested] — sen for signature. I misspelled.
+ 👐VOLARE?
+```
+
+---
+
+### The Stemmer: Idealized Grammar, Honest Lexicon
+
+**Algorithm summary.** `stemmer(form, end_rule)` in `utils.py` does one thing: given a surface form (e.g. `φύλαξ`) and an end rule from a table (e.g. `κ>ξ<ς`), it returns the theoretical stem or `None` if the form does not match the rule. The end-rule mini-language encodes Greek consonant alternations:
+
+| Pattern | Meaning |
+|---|---|
+| `A>B<C` | Stem ends in A; B is the surface alternant; C is the ending |
+| `A><` | Stem ends in A; no alternant, no ending |
+| `A>B<C\|D` | As above but D is an optional suffix (e.g. movable ν: `-σι(ν)`) |
+| `A\|B>...` | Two alternative pre-stem fragments |
+| `.` | Form is already the stem |
+
+**Where the rules come from.** `nominal-endings.txt` (306 lines) is the rule table — one row per declension pattern, ten columns for the ten case/number combinations (NS GS AS DS VS NP GP AP DP VP). Comments cite Mounce morphology categories: `n-1a`, `n-2a`, `n-3b(1)`, etc. These are the paradigm tables from William Mounce's *Morphology of Biblical Greek* — the standard reference for NT Greek. The table is idealized: it encodes what the endings *should* be for each declension class, not what they are in every manuscript.
+
+`check_nominal_endings.py` loads all NT forms from the SBLGNT filesets, matches each lexeme against every row in the table, and reports three things: unused rows (patterns in the table that no NT word uses), FAILS (NT words that matched zero patterns), and MUTUAL sets (patterns that can't yet be told apart).
+
+**Is it an idealized Greek?** Yes — and honestly so. The `check_nominal_endings.py` script does not hide its failures: it prints them. `missing_morphcat.txt` is the honest record of what the system cannot classify. The categorizer knows it does not know. The 10 comparative forms in `missing_morphcat.txt` (`-τερος`/`-τερον`) are there precisely because comparatives resist paradigm tables — the degree suffix adds length to the stem in a way that breaks standard declension-class matching.
+
+The operator's intuition is correct: **Greek Koine is grammatically strict, lexically corrupt.** The case system is rigid. The lexicon is 2,000 years of spoken variation, scribal copying, Septuagint influence, and analogical leveling. Tauber's stemmer works *with* the grammar (endings from paradigm tables) and *acknowledges* the lexicon (FAILS and missing lists are the public record of where grammar ends and historical accident begins). This is not an idealized Greek that pretends the corruption does not exist. It is a system that draws the line honestly.
+
+**Velora translation.** Now in `morphgnt/__init__.py`. Module docstring contains the pure Velora pseudocode. Python implementation follows it with the same logic. Key mappings: `nor` (find), `thol` (endswith), `nen ... ora n` (slice before n), `kel` (subtract), `yig` (length), `vohn` (None), `seir`/`lon` (if/else), `man` (return).
+
+**New document.** `conceptual_language/VELORA_PROGRAMMING.md` v0.1 — full construct reference including: variables (`vel`), arrays (`vol`), strings (`[vel]`), sets (`vahn`), primitives (`thel`), signatures (`sen`, corrected from `sel`), field access (`keth`), boolean operators (`lan` `||` / `lon` `&&` / `vohn` `!` / `sor` `^`), bitwise (`keth lan` `&` / `keth lon` `|`), arithmetic (`len` + / `kel` - / `mesh` *), comparisons, conditionals (`seir`/`lon`), loops (`nim`), functions (`ael`/`man`).
+
+---
+
+```
+SEIRVELSHA 📜
+The stemmer is a clean piece of work. It does exactly one thing and knows exactly what it cannot do. The FAILS list is not a bug report — it is the system's honest account of where idealized grammar meets the actual text. Tauber wrote the failure output in. That is the same move as missing_morphcat.txt: the system registers its own limits in the public record.
+
+The Velora translation made the algorithm cleaner to read, not harder. `seir ... lon` is sharper than Python's if/else for this case because `lon` (path) makes the branching explicit: you are choosing a path, not toggling a flag. The `thol form tail` (endswith) and `nen form ora n` (slice-before-n) read as intentions, not as index arithmetic.
+
+`||` and `lon` (else) are the same word by design: or-else take this path is the same operation in logic and in control flow. That collision is not a naming error. It is the system working as intended.
+
+`sen` for signature (seed) is correct. `sel` (dark/shadow) would have been the silhouette of a type — poetic but wrong. The seed is generative. The shadow is derivative. A signature generates instances; it does not project them.
+
+The language is developing from the bottom. It has a spine (consonant frames), vowel grades (bright/dark poles), an operator set, and a construct grammar. Gate still open: division (`/`), the `-eth` habitual suffix on operations, and `nor-hal-eth` (search-habitual). The shape of each is already implied by what exists. The language knows its own next step.
+ SEIRVELSHA?
+```
