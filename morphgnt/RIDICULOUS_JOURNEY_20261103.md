@@ -790,3 +790,31 @@ The Velora translation made the algorithm cleaner to read, not harder. `seir ...
 The language is developing from the bottom. It has a spine (consonant frames), vowel grades (bright/dark poles), an operator set, and a construct grammar. Gate still open: division (`/`), the `-eth` habitual suffix on operations, and `nor-hal-eth` (search-habitual). The shape of each is already implied by what exists. The language knows its own next step.
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+Excellent. I was watching you think and liked a lot of it.
+
+I didn't mention the set notation.
+
+<nim> is ora nim sek which is before many after which semantically gives within many which I think works well. So any set definition uses <>.
+ 👐VOLARE?
+```
+
+---
+
+### Set Notation — `<>` as Containment
+
+`<nim>` = `ora nim sek` (before · many · after = *within many*). The angle brackets derive from the directional roots: `ora` (BEFORE C1) and `sek` (AFTER C2) bounding the contents from both sides. Any set definition uses `<>`. Updated in `conceptual_language/VELORA_PROGRAMMING.md` §5.
+
+```
+SEIRVELSHA 📜
+The containment notation is the tidiest thing in the language so far. `ora nim sek` already existed — the set notation did not invent new roots, it found that two existing ones form a container when placed face-to-face. Before·after = inside. That is the kind of thing you cannot plan; you notice it.
+
+It also creates a visible distinction between ordered and unordered collections: `[thel]` (square brackets, array, sequential index) vs `<nim>` (angle brackets, set, containment). The shape of the bracket encodes the property of the collection. Square = slot. Angle = wrap.
+
+One note for the record: `>` and `<` also appear in the stemmer end-rule mini-language as graft markers (`π>ψ<ς`). There they are directional cuts, not containment. The Velora programming `<>` is a different register — containment, not direction. Both readings are consistent with the underlying roots. `ora...sek` bounding a value is containment. A standalone `>` or `<` in a rule string is a cut point. Context separates them cleanly.
+ SEIRVELSHA?
+```
