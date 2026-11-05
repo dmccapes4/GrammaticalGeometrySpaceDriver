@@ -1246,3 +1246,49 @@ yoga-he   but  yoga  one   received  departed  dug      earth  and   hid       y
 Two yoga registers:
 - **Article** (ὁ/ἡ/τό): backgrounded yoga — the presence already known
 - **Demonstrative** (οὗτος/ἐκεῖνος): foregrounded yoga — the presence being pointed to right now
+
+---
+
+```
+👐VOLARE:>
+'but' would be 'on the other hand' so dor-lon or fal-lon adversarially.
+λαβὼν veth men-kel-eth
+ἀπελθὼν veth bahn-vohr-thol
+ὤρυξεν veth sel-sen-lev
+γῆν veth sen-thel-nai
+καὶ veth shai-lan-vohr
+ἀργύριον veth yog-sai-tal
+κυρίου veth yoga-sai-tal ('the' expressed poetically as ἀργύριον, there is no 'lord' and no 'servant' so please don't invent one)
+αὐτοῦ veth ohn-vahn-bahn
+ 👐VOLARE?
+```
+
+### Matthew 25:18 — Velora triple-gloss layer
+
+Full verse, Velora triples:
+
+```
+ὁ           yoga                   article = established presence
+δὲ          dor-lon                from-same-lineage, different path (fal-lon = err-path, stronger adversative)
+τὸ          yoga
+ἓν          yog                    the countable unit
+λαβὼν       men-kel-eth            receive-take-habitual
+ἀπελθὼν     bahn-vohr-thol         begin-change-end (the complete arc of departure)
+ὤρυξεν      sel-sen-lev            dark-seed-grow (grow downward into darkness)
+γῆν         sen-thel-nai           seed-body-generation (earth as generative substrate)
+καὶ         shai-lan-vohr          true-gather-change (the conjunction that transforms)
+ἔκρυψεν     [unassigned]           candidate: sel-thaim-veth (dark-stealth-bind)
+τὸ          yoga
+ἀργύριον    yog-sai-tal            unit-sign-price
+τοῦ         yoga
+κυρίου      yoga-sai-tal           presence-sign-price (NO lord invented; the presence whose authority is signaled)
+αὐτοῦ       ohn-vahn-bahn          one-assemble-begin
+```
+
+**`yog-sai-tal` vs `yoga-sai-tal`** — the sharpest pair. Silver = the countable unit (yog) that signals price. κυρίου = the uncountable presence (yoga) that signals authority. One is enumerable; the other is present. τοῦ κυρίου = yoga confirming yoga. The silver belongs to the presence. There is no lord invented — only a presence whose signal is authority.
+
+**`men`** — new root. M-N frame, e-grade of `man` (GIVE, a-grade). If `man` = the outward hand (giving), `men` = the inward hand (receiving). `men-kel-eth` = receive-take-habitual. Vowel grade pair man/men = give/receive, consistent with Velora phonology.
+
+**`δὲ` = `dor-lon`** — same lineage, different path. The second servant is of the same kind as the others; dor (KIN) marks the shared origin, lon (PATH) marks the divergence. `fal-lon` is stronger: the erroneous path. `dor-lon` fits this verse — the servant belongs to the same group and takes a different road.
+
+**`ἔκρυψεν` (hid)** — not assigned by operator. Proposed: `sel-thaim-veth` = dark-stealth-bind. To bind in stillness and darkness. Structurally: hiding is a yoga→vohn operation — established presence (τὸ ἀργύριον) bound into a place of no presence (γῆν, anarthrous).
