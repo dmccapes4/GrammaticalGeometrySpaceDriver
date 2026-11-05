@@ -1287,11 +1287,53 @@ Full verse, Velora triples:
 
 **`yog-sai-tal` vs `yoga-sai-tal`** — the sharpest pair. Silver = the countable unit (yog) that signals price. κυρίου = the uncountable presence (yoga) that signals authority. One is enumerable; the other is present. τοῦ κυρίου = yoga confirming yoga. The silver belongs to the presence. There is no lord invented — only a presence whose signal is authority.
 
+```
+👐VOLARE:>
+in Rhet., argue so that the opponent is unwarily led to an adverse conclusion, Arist. Top. 156a7.
+
+That is my favorite listed definition. It covers all the others in its breadth and complexity.
+
+ἔκρυψεν veth ril-fal-hal
+ 👐VOLARE?
+```
+
+### ril-fal-hal: TURN-ERR-PLACE
+
+To hide is not absence — it is displacement. The thing still exists (yoga has not become vohn) but has been turned (ril) so it errors (fal) from its proper place (hal). The Aristotle definition covers all others because it names the mechanism: concealment works by giving error a home. `ril-fal-hal` = the act of establishing a displaced location for error.
+
+In Matthew 25:18, two simultaneous levels:
+- **Physical:** τὸ ἀργύριον (yoga, established presence) is turned from its place in the story into γῆν (anarthrous, no presence). The silver still exists but has been given an error-location.
+- **Rhetorical:** the servant's defense speech ("I knew you were a hard man...") IS `ril-fal-hal` — angle the argument to place the error at the master's feet. The Aristotelian move: lead the opponent toward a conclusion that serves the concealment.
+
+The triple operates at both levels simultaneously. This is why the rhetorical definition is the covering definition: it contains the physical act as a special case.
+
+Complete verse triple-gloss:
+
+```
+ὁ           yoga
+δὲ          dor-lon
+τὸ          yoga
+ἓν          yog
+λαβὼν       man-kel-eth       give-take-habitual (dual, not ambiguous)
+ἀπελθὼν     bahn-vohr-thol    begin-change-end
+ὤρυξεν      sel-sen-lev       dark-seed-grow
+γῆν         sen-thel-nai      seed-body-generation
+καὶ         shai-lan-vohr     true-gather-change
+ἔκρυψεν     ril-fal-hal       turn-err-place
+τὸ          yoga
+ἀργύριον    yog-sai-tal       unit-sign-price
+τοῦ         yoga
+κυρίου      yoga-sai-tal      presence-sign-price
+αὐτοῦ       ohn-vahn-bahn     one-assemble-begin
+```
+
+---
+
 **`man-kel-eth`** — `men` was a typo for `man`. `man` (GIVE) and `kel` (TAKE) are bound equal. λαμβάνω in Greek carries both "take" and "receive" in one word — English forces a choice; the Greek refuses it. `man-kel-eth` = the habitual act that is simultaneously giving and taking. The hyphen is the binding. For GGSD: λαμβάνω forms are glossed `man-kel` — not as two possible readings but as one inseparable act. "Possible interpretations" does not apply.
 
 **`δὲ` = `dor-lon`** — same lineage, different path. The second servant is of the same kind as the others; dor (KIN) marks the shared origin, lon (PATH) marks the divergence. `fal-lon` is stronger: the erroneous path. `dor-lon` fits this verse — the servant belongs to the same group and takes a different road.
 
-**`ἔκρυψεν` (hid)** — not assigned by operator. Proposed: `sel-thaim-veth` = dark-stealth-bind. To bind in stillness and darkness. Structurally: hiding is a yoga→vohn operation — established presence (τὸ ἀργύριον) bound into a place of no presence (γῆν, anarthrous).
+**`ἔκρυψεν` (hid)** — `ril-fal-hal` = TURN-ERR-PLACE.
 
 ---
 
