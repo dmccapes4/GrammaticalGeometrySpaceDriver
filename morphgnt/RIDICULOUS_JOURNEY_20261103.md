@@ -1252,7 +1252,7 @@ Two yoga registers:
 ```
 👐VOLARE:>
 'but' would be 'on the other hand' so dor-lon or fal-lon adversarially.
-λαβὼν veth men-kel-eth
+λαβὼν veth man-kel-eth
 ἀπελθὼν veth bahn-vohr-thol
 ὤρυξεν veth sel-sen-lev
 γῆν veth sen-thel-nai
@@ -1272,7 +1272,7 @@ Full verse, Velora triples:
 δὲ          dor-lon                from-same-lineage, different path (fal-lon = err-path, stronger adversative)
 τὸ          yoga
 ἓν          yog                    the countable unit
-λαβὼν       men-kel-eth            receive-take-habitual
+λαβὼν       man-kel-eth            give-take-habitual (give AND take, bound equal)
 ἀπελθὼν     bahn-vohr-thol         begin-change-end (the complete arc of departure)
 ὤρυξεν      sel-sen-lev            dark-seed-grow (grow downward into darkness)
 γῆν         sen-thel-nai           seed-body-generation (earth as generative substrate)
@@ -1287,8 +1287,23 @@ Full verse, Velora triples:
 
 **`yog-sai-tal` vs `yoga-sai-tal`** — the sharpest pair. Silver = the countable unit (yog) that signals price. κυρίου = the uncountable presence (yoga) that signals authority. One is enumerable; the other is present. τοῦ κυρίου = yoga confirming yoga. The silver belongs to the presence. There is no lord invented — only a presence whose signal is authority.
 
-**`men`** — new root. M-N frame, e-grade of `man` (GIVE, a-grade). If `man` = the outward hand (giving), `men` = the inward hand (receiving). `men-kel-eth` = receive-take-habitual. Vowel grade pair man/men = give/receive, consistent with Velora phonology.
+**`man-kel-eth`** — `men` was a typo for `man`. `man` (GIVE) and `kel` (TAKE) are bound equal. λαμβάνω in Greek carries both "take" and "receive" in one word — English forces a choice; the Greek refuses it. `man-kel-eth` = the habitual act that is simultaneously giving and taking. The hyphen is the binding. For GGSD: λαμβάνω forms are glossed `man-kel` — not as two possible readings but as one inseparable act. "Possible interpretations" does not apply.
 
 **`δὲ` = `dor-lon`** — same lineage, different path. The second servant is of the same kind as the others; dor (KIN) marks the shared origin, lon (PATH) marks the divergence. `fal-lon` is stronger: the erroneous path. `dor-lon` fits this verse — the servant belongs to the same group and takes a different road.
 
 **`ἔκρυψεν` (hid)** — not assigned by operator. Proposed: `sel-thaim-veth` = dark-stealth-bind. To bind in stillness and darkness. Structurally: hiding is a yoga→vohn operation — established presence (τὸ ἀργύριον) bound into a place of no presence (γῆν, anarthrous).
+
+---
+
+```
+👐VOLARE:>
+λαβὼν means to take *and* to receive. I am saying that to take and receive are bound. :equal.
+I accidentally typed `men` instead of `man`. Typo.
+ 👐VOLARE?
+```
+
+### man-kel-eth: give and take are bound equal
+
+`men` → `man`. The triple was always GIVE-TAKE-habitual. λαμβάνω refuses the English give/take split — it IS both. `man` (outward) and `kel` (inward) hyphenated = one act. The hyphen is the binding. `-eth` = the habitual pattern of this binding in present time.
+
+English forces a reading: "take" assigns agency to the taker, "receive" assigns agency to the giver. λαμβάνω assigns it to neither and both. `man-kel-eth` = the act that is simultaneously giving and taking, in the habitual present. For GGSD: λαμβάνω is not ambiguous — it is dual. Gloss `man-kel`, not as alternatives but as the binding itself.
