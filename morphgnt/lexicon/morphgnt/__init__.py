@@ -1,74 +1,76 @@
 """
 morphgnt — Velora translation of the stemmer (for fun)
-Dylan McCapes, 2026-11-04
+Dylan McCapes, 2026-11-04 (v0.2 names: 2026-11-04)
 
 The stemmer takes a surface form and an end_rule, and returns the theoretical stem.
 End rules encode Greek consonant alternations using a mini-language:
-  A>B<C   — stem ends in A; B is the alternant on the surface; C is the ending
-  A><     — stem ends in A; no middle alternant; no ending
-  A>B<C|D — like A>B<C but D is an optional ending suffix (e.g. movable ν)
-  A|B>... — A and B are alternative pre-stem fragments
+  A>B<C     — stem ends A; B is the alternant on the surface; C is the ending
+  A><       — stem ends A; no alternant, no ending
+  A>B<C|D   — as above; D is an optional ending suffix (e.g. movable ν: -σι(ν))
+  A|B>...   — A and B are alternative pre-stem fragments
+  .         — form is already the stem
 
-Velora pseudocode
------------------
+Variable naming rule: yig vol vel shai thol threl  (two or more roots required)
+Positional index names: ora-yog (before-1), ora-threl (before-2),
+                        sek-yog (after-1), sek-threl (after-2)
+thal = middle (homeostasis, center; the segment between > and <)
 
-# Types used
-# [vel]  = string (array of word-units)
-# thim   = abstract number (position / zero)
-# vohn   = None
+Velora pseudocode (v0.2)
+------------------------
 
-ael stemmer vel form vel end_rule:
+ael vel-stemmer vel vol-form vel vol-rule:
 
-    # find the graft markers
-    vel nor_sek  veth nor ">" end_rule          # index of ">" or vohn
-    vel nor_thir veth nor "<" end_rule          # index of "<" or vohn
+    # find the graft markers in the rule
+    vel nor-sek  veth nor ">" vol-rule       # index of ">" or vohn
+    vel nor-thir veth nor "<" vol-rule       # index of "<" or vohn
+                                             # thir = EDGE (B3) — boundary marker
 
-    # Case 1: consonant alternation rule  (has both > and <)
-    seir nor_sek fal vohn lan nor_thir fal vohn:
+    # Case 1: consonant alternation rule (has both > and <)
+    seir nor-sek fal vohn lan nor-thir fal vohn:
 
-        # pre-stem pipe: A|B>... means two alternative before-fragments
-        vel nor_pipe_pre veth nor "|" (nen end_rule ora nor_sek)
-        seir nor_pipe_pre fal vohn:
-            vel before1 veth nen end_rule ora nor_pipe_pre
-            vel before2 veth nen end_rule (nor_pipe_pre len yog) ora nor_sek
+        # pre-stem pipe: A|B>... → two alternative before-fragments
+        vel nor-lon-ora veth nor "|" (nen vol-rule ora nor-sek)
+        seir nor-lon-ora fal vohn:
+            vel ora-yog   veth nen vol-rule ora nor-lon-ora
+            vel ora-threl veth nen vol-rule (nor-lon-ora len yog) ora nor-sek
         lon:
-            vel before1 veth ""
-            vel before2 veth nen end_rule ora nor_sek
+            vel ora-yog   veth ""
+            vel ora-threl veth nen vol-rule ora nor-sek
 
-        vel middle veth nen end_rule (nor_sek len yog) ora nor_thir
+        vel thal veth nen vol-rule (nor-sek len yog) ora nor-thir
+                                             # thal = the middle fragment (homeostasis)
 
-        # post-ending pipe: ...<C|D means D is an optional suffix
-        vel post_suffix veth nen end_rule sek nor_thir
-        vel nor_pipe_post veth nor "|" post_suffix
-        seir nor_pipe_post fal vohn:
-            vel after2 veth nen post_suffix sek (nor_pipe_post len yog)
+        # post-ending pipe: ...<C|D → D is optional suffix
+        vel vol-sek veth nen vol-rule sek nor-thir
+        vel nor-lon-sek veth nor "|" vol-sek
+        seir nor-lon-sek fal vohn:
+            vel sek-threl veth nen vol-sek sek (nor-lon-sek len yog)
         lon:
-            vel after2 veth ""
+            vel sek-threl veth ""
 
-        # check: does the form end with (before1 + middle + after2)?
-        vel tail veth before1 len middle len after2
-        seir vohn thol form tail:
-            man vohn                             # no match
+        # check: does form end with (ora-yog + thal + sek-threl)?
+        vel vol-thol veth ora-yog len thal len sek-threl
+        seir vohn thol vol-form vol-thol:
+            man vohn                          # no match
         lon:
-            vel tail_len veth yig tail
-            seir tail_len shai thim:
-                man form len before2             # zero-length tail: append before2
+            vel yig-thol veth yig vol-thol
+            seir yig-thol shai thim:
+                man vol-form len ora-threl    # zero-length tail: append ora-threl
             lon:
-                # strip tail, prepend before1 and before2
-                man (nen form ora (yig form kel tail_len)) len before1 len before2
+                # strip tail, prepend ora-yog and ora-threl
+                man (nen vol-form ora (yig vol-form kel yig-thol)) len ora-yog len ora-threl
 
     # Case 2: simple suffix rule (no alternation)
     lon:
-        seir end_rule shai ".":
-            man form                             # "." means form IS the stem
-        lon seir vohn thol form end_rule:
-            man vohn                             # suffix not found
+        seir vol-rule shai ".":
+            man vol-form                      # "." means form IS the stem
+        lon seir vohn thol vol-form vol-rule:
+            man vohn                          # suffix not present
         lon:
-            man nen form ora (yig form kel yig end_rule)   # strip suffix
+            man nen vol-form ora (yig vol-form kel yig vol-rule)   # strip suffix
 
 ---
-See: morphgnt/utils.py for the Python implementation.
-See: conceptual_language/VELORA_PROGRAMMING.md for the full construct reference.
+See: conceptual_language/VELORA_PROGRAMMING.md for the full construct reference (v0.2).
 """
 
 
@@ -81,41 +83,53 @@ def stemmer(form, end_rule):
       A><       stem ends A; no alternant, no ending
       A>B<C|D   as above but D is an optional ending suffix
       A|B>...   A and B are alternative pre-stem fragments
-      .         form is already the stem (return as-is)
+      .         form is already the stem
+
+    Velora names used below:
+      nor-sek / nor-thir   : find position of ">" / "<"   (find-after / find-edge)
+      nor-lon-ora          : find "|" in the pre-stem region  (find-path-before)
+      nor-lon-sek          : find "|" in the post-ending region (find-path-after)
+      ora-yog / ora-threl  : before-1 / before-2 fragments
+      thal                 : middle fragment (homeostasis — the center element)
+      sek-threl            : after-2 (the optional ending suffix)
+      vol-thol             : the full tail to match (array-end)
+      vol-sek              : post-ending portion of rule (array-after)
+      yig-thol             : length of the tail
     """
     if ">" in end_rule and "<" in end_rule:
 
-        # --- parse pre-stem fragment (before ">") ---
-        pre = end_rule[:end_rule.find(">")]
-        if "|" in pre:
-            pipe = pre.find("|")
-            before1 = pre[:pipe]
-            before2 = pre[pipe + 1:]
+        # parse pre-stem fragment (before ">")
+        pre = end_rule[:end_rule.find(">")]          # nen vol-rule ora nor-sek
+        nor_lon_ora = pre.find("|")
+        if nor_lon_ora != -1:
+            ora_yog   = pre[:nor_lon_ora]
+            ora_threl = pre[nor_lon_ora + 1:]
         else:
-            before1 = ""
-            before2 = pre
+            ora_yog   = ""
+            ora_threl = pre
 
-        # --- parse middle (between ">" and "<") ---
-        middle = end_rule[end_rule.find(">") + 1: end_rule.find("<")]
+        # thal = the middle fragment (between ">" and "<")
+        thal = end_rule[end_rule.find(">") + 1: end_rule.find("<")]
 
-        # --- parse post-ending fragment (after "<") ---
-        post = end_rule[end_rule.find("<") + 1:]
-        if "|" in post:
-            after2 = post[post.find("|") + 1:]
+        # parse post-ending fragment (after "<")
+        vol_sek     = end_rule[end_rule.find("<") + 1:]
+        nor_lon_sek = vol_sek.find("|")
+        if nor_lon_sek != -1:
+            sek_threl = vol_sek[nor_lon_sek + 1:]
         else:
-            after2 = ""
+            sek_threl = ""
 
-        # --- match and stem ---
-        tail = before1 + middle + after2
-        if not form.endswith(tail):
+        # match and stem
+        vol_thol = ora_yog + thal + sek_threl
+        if not form.endswith(vol_thol):
             return None
-        if len(tail):
-            return form[:-len(tail)] + before1 + before2
+        yig_thol = len(vol_thol)
+        if yig_thol:
+            return form[:-yig_thol] + ora_yog + ora_threl
         else:
-            return form + before1 + before2
+            return form + ora_yog + ora_threl
 
     else:
-        # --- simple suffix rule ---
         if end_rule == ".":
             return form
         if not form.endswith(end_rule):
@@ -124,9 +138,6 @@ def stemmer(form, end_rule):
 
 
 if __name__ == "__main__":
-    # Velora: nim cases vel case:  (for each test)
-    #   seir stemmer vel form vel rule fal expected: ael ERR
-
     # A>B<C
     assert stemmer("XB", "A>B<C") == "XA"
     assert stemmer("B", "A>B<C") == "A"
@@ -146,4 +157,4 @@ if __name__ == "__main__":
     print(stemmer("AB", "A|B><"), None)
     print(stemmer("XAB", "A|B><"), None)
 
-    print("seir vohn fal: all pass")   # "if not error: all pass"
+    print("seir vohn fal: all pass")    # if not error: all pass

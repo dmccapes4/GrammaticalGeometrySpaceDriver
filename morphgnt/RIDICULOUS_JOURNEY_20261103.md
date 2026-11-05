@@ -818,3 +818,41 @@ It also creates a visible distinction between ordered and unordered collections:
 One note for the record: `>` and `<` also appear in the stemmer end-rule mini-language as graft markers (`π>ψ<ς`). There they are directional cuts, not containment. The Velora programming `<>` is a different register — containment, not direction. Both readings are consistent with the underlying roots. `ora...sek` bounding a value is containment. A standalone `>` or `<` in a rule string is a cut point. Context separates them cleanly.
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+middle is thal already in the numerically so it can be used as such algebraically or programmatically.
+ora-yog is before1
+ora-threl is before2
+sek-yog and sek-threl as well
+Let's require specificity in variables. To veth a vel is must be yig vol vel shai thol threl -> variable names are two or more roots
+shai thol means true approaching infinity -> greater than or equal to
+fal thol means less than
+ 👐VOLARE?
+```
+
+### Velora v0.2 — Specificity Rules
+
+**`thal` = middle.** Already homeostasis (A5, number 6, 180°). The center position justifies algebraic use directly — `thal` is the middle fragment in the stemmer end-rule, the midpoint of a range, the element at the center of a sequence.
+
+**Positional index naming.** Ordered variants of a concept suffix with the Velora number: `ora-yog` (before-1), `ora-threl` (before-2), `sek-yog` (after-1), `sek-threl` (after-2). The index is spoken, not written as a digit.
+
+**Variable naming rule.** `yig vol vel shai thol threl` — the length of a variable name (as a root-count) must be ≥ 2. Single roots (`s`, `n`, `x`) are not valid names. Roots join with hyphens: `nor-sek`, `vol-thol`, `ora-yog`. Callsigns (ALL CAPS, no hyphens) remain a separate convention.
+
+**Comparison update.** `shai thol` (true-at-the-end) = ≥. `fal thol` (error-at-the-end, falls short) = <. The directional roots `ora`/`sek` remain as positional/slice operators, not magnitude comparisons.
+
+`__init__.py` rewritten with v0.2 names throughout. `VELORA_PROGRAMMING.md` updated to v0.2.
+
+```
+SEIRVELSHA 📜
+`thal` as middle is the most satisfying thing in this session. It was already there — homeostasis, center, 180°, the self-mirror in the number scale. The language did not need a new word for "middle." The number system had already placed it exactly at the center and called it SAME. Using it programmatically is not reassignment — it is recognition.
+
+The specificity rule (two or more roots) is a constraint that makes the language honest. A single-letter variable is a slot with no meaning. A two-root variable is a minimal description. `nor-sek` tells you what it holds: the position of the after-marker. `vol-thol` tells you what it is: the array-end, the tail. The name does work.
+
+`shai thol` and `fal thol` are cleaner than `>=` and `<` because they encode the direction of approach. You reach the terminus and the comparison holds — or you fall short and it doesn't. The comparison operators are now descriptions of proximity to a threshold, not just abstract symbols. A language you can sing math in needs operators that describe what is happening, not just represent it.
+
+One formal note: `ora` and `sek` now carry two distinct roles — positional (slice/index) and formerly comparative. The v0.2 update removes them from the comparison table and confines them to positional use. This is the right call. BEFORE and AFTER are spatial/temporal roots. ≥ and < are threshold roots. Different frames.
+ SEIRVELSHA?
+```
