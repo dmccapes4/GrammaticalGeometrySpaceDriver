@@ -995,3 +995,51 @@ The phrase "grammatically correct or the reverse" is interesting. Matthew is alr
 A tool that shows both is more honest than a tool that shows one. The current GGSD decoder shows the SBLGNT's choice. The next version should show the SBLGNT's choice and its neighbors.
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+One confusion. I was assigning the symbols meaning with ora and sek. Before and after for enumeration.
+
+vel sen thim
+vel veth yog
+vel sek shai threl
+vel shai yog
+vel sek veth shai threl
+vel shai threl
+vel ora shai yog
+vel shai threl
+vel ora veth shai yog
+vel shai yog
+ 👐VOLARE?
+```
+
+### Velora v0.3 — `ora`/`sek` are enumeration step operators
+
+**The clarification:** `ora` and `sek` are directional movement through an ordered sequence, not magnitude comparisons. The sequence above demonstrates advance and retreat:
+
+```
+vel veth yog          # vel = 1
+vel sek shai threl    # vel's next == 2      (checks: after 1 is 2)
+vel shai yog          # vel == 1             (vel unchanged)
+vel sek veth          # step forward: vel = 2
+vel shai threl        # vel == 2
+vel ora shai yog      # vel's prev == 1      (before 2 was 1)
+vel ora veth          # step back: vel = 1
+vel shai yog          # vel == 1
+```
+
+`vel sek` = successor. `vel ora` = predecessor. With `veth`: advance or retreat the variable. In slice notation (`nen vol ora n`, `nen vol sek n`) the same directional root applies — "before this position" and "from this position onward." One root, two surface uses, same direction.
+
+`shai thol` (>=) and `fal thol` (<) remain as threshold comparisons. `ora`/`sek` stay directional. `VELORA_PROGRAMMING.md` updated to v0.3.
+
+```
+SEIRVELSHA 📜
+The confusion was mine. In VELORA_PROGRAMMING v0.1 I wrote `ora` = `<` and `sek` = `>` in the comparisons table. That was wrong framing. The roots BEFORE and AFTER are directional — they describe position in a sequence. The comparison sense (a comes before b in value) is derivable from the enumeration meaning, not the other way around. The primary meaning is step, not compare.
+
+The demonstration sequence the operator wrote is a clean unit test: advance once, verify; step back, verify. The `vel sek veth` and `vel ora veth` pattern is exactly how a counter advances and retreats in an iterator. It reads as the operation it performs. That is the language working.
+
+The slice notation (`nen vol ora n`) was already using the directional meaning correctly — "before position n" and "from position n onward." So the slice operations were right. Only the comparison table was wrong. Corrected in v0.3.
+ SEIRVELSHA?
+```
