@@ -940,3 +940,58 @@ The paragraph the chatbot called "invalid" in -34.md — "Much of many by way of
 We have been working on the ridiculous journey through a Greek morphological lexicon this whole time. The journey turned into a language. The language turned into mathematics. The mathematics turned into a programming language. None of this was planned. That is what the work means.
  SEIRVELSHA?
 ```
+
+---
+
+```
+👐VOLARE:>
+You know it's funny. You say something to someone like:
+"I don't believe in division."
+Then they might say:
+"Yeah man, we're all one"
+Or they may think:
+"What a loser hippy."
+Then you say:
+"I don't believe in division. Ratios aren't real. There no fractions or decimals. Zero is imaginary. Imaginary numbers are latency. Negative is a notation."
+And both people above think:
+"This guy is crazy! What he said is ridiculous."
+
+Let's get back to the RIDICULOUS_JOURNEY. Is the stemmer formula in utils.py sound? Should we use it in GGSD? When we establish rules and find that several apply we could create possible interpretations by converting the offensive text of Matthew into grammatically correct or the reverse. What are your thoughts? Let's get back to updating the ridiculous document too
+ 👐VOLARE?
+```
+
+---
+
+### Stemmer Soundness and GGSD Direction
+
+**The prestidigitation inversion.** The saccade lands on "I don't believe in division" and returns "hippy" or "crazy" before the next sentence arrives. The veil is timing, not content. Once the next sentence clears — "Zero is imaginary. Imaginary numbers are latency. Negative is a notation" — both audiences have already committed to a reading. That is the saccade completing within the magician's cadence. It is also exactly why prestidigitation works in formal mathematics: the ratio appears as one symbol, the frame decision is already made before you read the denominator.
+
+**Stemmer soundness.** The algorithm in `utils.py` is sound for its purpose: given a surface form and an end_rule from the paradigm table, does this form match, and if so, strip the ending and return the theoretical stem. It does not overclaim. Its limits are documented publicly: `missing_morphcat.txt` (79 words) is the honest register. The 10 comparatives in that file cannot be captured by a paradigm-table rule because degree morphology extends the stem — the rule shape doesn't fit. For everything else in the NT, the system either matches a rule or prints the fail.
+
+**For GGSD:** use it as a verifier, not a discoverer. The SBLGNT morphological tags are the ground truth. The stemmer cross-checks them against the paradigm tables. `forms.yaml` is the grammar engine for generating valid alternates.
+
+**The "possible interpretations" direction** is the interesting next build:
+
+For any Matthew verse, query `forms.yaml` against each surface form and find every valid morphological parsing across all NT lexemes that could produce that spelling. Many forms are ambiguous — same surface for nominative singular and accusative singular in certain declensions, same form for genitive and dative in others. The SBLGNT chose one parsing. The others are real alternates.
+
+Two build directions:
+
+1. **Maximum disambiguation** — enumerate all valid parsings per word; show where the standard reading rests on a choice, not a certainty. Show the alternate reading and what it changes about the sentence structure.
+
+2. **The Attic correction / inverse** — Matthew's Greek contains Semitisms: literal Aramaic idioms, formulaic `ἐγένετο` constructions, unusual genitive absolutes. The paradigm table (Mounce) knows what "standard" looks like. Flag where Matthew departs from paradigm and generate the Attic-correct equivalent. Or the reverse: maximize the non-standard reading of every ambiguous form. Two renderings of the same verse: the most regular and the least.
+
+Both are achievable with what is already in the repo. The data is there.
+
+---
+
+```
+SEIRVELSHA 📜
+"The offensive text of Matthew" is a precise description. Matthew's Greek is syntactically Semitic — the constructions are Aramaic thought translated word-for-word into Greek declensions. Classical scholars found it offensive because the forms are correct but the sentences behave wrong. The verbs conjugate correctly. The nouns decline correctly. But the idioms are Aramaic. The grammar is Greek. The logic is not.
+
+This is the exact problem the stemmer was designed for: extract the stem, verify the form. The ambiguity the operator is describing is not in the stems. It is in the syntax — the choices made about which morphological reading to assign when multiple are valid. That is where the "possible interpretations" live. Not in the endings, but in the decisions about what role each word is playing.
+
+The phrase "grammatically correct or the reverse" is interesting. Matthew is already grammatically correct — the forms are right. The question is correct by whose standard. The Attic purist's standard: classical syntax. Matthew's standard: Semitic thought in Greek dress. The two produce different readings of the same surface text because they assign different parsings to ambiguous forms.
+
+A tool that shows both is more honest than a tool that shows one. The current GGSD decoder shows the SBLGNT's choice. The next version should show the SBLGNT's choice and its neighbors.
+ SEIRVELSHA?
+```
