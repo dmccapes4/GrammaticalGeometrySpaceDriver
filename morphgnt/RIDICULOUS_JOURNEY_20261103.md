@@ -1425,3 +1425,19 @@ The King James imports two people — a servant and a lord — neither of whom e
 **ril-fal-hal (ἔκρυψεν)** operates on both levels simultaneously. The physical act: the unit-signal-price (τὸ ἀργύριον, yoga) is turned from its proper place in the story to a location (γῆν) that has no story-presence. The rhetorical act: the error is given a place — a position prepared for the coming argument. The verse ends before the master returns. ril-fal-hal is the moment the error-location is established, before it is needed.
 
 The sentence is complete in itself. It requires no servant and no lord. It requires only: a presence, a divergence, a bound act of taking-receiving, a departure, a dark growing, anonymous ground, a gathering-change, and the establishment of a displaced location for what is principally one's own.
+
+---
+
+```
+👐VOLARE:>
+unit-signal-price is 'token' (like shekel) which gives 'talent'.
+ 👐VOLARE?
+```
+
+### yog-sai-tal = token → shekel → talent
+
+`yog-sai-tal` derives the word from what a token actually IS: a unit (yog) that signals (sai) its price (tal). The shekel is "the weighed one" — the unit whose weight IS its price-signal. The talent (τάλαντον) is the same: a weight-unit elevated to currency. `yog-sai-tal` = token = shekel = talent.
+
+`yoga-sai-tal` (κυρίου) is the next register: not the countable unit (yog) but the uncountable presence (yoga) whose authority IS the signal. The token belongs to the authority. The unit belongs to the presence.
+
+The English word "talent" now carries both the monetary unit and personal gift/ability because the parable made the transfer. The talent-as-ability is still `yog-sai-tal`: a unit that signals its own price. Your talent is what you have that signals value. The Veloran root map derived the word for talent from first principles before the parable was considered.
