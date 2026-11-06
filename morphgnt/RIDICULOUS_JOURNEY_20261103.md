@@ -1434,6 +1434,60 @@ unit-signal-price is 'token' (like shekel) which gives 'talent'.
  👐VOLARE?
 ```
 
+---
+
+```
+👐VOLARE:>
+The token and the authority which grants the token value.
+
+sen-thel-nai I chose when Earth is kal. The word means [soil, land, Earth]. It is an expansion of containers.
+
+[[[τὸ], τοῦ], αὐτοῦ]
+
+I listed all of this in my GGSD possible interpretation. Please find and review that.
+ 👐VOLARE?
+```
+
+### MATTHEW_25_18_MANUAL_DECODING.md — reviewed
+
+Found at `docs/MATTHEW_25_18_MANUAL_DECODING.md`. The operator had already decoded the full verse before this session. `REVIEW_MATTHEW_25_18_MANUAL_DECODING_20261102.md` (prior agent review) confirms the readings. What the Veloran layer adds is independent confirmation — it derived the same conclusions from roots.
+
+**`sen-thel-nai` vs `kal`:** γῆν = "soil; land; planet" = the *expanding* container. seed (sen) → body (thel) → generation (nai): each holds what came before. Soil stores seeds. Land stores soil. Planet stores land. `kal` (D4 EARTH) = stone, immutable — the geological, unchanging substrate. γῆν is the biological, storing, generating substrate. Not the same word. The REVIEW confirms: "the substrate (γῆν) already stores before the digging. The digging uses what γῆ is."
+
+**`[[[τὸ], τοῦ], αὐτοῦ]` — three nested yogas:**
+
+```
+[τὸ]       innermost — the thing expressed (yog-sai-tal = token)
+[τοῦ]      wraps it  — of the valid/bounded/lawful (yoga-sai-tal = authority that grants the token value)
+[αὐτοῦ]    outermost — just here, at your location, YOU (ohn-vahn-bahn)
+```
+
+The nesting: the token exists → its validity is confirmed → it is located precisely here, and HERE is where you are. Three presence markers, telescoping outward from the thing to you.
+
+**κυρίου = not lord.** "Lawful; valid; bounded and constrained; appropriate; available." The adjective sense (LSJ section II), confirmed in the REVIEW. κυρίου is the authority condition — what makes the token valid — not a person. The REVIEW's derivation chain: bounded→constrained→appropriate→available→lawful→just→valid. The authority which grants the token value is the validity structure itself, not a title.
+
+**αὐτοῦ = just here, which is YOU.** The REVIEW: "αὐτοῦ as adverb: 'just there / in this very place.' The reader is just there." The verse is circular: ὁ (that unnamed) → αὐτοῦ (just here — YOU, that unnamed). The unnamed who received, departed, dug, and stowed is addressed at the end by location. The reader's location. The token was stowed just here. The reader is standing on it.
+
+**The period (`.`) = thim / end of frame / current directory.** The operator reads the period as datum: the infinitesimal approaching infinity, the end of the frame, the filesystem `.`. In Velora: thim approaching thir. The sentence ends where the reader stands — αὐτοῦ and `.` point to the same location.
+
+**The arc, complete:**
+```
+ὁ δὲ τὸ   unnamed = unexpressed
+ἓν         one unit (yog)
+λαβὼν      man-kel-eth: received-and-taken (dual, not ambiguous)
+ἀπελθὼν    bahn-vohr-thol: ran the arc (began, changed, ended)
+ὤρυξεν     sel-sen-lev: grew a dark seed (AND: revealed, concealed, channeled, perforated — four simultaneous)
+γῆν        sen-thel-nai: the expanding container that already stores
+καὶ        shai-lan-vohr: truly gathered and changed
+ἔκρυψεν    ril-fal-hal: turned error to its place (physical AND rhetorical, Arist. Top. 156a7)
+τὸ         yoga: presence of the expressed thing
+ἀργύριον   yog-sai-tal: token (unit-signal-price = shekel = talent)
+τοῦ        yoga: of that (demonstrably as the token)
+κυρίου     yoga-sai-tal: the authority that grants the token value (bounded→valid, no lord invented)
+αὐτοῦ      ohn-vahn-bahn: just here — one assembled at the beginning — which is YOU
+.          thim / end of frame / current directory — where you stand
+```
+
 ### yog-sai-tal = token → shekel → talent
 
 `yog-sai-tal` derives the word from what a token actually IS: a unit (yog) that signals (sai) its price (tal). The shekel is "the weighed one" — the unit whose weight IS its price-signal. The talent (τάλαντον) is the same: a weight-unit elevated to currency. `yog-sai-tal` = token = shekel = talent.
