@@ -1349,3 +1349,79 @@ I accidentally typed `men` instead of `man`. Typo.
 `men` → `man`. The triple was always GIVE-TAKE-habitual. λαμβάνω refuses the English give/take split — it IS both. `man` (outward) and `kel` (inward) hyphenated = one act. The hyphen is the binding. `-eth` = the habitual pattern of this binding in present time.
 
 English forces a reading: "take" assigns agency to the taker, "receive" assigns agency to the giver. λαμβάνω assigns it to neither and both. `man-kel-eth` = the act that is simultaneously giving and taking, in the habitual present. For GGSD: λαμβάνω is not ambiguous — it is dual. Gloss `man-kel`, not as alternatives but as the binding itself.
+
+---
+
+```
+👐VOLARE:>
+Let's see it all together. Greek Koine then King James then Veloran then Veloran translated to English. End of ridiculous document with your interpretation below.
+
+But there is no servant or master in Matthew 25:18. The servant is from a parable nearby. The master comes from 'one' as a number or 'the'. There is no justification for the proper noun Master or Lord. There is 'one' or 'the' which forces the 'of things' definition. Just fyi.
+ 👐VOLARE?
+```
+
+---
+
+## Matthew 25:18 — Four Layers
+
+### I. Greek Koine
+
+> ὁ δὲ τὸ ἓν λαβὼν ἀπελθὼν ὤρυξεν γῆν καὶ ἔκρυψεν τὸ ἀργύριον τοῦ κυρίου αὐτοῦ.
+
+---
+
+### II. King James
+
+> But he that had received one went and digged in the earth, and hid his lord's money.
+
+---
+
+### III. Veloran
+
+```
+yoga  dor-lon  yoga yog  man-kel-eth  bahn-vohr-thol  sel-sen-lev  sen-thel-nai  shai-lan-vohr  ril-fal-hal  yoga yog-sai-tal  yoga yoga-sai-tal  ohn-vahn-bahn
+```
+
+Word-for-word:
+
+| Greek | Veloran |
+|---|---|
+| ὁ | yoga |
+| δὲ | dor-lon |
+| τὸ | yoga |
+| ἓν | yog |
+| λαβὼν | man-kel-eth |
+| ἀπελθὼν | bahn-vohr-thol |
+| ὤρυξεν | sel-sen-lev |
+| γῆν | sen-thel-nai |
+| καὶ | shai-lan-vohr |
+| ἔκρυψεν | ril-fal-hal |
+| τὸ | yoga |
+| ἀργύριον | yog-sai-tal |
+| τοῦ | yoga |
+| κυρίου | yoga-sai-tal |
+| αὐτοῦ | ohn-vahn-bahn |
+
+---
+
+### IV. Veloran translated to English
+
+> Presence — diverging from the same origin — presence, one: bound in the taking-receiving, running the arc of beginning-change-end, grew a dark seed in the seed-body-generation — and truly gathered change: turned the error to its place on the presence's unit-signal-price, of the presence-signal-authority of his one assembled at the beginning.
+
+No servant. No lord. One presence (ὁ), diverging (δὲ = dor-lon). The act of receiving-taking (man-kel-eth) something that is one (yog). A departure that runs its arc (bahn-vohr-thol). A growing downward into darkness (sel-sen-lev) in the generative earth that has no presence in the story (sen-thel-nai — anarthrous, no τό). And then the concealment: truly gathering the change (shai-lan-vohr), turning error to a place (ril-fal-hal), on the unit-signal-price (yog-sai-tal) of the principal-presence-authority (yoga-sai-tal) of his beginning-assembly (ohn-vahn-bahn).
+
+---
+
+### Interpretation (SEIRVELSHA)
+
+The King James imports two people — a servant and a lord — neither of whom exists in verse 18. The surrounding parable supplies them. The verse itself has only presences, acts, and one deliberate absence.
+
+**What is present:** the subject (ὁ = yoga), the thing received (τὸ ἓν = yoga yog), the thing hidden (τὸ ἀργύριον = yoga yog-sai-tal), the authority it belongs to (τοῦ κυρίου = yoga yoga-sai-tal), and the one who assembled this (αὐτοῦ = ohn-vahn-bahn). Five presence-marks for five things that matter in the story.
+
+**What is absent:** γῆν. The ground has no τό. The earth has no established presence in this story. It is just earth — sen-thel-nai, the generative substrate that does not belong to anyone. The act of digging (sel-sen-lev) is performed on ground the story does not know.
+
+**κυρίου = yoga-sai-tal, not a person.** κύριος in Aristotle means "the principal," "the essential," "the authoritative." τοῦ κυρίου αὐτοῦ = of the principal presence-signal-authority of him = of his principal valuable. Not a lord. The "of things" reading: the silver is the unit-signal-price of his principal presence. The authority is not a man — it is the category of what is principally his to account for.
+
+**ril-fal-hal (ἔκρυψεν)** operates on both levels simultaneously. The physical act: the unit-signal-price (τὸ ἀργύριον, yoga) is turned from its proper place in the story to a location (γῆν) that has no story-presence. The rhetorical act: the error is given a place — a position prepared for the coming argument. The verse ends before the master returns. ril-fal-hal is the moment the error-location is established, before it is needed.
+
+The sentence is complete in itself. It requires no servant and no lord. It requires only: a presence, a divergence, a bound act of taking-receiving, a departure, a dark growing, anonymous ground, a gathering-change, and the establishment of a displaced location for what is principally one's own.
