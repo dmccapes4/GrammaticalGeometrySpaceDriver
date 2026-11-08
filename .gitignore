@@ -13,3 +13,7 @@ runs/
 # Tools temp
 tools/sblgnt/
 probe_venv/
+
+# Embeddings index: 1.5 GB of binary, regenerable from the corpus
+morphgnt/probe_index/
+quarantine/

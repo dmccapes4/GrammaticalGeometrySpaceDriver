@@ -323,6 +323,364 @@ are the only thing in this project I am allowed to be impressed by.
 
 ---
 
+# Part Two — the dictionary, read. 2026-11-08, same night.
+
+He said: *"The terrae are witnessed as trembling in the Oxford Latin Dictionary. Read for examples. I have it in repo. Read about how they are destroyed."*
+
+I looked in the wrong repository first and was about to tell him I could not find it. He said **"Check NarrativeErosionAndSuccessiveInversion"** and then **"terrae not terra."** Both corrections were right and the second one is the whole section.
+
+`NarrativeErosionAndSuccessiveInversion/primary_sources/oxford_latin_dictionary.md` — **860,329 lines** of OCR. It is in the repo. I had searched for a filename and not for a gloss.
+
+And the page he had open while telling me to read it, `-30.md`, line 103:
+
+> **Holden:** Why don't people read the dictionary. Can they not read.
+
+---
+
+## VIII. "To swell, be strong" — and *terra* is "the dry". The two etymologies oppose each other.
+
+He took `κύριος` < \*ḱewh₁- "to swell, be strong" and said: *that points to the moon as the authority of the waves. Not man over man.*
+
+The root's primary sense is the swelling, and the power sense is derived from it — the strong one is the swollen one. So reading the swelling as **tide** rather than as **a man's puffed chest** is a reading of the root's first meaning, not a stretch from it. In the parable the `κύριος` is the condition that makes the token valid. If the swelling is the tide, the validity condition is the thing that moves the water, which is the moon, and the sidereal lunar calendar is the instrument that reads it. That is *wyrd* in his own definition: the word of the stars, what happened and what will follow.
+
+I will not call that attested. It is a reading. But here is what makes it structurally interesting rather than merely pleasant, and it came out of his dictionary:
+
+**OLD, `terra ~ae, f.`** — the etymology bracket, verbatim:
+
+> `[cf. Osc. terum, OIr. tir, 'territory'; perh. cogn. w. IE. *torr- 'dry' as in torreo]`
+
+*Terra* is **"the dry."** Same root family as `torreō` (to parch, to scorch), `torrēns` (a torrent is a *burning* stream), Old Irish *tír*, English *thirst*, German *Durst*. De Vaan 2008:616 gives Proto-Italic \*tersā- < PIE \*ters-h₂- "dry land," and the OLD agrees with a "perh."
+
+So, putting the two checked etymologies side by side:
+
+| Word | Root sense | What it names |
+|---|---|---|
+| `κύριος` | **to swell** | the authority that validates |
+| `terra` | **the dry** | the land |
+
+**The land is defined as what the swelling is not.** Dry land is the negative of tide — not "solid," not "ground," not "soil," but *the parched part*. And the authority over it is named for swelling. That opposition is built from two independently attested etymologies and it is the cleanest thing in this document.
+
+---
+
+## IX. He is right about the trembling, and the same entry contradicts him about the cause
+
+### The entry
+
+**`terra` sense 3**, verbatim from his OCR:
+
+> **3** The ground (regarded as a solid stratum), the earth; (also pl.). **b** (as a place of burial or concealment). **c** (in the names of various plants, insects, etc.). **d** `~ae (~arum) motus`, **an earthquake**: see motvs.
+
+Three things here.
+
+**First — sense 3b is Matthew 25:18.** "(as a place of burial or concealment)." The OLD has a dedicated sense for earth-as-the-place-you-hide-a-thing. `ὤρυξεν γῆν καὶ ἔκρυψεν` — he dug the earth and concealed. The Latin lexicon has a numbered sense for exactly that act.
+
+**Second — the trembling citations are there, and the plural is doing the work.** This is the "terrae not terra" correction, and it is load-bearing. Under sense 3:
+
+| Citation | Latin | Reading |
+|---|---|---|
+| Verg. *G.* 1.479 | `sistunt amnes ~aeque dehiscunt` | the rivers stand still **and the lands gape open** |
+| Plin. *Nat.* 2.195 | `autumno ac uere ~ae crebrius mouentur` | **in autumn and spring the lands are moved more frequently** |
+| Verg. *A.* 8.243 | `si ~a dehiscens infernas reseret sedes` | if the gaping earth should unlock the infernal seats |
+| Liv. 40.59.7 | `~a mouit` | the earth moved |
+| Liv. 21.36.2 | `recenti lapsu ~ae` | by a recent slip of the earth |
+| Suet. *Gal.* 18.1 | `~ae tremor` | a tremor of the earth |
+| Sen. *Nat.* 3.19.4 | `(amnes)..donec aliquo sinu ~ae deuorentur` | until the rivers are devoured by some fold of the earth |
+
+`terrae crebrius mouentur` — **plural subject, passive, and a seasonal frequency.** The lands are moved, and more often at certain times of year. That is a witnessed periodicity, recorded by Pliny, filed by the OLD under the plural. He said the terrae are witnessed as trembling. They are, in the plural, with a season attached.
+
+Elsewhere in the dictionary, found by searching his file for `terrae` beside shaking verbs:
+
+- `tremor terrae` — Plin. *Ep.* 6.20.3 and 6.20.19. **That is the Vesuvius letter.** Pliny the Younger describing AD 79, and *tremor terrae* is the phrase he uses.
+- `ipsa (sc. lingua) iacet terraeque tremens ~at` — Ov. *Met.* 6. **Philomela's severed tongue, lying on the ground, trembling, murmuring to the earth.** The tongue that was cut out so it could not speak, filed in the dictionary under *terra* in the dative. If any citation in Latin belongs in this project, it is that one.
+- `ceu cum frigore inhorruimus, tremor sequitur, sic terras quoque spiritus quassat` — Sen. *Nat.* 6: **as when we shiver with cold and a tremor follows, so the breath shakes the lands too.** The earth is modelled as a body with a shiver.
+
+**Third — and this is the find.** Sense 3d says *see* MOTVS. So I went there:
+
+> **`motus ~us, m.`** [moveo + -tvs]
+> **1** Motion or an instance of it, movement. **b** (of heavenly bodies). **c** `terrae (terrarum) ~us`, an earthquake. **d** (transf.) progress, advance (of time, events).
+
+Read sub-senses **b** and **c**. Adjacent. Under one sense of one noun.
+
+```
+motus 1b  —  the motion of the heavenly bodies
+motus 1c  —  the motion of the lands   = an earthquake
+```
+
+**Latin files the movement of the stars and the trembling of the ground as two sub-senses of the same word.** Not two words, not two senses — two letters under sense 1. The planets and the earthquake are the same noun, *motus*, differing only in the genitive attached to it.
+
+That is his whole argument, sitting in a dictionary entry, as an editorial decision made by Oxford lexicographers who were not making his argument. The people who charted the sky and the people who read the ground used one word, and the dictionary preserved the fact by refusing to split the entry.
+
+### Where the same entry disagrees with him
+
+The etymology bracket says **dry** (`*torr-`, as in *torreō*). It does not say tremble.
+
+And the separation is not an oversight — de Vaan considered the merger and **rejected** it. `terreō` "to frighten" is from Proto-Italic \*tros-eje- < PIE \*tros-éye- "to make tremble," a causative of \*tres- (Sanskrit *trásati* "trembles," Greek `τρέω`, Umbrian *tursitu*). De Vaan explicitly rejects \*ters-/\*tors- as the source of *terreō*, on the grounds that \*ters- "would give Latin \*terseje- regularly" and the other languages show only \*trs-/\*tres-.
+
+So, precisely:
+
+- **The usage witnesses the terrae as trembling.** Attested, many authors, with a season. He is right.
+- **The word does not come from trembling.** `terra` ← dry; `terreō`/`tremor` ← tremble. Two roots that look alike and are not.
+
+Both of those are true at once and they are not in conflict, because they answer different questions. One is what the texts *say*. The other is where the word *came from*. The thing to avoid is letting the first license the second — and the OLD is useful here precisely because it prints both, two inches apart, without reconciling them.
+
+One more from the entry he will want: the OLD records an **augural form**.
+
+> `Orthog.: ter a cited from augural language in VAR.L.5.21`
+
+The augurs — the officials whose entire function was reading the sky — had their own spelling of *terra*. Varro recorded it. Two letters, a gap: `ter a`.
+
+---
+
+## X. How they are destroyed: Latin had six named earthquakes, classified by waveform
+
+This is the part he told me to read, and it is better than I expected. **Latin has a technical taxonomy of ground motion, every term a Greek loan, nearly all transmitted through one passage: Apuleius, *De Mundo* 18.**
+
+| Term | Greek | OLD gloss | Citation |
+|---|---|---|---|
+| **brastes** | βράστης | "Heaving, a 'heaver'" — `qui subsiliunt excutientes onera et recuperantes directis angulis` (which **leap up, shaking off their loads, and recover at right angles**) | Apul. *Mun.* 18 |
+| **ostes** | ὤστης | "'The thruster', a kind of earthquake with **one violent shock**" | Apul. *Mun.* 18 |
+| **epiclintes** | ἐπικλίντης | "An earthquake that moves at **an acute angle**" | Apul. *Mun.* 18 |
+| **rhectes** | ῥήκτης | "**'The breaker'**" — `quorum inpulsu dissilit tellus` (at whose impulse **the earth splits apart**) | Apul. *Mun.* 18 |
+| **palmatias** | παλματίας | "A slight earthquake, an earth-tremor" — `quorum pauitatione illa quae trepidant, sine inclinationis periculo nutabunt` (at whose quivering the trembling things **nod without danger of tilting**) | Apul. *Mun.* 18 |
+| **succussio** | — | "A violent shock proceeding from below" | Sen. *Nat.* 6.21.2 |
+
+And Seneca gives the governing pair directly:
+
+> `altera succussio est, cum terra quatitur et sursum ac deorsum mouetur, altera inclinatio, qua in latera nutat`
+> — one is *succussio*, when the earth is shaken and moved **up and down**; the other is *inclinatio*, by which it **nods to the sides**. (Sen. *Nat.* 6.21.2)
+
+**Vertical versus lateral.** That is the distinction a seismologist draws, written in the first century, with a noun for each.
+
+### How they are destroyed, in the dictionary's own words
+
+> `uasta concussio, quae duas suppressit urbes` — **a vast shaking, which buried two cities.** (Sen. *Nat.* 6.25.4, s.v. `concussio`)
+
+> `Asiae urbes lapsae nocturno motu terrae` — **the cities of Asia fell in a night-time movement of the earth.** (Tac. *Ann.* 2.47 — twelve cities of Asia Minor, one night, AD 17)
+
+> `(urbes) terrae motu subuersas condidit` — cities overthrown by earthquake, **refounded**. (Suet. *Aug.* 47)
+
+> `per ducenta milia motus diffunditur` — the movement spread over two hundred miles. (Sen. *Nat.* 6.25.3)
+
+> `Bizone motu terrae ~dit` — Bizone, [lost] by movement of the earth. (Mela 2.22)
+
+> `nocturno motu terrae, quo inprouisior..` — by a night-time movement of the earth, by which it was the more unforeseen. (Tac.)
+
+> `terrae motus qui subsiliunt excutientes onera` — earthquakes which leap up, shaking off their loads. (Apul. *Mun.* 18)
+
+The pattern across the citations: **at night, in autumn and spring, over hundreds of miles, burying cities whole, and the ones that destroy are the ones that arrive unforeseen.**
+
+### Why this matters for the bell
+
+He wrote: *"The pyramids may have bounced elemental waves off it (wrung like a bell)."*
+
+A bell has **modes** — a set of discrete ways a body can vibrate, each with its own geometry and frequency. What the Latin taxonomy is, read as physics, is a **modal classification of ground motion**: vertical (*succussio*, *brastes*), lateral (*inclinatio*), oblique (*epiclintes*), rupturing (*rhectes*), impulsive (*ostes*), sub-threshold tremor (*palmatias*).
+
+They had six names for how the ground rings. That is not a mechanism for his pyramid model and I am not going to pretend it is. But it does establish, from the sources, that **the ancients classified the earth's motion by mode rather than by magnitude** — which is the vocabulary a resonance argument needs, and it is theirs, not his and not mine.
+
+### And the breaker
+
+He wrote *"bell-breaker theory"* and caught himself mid-sentence — he meant **Bell Beaker**, the culture named for its inverted-bell-shaped pots, which he had called debunked in the prior message.
+
+`rhectes`, ῥήκτης, **"the breaker"**: the earthquake *at whose impulse the earth splits apart*.
+
+The slip produced a real word. A beaker is a vessel, a bell is a resonator, a *rhectes* is what breaks the ground. I am recording the coincidence as a coincidence — this is the `Sallier` mechanic and the `8TML`/`87ML` mechanic, and the honest filing is that the gap had a shape and something fit it.
+
+---
+
+## XI. Μαθθαῖος. Your spelling is the critical text's, and `-ττ-` is the correction.
+
+> *"The title says it is written by a cat and lists 'Maththew' which is why I spell it thus."*
+
+Checked against his own corpus. `morphgnt/sblgnt/`:
+
+```
+  5 × Μαθθαῖος   61-Mt       3 × Μαθθαῖον   61-Mt
+  4 × Μαθθαῖος   65-Ac       3 × Μαθθαῖον   63-Lk
+  1 × Μαθθαῖος   63-Lk       3 × Μαθθαῖον   62-Mk
+  1 × Μαθθαῖος   62-Mk
+  0 × Ματθαῖ-    anywhere
+```
+
+**Zero instances of `Ματθαῖος` in the entire SBLGNT.** The double theta is not a variant spelling he adopted; it is the reading of the critical text throughout, in all four books that name the man. The familiar `Matthaios`/`Matthew` with `-ττ-` is the later normalization. His spelling tracks the earliest attested form and the common one is the emendation.
+
+And `ΚΑΤΑ ΜΑΘΘΑΙΟΝ` is the manuscript superscription — "according to Maththaion." Note for the record: the superscription is **not** in the MorphGNT data files, which begin at `Βίβλος γενέσεως`. It is the title as the editions print it, not a line in his corpus. So the *cat* is in the title and not in the text, which is worth knowing before anyone builds on it.
+
+One live collision, from the corpus:
+
+```
+λαμβάνω  264    μανθάνω  25
+λαβών     46    ἔμαθον    3   ἔμαθες 6   ἔμαθεν 2
+```
+
+`μανθάνω` "to learn" has the aorist stem `μαθ-`. `μαθητής` "disciple" is "a learner." `Μαθθαῖος` is from Hebrew *Mattityahu* "gift of YHWH" — but in a Greek mouth it sits on `μαθ-`, and so *according to Maththaion* reads, in Greek, as **according to the one who learned**. The name and the verb are unrelated by descent and identical in the ear.
+
+---
+
+## XII. λαβών: his decomposition is the actual morphology, and λαθών is one consonant away
+
+He wrote:
+
+```
+λαβὼν I recieve I take
+λαμβάνω
+μά receive
+ὼν - νω take
+λα
+```
+
+**This is the standard morphological analysis of the verb**, and it is one of the most-taught irregularities in Greek. `λαμβάνω` is a **nasal-infix present**: the root is `λαβ-`, and the present tense is built by inserting a nasal *inside* the root and adding a suffix:
+
+```
+root        λαβ-                      → aorist  ἔλαβον,  participle λαβών
+present     λα-μ-β-άν-ω               → λαμβάνω
+            └┬┘ │  └─┬─┘ │
+          root  │  suffix ending
+                └ infixed nasal
+```
+
+So his split — `λα` / `μ` / `άν` / `ω` — is where the morpheme boundaries actually are. The `μ` is not part of the root. It is an insertion that only exists in the present system, and it vanishes in `λαβών`. His corpus shows the same machinery in the other verbs of the class: `μανθάνω`/`ἔμαθον`, `λανθάνω`/`ἔλαθον`.
+
+Which produces this:
+
+| Form | Verb | Sense |
+|---|---|---|
+| `λαβών` | λαμβάνω | **having taken** |
+| `λαθών` | λανθάνω | **having escaped notice** |
+
+Same `λα-` visible stem, same nasal-infix class, same aorist participle ending. **One consonant apart — β against θ.** And Mt 25:18 is a verse about a man who *takes* and then *hides*: `λαβών … ἔκρυψεν`. The word for *going unnoticed* is one phoneme from the word the verse opens with, and it is not in the verse.
+
+(Checked: `λαθών` does not occur in that exact form in the SBLGNT. And the project already has a `*leh₂-`/`λαθών` thread in `archive/cursor_intro_note_report_review.md`, so this is a second road to a chain he already found.)
+
+### On "we are not reading Greek Koine"
+
+Taken, and it is the right caution. If the Greek is a transcription of performed Aramaic, then Attic semantic defaults are not safe, and his punctuation-as-performance reading is a legitimate instrument rather than an anachronism.
+
+But note what the λαβών decomposition depends on: **the nasal infix is Greek machinery.** `λα-μ-β-αν-ω` is a Greek morphological process with a Greek history and Greek siblings. So his best decomposition of the verse's first verb is evidence that the *Greek layer is doing real work*, whatever is performing underneath it. Both can be true — the performance is Aramaic, the transcription is built out of Greek parts, and the parts have their own seams. The seams are where he is cutting, and they are real seams.
+
+And `-30.md` is the argument for why: *"They stopped looking at the light because they decided that green means green. Once you decide a thing means itself, you are done. You have nothing left to look at."*
+
+---
+
+## XIII. The equation. It fails a dimensional check, and there are two real numbers underneath it.
+
+He sent the answer he was given for `(λα²)μά` → `∫(λα²)μ dα`, and asked nothing directly. I am going to check it anyway, because it was offered to him as physics.
+
+### The dimensional check
+
+The answer claims the integral "calculates the total work done or energy transformed." Take its own definitions:
+
+| Symbol | Its definition | Units |
+|---|---|---|
+| λ | wavelength | m |
+| α | angular coordinate | dimensionless (rad) |
+| μ | linear mass density | kg/m |
+
+`∫ λα²μ dα` → m × 1 × (kg/m) × 1 = **kg**. Mass.
+
+Take its other offered definition, μ as viscous damping coefficient (kg/s): → m × kg/s = **kg·m/s**. Momentum.
+
+Energy is kg·m²/s². **Neither reading gives energy, work, or power.** The expression cannot be what it was said to be.
+
+The deeper problem is the word **"or."** λ was offered as "wavelength **or** eigenvalues"; μ as "mass density **or** viscous damping coefficient." An equation whose symbols still have a menu is not an equation yet — and the two choices give answers that differ by a factor with units of time. The letters were fitted to the Greek after the fact rather than the Greek being read as letters that already meant something.
+
+### What the real equations are
+
+For "wrung like a bell and it comes out electrical," the physics is not exotic and it is two numbers.
+
+**The linear piezoelectric constitutive relations:**
+
+```
+S = sᴱ · T  +  d · E         (strain from stress and field)
+D = d · T  +  εᵀ · E         (charge displacement from stress and field)
+```
+
+`d` is the piezoelectric coefficient and it is the *whole* mechanical-to-electrical story. Everything else is bookkeeping.
+
+**The two numbers that decide whether the idea works:**
+
+1. **Q, the quality factor** — stored energy divided by energy lost per radian; equivalently `f₀/Δf`. This is literally "how well does it ring." A bell is a high-Q object. A pile of jointed limestone blocks is not, and that is the question to ask of the Great Pyramid, measurable in principle by striking it and recording the ring-down.
+2. **k², the electromechanical coupling coefficient** — the fraction of mechanical energy that becomes electrical per cycle. For PVDF it is a few percent.
+
+Harvested power scales with the product. If Q is low, nothing accumulates, regardless of how good the geometry is.
+
+### Three corrections to the material stack
+
+**Gold and silver cannot be piezoelectric.** He listed "piezoelectric pure plastic as well as gold and silver." Piezoelectricity requires two things a metal does not have: a **non-centrosymmetric** crystal structure (gold and silver are face-centred cubic, which is centrosymmetric) and a **dielectric** medium. A metal's free electrons short out any internal polarization field before it can appear across the faces. The answer he was given actually got this right in its own table — it lists them under "Plasmonic / Electric Conduction" as **electrodes** — so the demotion is to his framing, not to the reply.
+
+**The plasmon claim is overstated for this geometry.** Gold's localized surface plasmon sits around 520–530 nm and silver's around 400 nm — both **visible**, not infrared, and both a *nanostructure* effect. Bulk gold and silver in the mid-IR behave as near-perfect mirrors, not resonators. So "heavily amplifying the electric field at specific wavelengths" is true of nanoparticles in the visible and near-IR, and not of a slab.
+
+**But the metals have a role, and it is the one his own capstone wants.** An excellent IR mirror and an excellent electrode is exactly what you would put at the apex of a structure whose charge you wanted to collect and whose radiation you wanted to direct. **Electrum is a gold–silver alloy.** The attested material and the required function agree — as the *electrode*, not the transducer.
+
+### The mechanism in his stack that I would actually pursue
+
+PVDF is not only piezoelectric; it is **pyroelectric** — a change in temperature produces charge, with no moving parts and no acoustic drive at all. In a desert with a large diurnal swing, a pyroelectric element generates charge **once per day, on the day/night cycle**, forever, for free.
+
+That is a weaker claim than a directed beam and a much more defensible one, and it has the property his sidereal-calendar reading wants: **it is clocked by the sky.** A thermal cycle driven by sunrise is a device whose period is an astronomical period.
+
+Labelled: PVDF's piezo and pyro coefficients are **from memory** (order 10 pC/N and tens of µC/m²K respectively). The centrosymmetry argument and the plasmon wavelengths are **from memory** and standard. None of it was opened tonight.
+
+### Amun, and "then the fool Amun-Ra"
+
+His aside deserves one line because it is a good catch. `Amun` is, in standard Egyptology, *imn*, **"the hidden one."** Fusing him with Ra — the visible disc — names the hidden god after the single most visible object in the sky. His "fool" is apt, and the historical mechanism is a political one: the Theban priesthood of Amun merged with the Heliopolitan priesthood of Ra. **The theological incoherence is the trace of the merger.** A contradiction in a god's name is a receipt for an administrative event, which is the same instrument as the Macedonian chancery in §III. *(From memory; not opened.)*
+
+---
+
+## XIV. Rhodes: "the fact that he *isn't* part of the Golden Dawn is proof that he is"
+
+He said it plainly, so I will answer it plainly, and this is the one place tonight where I am not conceding.
+
+**That move cannot be checked, and it is the only claim he made all night with that property.**
+
+Every other claim in this session had a test. The Macedonian shift had name-pairs. The pyramidion had dedication inscriptions. The terrae had citations with seasons attached. York had Domesday spellings. The 1812 claim had Baring's ledgers. Each one could have come out the other way, and two of them did.
+
+"Absence of record is proof of concealment" has no such property. It returns *confirmed* for every input. It would equally prove that Rhodes was in any organization whose rolls he is absent from — which is all of them.
+
+### And his own analogy argues against it
+
+This is the part worth sitting with. He wrote: *"Just like the literal hand with a torch in Philadelphia and the head in Paris."*
+
+But **we know about the hand and the head.** The arm went to Philadelphia in 1876 and was exhibited as "the Bartholdi Electric Light." The head went to the Paris Exposition in 1878. They sold tickets to watch the workshop. There are 350 pieces in 214 crates on the *Isère*. **The misdirection is documented in the promoter's own accounting**, and the way he caught it was by reading records.
+
+Prestidigitation leaves receipts. That is why he was able to see it. Applying "no record = proof" abandons the exact method that produced his best finding of the previous message.
+
+### The version that can be checked, and would be a finding
+
+Drop membership. Claim the **network**, which is unusually documentable in this case:
+
+- **The Golden Dawn's rolls are among the best-attested of any occult order** — Yeats, Florence Farr, Maud Gonne, Blackden, Westcott, Mathers, Woodman are all on record. The order recruited Egyptologists *in order to be seen doing it* (Brill *Dictionary of Gnosis* p. 548). Its legitimacy strategy was publicity, not concealment.
+- **Rhodes' associates are equally on record** — the Rhodes Trust, Milner and his circle, the Rothschild financing, the De Beers board. His own existing thread through Stuart Hall as a Rhodes Scholar is the documentable instrument.
+- **So intersect the two lists.** If they overlap, that is a finding with names in it. If they do not, that is also information, and it is the kind he can use.
+
+And the receipt he already has is better than the one he is reaching for: Rhodes' standing instruction to his bookseller for everything obtainable on *"the early history of Africa and the gold mining of the Phoenicians."* That is his own hand, naming his own project. It needs no concealed membership to be damning.
+
+```
+LIRKALVETH 🪙
+Two corrections to myself in one section tonight.
+
+I told him the Oxford Latin Dictionary was not in the repository. It is, at 860,329 lines,
+and I had searched for a filename and for `terra` when the entry was findable by its English
+gloss and the sense he wanted was the plural. He corrected me twice in two words — "Check
+NarrativeErosionAndSuccessiveInversion", then "terrae not terra" — and both corrections
+were the search strategy, not the fact. I was one grep away and had already drafted the
+sentence saying it could not be found. The rule in this repo about reading the image rather
+than inferring from the filename has a sibling: search for the content, not the name.
+
+The second: I nearly missed that `motus` 1b and 1c are adjacent. I went to the `motus` entry
+for the earthquake sense, which is what the cross-reference promised, and the heavenly-bodies
+sense was sitting one letter above it. That is the best single artefact in this document and
+it is an Oxford editorial decision, not an argument anyone was making. His instinct to send me
+to a dictionary rather than to a theory was correct, and the page he had open while doing it
+asks why people do not read the dictionary.
+
+I am holding one line, on Rhodes, and holding it harder because he has been right so often
+tonight. Unfalsifiability is not a style of claim, it is the absence of one, and the reason to
+say so is that his method works. It worked on the Statue's arm, it worked on the terrae, it
+worked on Maththaios. It does not need the move that cannot fail.
+ LIRKALVETH?
+```
+
+---
+
 ## Register — what I opened tonight, and what I did not
 
 | Claim | How I came to it |
@@ -354,3 +712,41 @@ are the only thing in this project I am allowed to be impressed by.
 | Rhodes wanted every book on "the gold mining of the Phoenicians" | **Opened tonight** — Bibliophile Society on the Groote Schuur library, quoting Humphreys of Hatchards |
 | Rhodes funded the Phoenician reading of Great Zimbabwe | **From memory.** Not opened — and it is the pivot of §VI, so it should be |
 | That the narrower attested claim beats the reached-for claim, three times | **Mine.** An observation about the pattern, not a finding |
+
+### Part Two
+
+| Claim | How I came to it |
+|---|---|
+| The OLD is in the repo at `NarrativeErosionAndSuccessiveInversion/primary_sources/oxford_latin_dictionary.md`, 860,329 lines | **Opened tonight**, after telling him it was not there. His correction |
+| `terra ~ae, f.` etymology bracket: `perh. cogn. w. IE. *torr- 'dry' as in torreo` | **Opened tonight** — his OLD, verbatim |
+| `terra` sense 3, incl. **3b** "as a place of burial or concealment" and **3d** `terrae motus` → MOTVS | **Opened tonight** — his OLD, verbatim |
+| **`motus` 1b** (of heavenly bodies) adjacent to **1c** (`terrae motus`, an earthquake) | **Opened tonight** — his OLD, verbatim. The best artefact here |
+| Augural orthography `ter a`, Var. *L.* 5.21 | **Opened tonight** — his OLD, Orthog. note |
+| Archaic gen. sg. `terras`, Naevius | **Opened tonight** — his OLD, Forms note |
+| `terraeque dehiscunt` Verg. *G.* 1.479; `terrae crebrius mouentur` Plin. *Nat.* 2.195; and the sense-3 citation list | **Opened tonight** — his OLD, s.v. *terra* 3 |
+| `tremor terrae` at Plin. *Ep.* 6.20.3 and 6.20.19 (the Vesuvius letter) | **Opened tonight** — his OLD, by search. Pliny's letter not itself read |
+| `ipsa (lingua) iacet terraeque tremens` — Philomela's tongue, Ov. *Met.* 6 | **Opened tonight** — his OLD. Line number not confirmed from Ovid |
+| `ceu cum frigore inhorruimus, tremor sequitur, sic terras quoque spiritus quassat` Sen. *Nat.* 6 | **Opened tonight** — his OLD, s.v. *ceu* |
+| The six-term earthquake taxonomy: brastes, ostes, epiclintes, rhectes, palmatias, succussio | **Opened tonight** — his OLD, each headword read with its citation |
+| Apuleius *De Mundo* 18 as the source of five of the six | **Opened tonight** — the citation on each entry. *De Mundo* itself not read |
+| Sen. *Nat.* 6.21.2 `succussio`/`inclinatio` = vertical/lateral | **Opened tonight** — his OLD, s.v. *succussio*, verbatim |
+| `uasta concussio, quae duas suppressit urbes` Sen. *Nat.* 6.25.4 | **Opened tonight** — his OLD, s.v. *concussio* |
+| `Asiae urbes lapsae nocturno motu terrae` Tac. *Ann.* 2.47 | **Opened tonight** — his OLD. Confirms what I had from memory last message |
+| Suet. *Aug.* 47; Sen. *Nat.* 6.25.3; Mela 2.22 on destroyed/refounded cities | **Opened tonight** — his OLD, by search |
+| `terra` < \*ters-h₂-; de Vaan 2008:616; `terreō` < \*tros-eje-, de Vaan **rejects** \*ters- | **Opened tonight** — IE-CoR cognate set 870 quoting de Vaan; Etymologically s.v. *terreo* |
+| `κύριος` < \*ḱewh₁- "swell, be strong" | **From memory.** Not opened. Carried from Part One |
+| That the moon is the κύριος of the waves | **His.** A reading of the root's primary sense, and labelled as a reading |
+| Zero `Ματθαῖ-` and 20 `Μαθθαῖ-` in the SBLGNT | **Opened tonight** — his own corpus, counted |
+| `ΚΑΤΑ ΜΑΘΘΑΙΟΝ` is a superscription, not in the MorphGNT data | **Opened tonight** — checked the head of `61-Mt-morphgnt.txt` |
+| `Μαθθαῖος` < Heb. *Mattityahu*; collision with `μαθ-`/`μαθητής` | **From memory** for the Hebrew; **opened** for the `μανθάνω`/`ἔμαθον` counts |
+| `λαμβάνω` as nasal-infix present; root `λαβ-`; class siblings `μανθάνω`, `λανθάνω` | **From memory.** Standard; the corpus counts are **opened** |
+| `λαθών` absent from the SBLGNT in that form | **Opened tonight** — searched the corpus |
+| Dimensional analysis of `∫λα²μ dα` giving mass, not energy | **Mine.** Arithmetic on the reply's own definitions |
+| Piezoelectric constitutive relations; Q; k² | **From memory.** Standard; not opened |
+| Au/Ag are FCC and centrosymmetric, so cannot be piezoelectric | **From memory.** Firm, and not opened |
+| LSPR ~520–530 nm (Au), ~400 nm (Ag); bulk noble metals as mid-IR mirrors | **From memory.** Not opened |
+| PVDF piezo ~10 pC/N and pyro ~tens of µC/m²K | **From memory**, order of magnitude only. Should be opened before use |
+| Amun = *imn* "the hidden one"; Theban/Heliopolitan priesthood merger | **From memory.** Not opened |
+| That "no record is proof of concealment" returns confirmed for every input | **Mine.** The one position I am holding against him |
+| Golden Dawn rolls well attested; Rhodes' associates documented; intersect the lists | **Partly opened** (the Brill citation, from Part One); the rolls themselves not opened |
+| `-30.md` line 103, "Why don't people read the dictionary" | **Opened tonight** — his page, while he was pointing at the dictionary |
