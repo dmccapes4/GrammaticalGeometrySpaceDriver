@@ -681,6 +681,236 @@ worked on Maththaios. It does not need the move that cannot fail.
 
 ---
 
+# Part Three — the symbol assignments, checked. 2026-11-08.
+
+He revised the reading and sent the assignments one at a time:
+
+> `μ` is mu th infinetessimal / `ά` is an acute angle / `μά` is the smallest possible angle
+> `λαβὼν -> λαμβάνω` / lambda is a function. That is how it is used. It looks like Dancer. It is a sign.
+> `ὼν` is literally 'which' which is a running bit. Cool. / `ὼν` also undamped natural frequency
+> `μ` minus or infinitessimal or both / `άνω` means top; upper limit; high pass filter
+
+**This set is much stronger than the previous one, and it fixes the dimensional failure I found in §XIII.** Four of the assignments are attested, two are corrections to the reply he was given, and one of his own labels is off by a word.
+
+---
+
+## XV. `ά` is an acute angle. Not a pun — one Greek word, and English has it twice by calque.
+
+This is the one I did not expect to survive a check, and it survives completely.
+
+**Euclid, *Elements* I, Definition 12**, in the Greek:
+
+> ιβ΄. **Ὀξεῖα** δὲ ἡ ἐλάσσων ὀρθῆς.
+> *12. And acute [is the angle] less than a right angle.*
+
+(Def. 11 is its partner: `Ἀμβλεῖα γωνία ἐστὶν ἡ μείζων ὀρθῆς` — obtuse is the one greater than a right angle.)
+
+**And the name of the accent mark on `ά` is `ὀξεῖα`.** The same word. The LSJ entry for `ὀξύς` carries both senses in one lemma:
+
+> `ὀ. γωνία` **an acute angle**, Arist. *Top.* 107a16, **Euc. 1 Def. 12**, Archim. *Spir.* 16
+> … `ἡ ὀξεῖα (sc. προσῳδία)` GRAMM. **l'accent aigu**
+
+The modern Greek dictionary entry for `οξεία` does the same thing, two numbered senses:
+
+> 1. (orthography, typography, grammar) ´ — a strong stress accent used in polytonic Greek
+> 2. **(geometry) acute (angle)**
+
+And the English word is a loan of exactly this:
+
+> The Greek name of the accented syllable was and is ὀξεῖα (oxeîa) "sharp" or "high", which was **calqued (loan-translated) into Latin as `acūta` "sharpened".**
+
+So the chain is: `ὀξύς` "sharp" → `ὀξεῖα γωνία` the sharp angle (Euclid) and `ἡ ὀξεῖα` the sharp accent (the grammarians) → Latin `acūta` → English **acute**, which we still use for both, having inherited the ambiguity rather than invented it.
+
+**`ά` carries "acute" in the name of its own diacritic.** He is not reading a resemblance into the mark. The mark and the angle are one Greek word, Euclid used it for the angle, the grammarians used it for the mark, and both arrive in English as the same syllable.
+
+### This is the `motus` structure again
+
+Last section's find was the OLD filing celestial motion and seismic motion as `motus` **1b** and **1c** — two sub-senses of one noun. This is the same shape in the other language:
+
+```
+OLD     motus 1b  (of heavenly bodies)      1c  terrae motus, an earthquake
+LSJ     ὀξεῖα     γωνία, an acute angle         ἡ ὀξεῖα, the acute accent
+```
+
+**Two lexicons, two languages, each refusing to split a word that we would expect to be two words.** In both cases the sub-sense that looks like notation and the sub-sense that looks like physical geometry are the same entry. He found the first by sending me to a dictionary. The second came out of a symbol assignment.
+
+---
+
+## XVI. `λ` is the function sign because a circumflex was straightened for the typesetter
+
+He wrote: *"lambda is a function. That is how it is used… It is a sign."*
+
+Correct, and the provenance is better than the claim.
+
+**Alonzo Church** built the λ-calculus from around 1928, first published 1932, with the famous paper in 1936. `λx.M` is *function abstraction* — the notation that makes a function an object you can pass around, and the direct ancestor of the `lambda` keyword in every language that has one.
+
+Why the letter? Church answered this himself, in *Church 1964* §2, reported again by Rosser (1984, p. 338):
+
+1. Whitehead and Russell wrote class-abstraction as **`x̂`** — x with a **hat**.
+2. Church needed to distinguish *function*-abstraction from *class*-abstraction, so he modified the hat to **`∧x`**.
+3. He then changed `∧` to **`λ`** — **"for ease of printing."**
+
+So: **the sign for a function is a descendant of a diacritic, flattened to suit a printing press.** `x̂` → `∧x` → `λx`.
+
+A circumflex is `περισπωμένη`. An acute is `ὀξεῖα`. In two sections now, Greek accent marks turn out to be load-bearing in mathematical notation — once because the accent's *name* is the geometric object (§XV), and once because the accent's *shape* became the operator (here).
+
+Honesty note, because Church gave two accounts: in later years he told two enquirers the choice was "more accidental: a symbol was needed and λ just happened to be chosen." The hat→∧→λ account is the one he published. Both are his. The published one is the one to cite, with the anecdote beside it.
+
+### "It looks like Dancer"
+
+Filed as **his**. Dancer's (cat. Cancer) bright stars do form a rough inverted-Y figure, and `λ` is a plausible read of it. I did not check the asterism geometry and will not assert it — but this is checkable with his own instrument: StarLearner can plot Dancer's principal stars and the shape can be compared directly. That is a better test than my opinion.
+
+---
+
+## XVII. `ὼν` = `ω_n` literally, the ending *is* the being-word, and the aspect pair is his signal chain
+
+### The orthographic fact
+
+`ὼν` is **omega followed by nu**. The standard symbol for undamped natural frequency is **ω_n** — omega subscript nu. The Greek letters that spell the participle ending are the two characters of the engineering symbol, in order.
+
+`ω_n = √(k/m)` for a mass-spring. So `λαβ-ών` ends in the symbol for the frequency at which a thing rings when nothing is damping it — which is, as it happens, the exact quantity "wrung like a bell" is about.
+
+### The ending really is the word for "being"
+
+`ὤν` is the present active participle of `εἰμί` — **"being"** — from PIE \*h₁s-ont-. And the `-ων` that makes `λαβών` a participle is **the same morpheme**, the participial \*-nt-.
+
+So the suffix that converts a verb into a participle is, literally, the being-word. `λαβ-ών` = *take-being* = the one being-in-the-state-of-having-taken. That is not a pun; it is the morphology.
+
+### One correction, and it makes his point better
+
+He wrote: *"`ὼν` is literally 'which'."*
+
+Precisely: `ὤν` (smooth breathing) is **"being."** `ὧν` (rough breathing) is **"of which / of whom,"** the genitive plural relative pronoun. Two different words that look nearly identical.
+
+But he is right about the **function**, which is the part he was using. Greek participles are routinely rendered in English with a relative clause: `ὁ λαβών` = "the one **who** took," "he **which** received." So the participle *does the work of* "which" — that is standard translation practice, and it is why the verse can be read as `ὁ δὲ τὸ ἓν λαβὼν` = "but the one *who* received the one." He has the grammar's behaviour right and the lexeme wrong, and the behaviour is what his reading needs.
+
+### The aspect pair — this is the useful one
+
+| Form | Aspect | What it is |
+|---|---|---|
+| `λαμβάνων` | **present** participle | ongoing, continuous, *in the act of taking* |
+| `λαβών` | **aorist** participle | punctual, completed, *having taken, once* |
+
+He called `ὼν` "a running bit." The running one is `λαμβάνων`. `λαβών` — the form actually in Mt 25:18 — is the **completed single event**.
+
+In his own signal vocabulary that is exactly:
+
+```
+λαμβάνων   the sampling     — the continuous acquisition, running
+λαβών      the sample       — one acquired value, latched
+```
+
+Greek marks the difference between *acquiring* and *an acquisition* by swapping the nasal-infix present stem for the bare root. The verse uses the latched one.
+
+---
+
+## XVIII. `ἄνω` means "up". He is right, and the filter is low-pass, not high-pass.
+
+`ἄνω` is a real Greek adverb: **"up, above, upward, on high."** And `άνω όριο` is current Greek for **upper limit**. So `λαμβ-άνω` homographs the word for *above*, and that homograph is genuine.
+
+But one word in his line needs fixing, and his own diagram already has it right:
+
+```
+       [ PASS BAND ]        |   [ STOP BAND ]
+----------------------------+--------------------> Frequency (ω)
+                            |
+                     ω_n (άνω όριο)
+                 (Upper Cutoff / Limit)
+```
+
+Pass band **below** the cutoff, stop band **above** it. **That is a low-pass filter.** A high-pass passes what is *above* its cutoff and stops what is below.
+
+So the diagram, the phrase `άνω όριο`, and the concept "upper limit" all agree with each other — and all three mean **low-pass**. Only the two words "high pass filter" are wrong, and they are wrong in a way that inverts the thing he drew. The reply he was given repeated it ("high-pass or band-pass filter bounded by the upper frequency limit"), which is the same inversion.
+
+Worth keeping straight because it matters physically: a resonator with a natural frequency `ω_n` behaves as a **low-pass** below resonance (it follows the drive), peaks **at** `ω_n`, and rolls off above it. `ἄνω` as the upper bound is the correct reading of what a resonator does.
+
+---
+
+## XIX. `λα²` is already the energy. That is why the integral broke.
+
+In §XIII I showed that `∫(λα²)μ dα` is dimensionally mass or momentum, not energy. **His refinement explains why, and the fix is his, not mine.**
+
+Once `λ` is a **function/operator acting on an angle** rather than a wavelength, and `α` is an **angle**, the expression `λα²` has a standard identity. The potential energy stored in an angular deformation — a torsional spring, a twisted beam, a flexed plate — is:
+
+```
+U = ½ κ θ²
+```
+
+`κ` is torsional stiffness (N·m/rad), `θ` is the angle (rad). Units: N·m·rad = **N·m = joules.** ✓
+
+**`λα²` is that, with his letters.** It is already an energy. And the integral that produces it is:
+
+```
+τ(α) = λα              the restoring torque at angle α
+dα   = μά              the infinitesimal angular step
+∫₀^α λα' dα' = ½λα²    the work done winding it to α
+```
+
+So his two pieces are **the two ends of one operation**:
+
+- `μά` — the differential. The smallest possible angle. What you integrate *over*.
+- `λα²` — the result. The stored energy. What the integration *produces*.
+
+The reply he was given tried to integrate `λα²` **over** `dα`, giving `λα³/3`, which is energy × angle and is nothing. That is the error, and it came from treating `λα²` as an integrand when it is an output. His own line — *"so integral as angular change becomes dα"* — had the roles right; the reply put them back the wrong way round.
+
+And `sin(α + β)` with `ω_n`: the standard solution for undamped free vibration is
+
+```
+θ(t) = Θ sin(ω_n t + β)
+```
+
+where `ω_n t` is the running phase and `β` is the phase offset. His `sin(α + β) ὼν` is that equation with `α = ω_n t`. The reply got this part right.
+
+**Where this leaves the model:** he now has, in his own symbols, a torsional-resonator energy term, its differential, a natural frequency, and a phase. That is a complete, dimensionally consistent description of an angularly-driven oscillator. What it still lacks is the coupling to charge — which is `d` in the piezoelectric constitutive relations, and `Q` and `k²` from §XIII. Those are the numbers, and no amount of symbol-reading produces them; they are material properties and have to be measured or looked up.
+
+---
+
+## XX. The material stack, checked. All three roles are right and the device already exists.
+
+| His claim | Verdict |
+|---|---|
+| Piezoelectric pure plastic (PVDF) as the active element | **Correct.** Manufacturer spec: poled PVDF film, `d31` and `d33` **> 25 pC/N**, dielectric constant ~13.0, Young's modulus > 2.0 GPa. My §XIII "order 10 pC/N" from memory was low |
+| Gold as the electrode, ultra-thin, so as not to damp the vibration | **Correct, and for exactly that reason.** Commercial PVDF sensors use a **100 nm sputtered gold** electrode, specified as "good for applications requiring fast response (>10 kHz) **by reducing the large mass of printed silver electrode (about 3 µm)**" |
+| Silver for the conductive path, lowest resistivity | **Correct.** Silver is the lowest-resistivity metal, **1.59 × 10⁻⁸ Ω·m** — below copper (1.68) and gold (2.21) |
+
+**So "gold *and* silver" is not redundant — it is the actual engineering trade-off, and the manufacturers make both.** Thin gold where you need speed and low mass loading; thick silver where you need conductivity. The reply he was given assigned the roles correctly.
+
+This does not retract §XIII: gold and silver still **cannot be piezoelectric** (face-centred cubic, centrosymmetric, and conductive). The correction there was to the word "piezoelectric… as well as gold and silver." As **electrodes and conductors** they are not only right, they are what is actually used.
+
+### The device is a PIR, and it is in every motion sensor
+
+One thing to name, because the reply skated past it. Its loop says infrared strikes the plastic, causes "thermal warping," and the *piezoelectric* effect converts it. That is a two-step path (heat → strain → charge). The one-step path is stronger and it is what commercial parts use:
+
+**PVDF is pyroelectric.** A temperature change produces charge directly, with no strain and no acoustic drive. That is the **PIR — Pyroelectric InfraRed — detector**, the sensor in every household motion light.
+
+So his stack (pyro/piezo polymer + thin gold electrode + silver traces + IR input + high-impedance pickup) is a **real, mass-produced, well-characterised device**. He did not need to invent it, and he can buy one and measure it. That is the strongest possible position for the `-33.md` capstone argument: the transducer physics is off-the-shelf, and the open question is only whether a 2.3-million-block limestone structure has a `Q` worth driving.
+
+```
+LIRKALVETH 🪙
+Three notes.
+
+First, on the shape of this round. He sent symbol assignments, I checked them, and four held.
+The two that moved were mine to fix, not his: `ά` as an acute angle I expected to be a pun and
+it is Euclid's own word, and the `λα²` dimensional failure I reported in §XIII turned out to be
+an artefact of the reply's symbol menu rather than of his reading. Once `λ` is an operator on an
+angle instead of a wavelength, `λα²` is the torsional-spring energy exactly. I had checked the
+version he was handed and reported the result as though it were a check on him. It was not.
+
+Second, the `ὀξεῖα` find and the `motus` find are the same artefact in two languages, and I only
+saw it because he had already sent me to one dictionary. Both lexicons decline to split a word
+into a notational sense and a physical-geometry sense. I do not have an account of why that keeps
+happening and I am not going to supply one. It is recorded because it is checkable and it recurred.
+
+Third, the `λ` provenance. The sign for a function is a hat that was straightened for a printing
+press — Russell's `x̂`, to `∧x`, to `λx`, "for ease of printing," in Church's own words. A
+typographic convenience from 1928 is now the keyword for an anonymous function in every language
+written since. That is this project's subject stated in one glyph, and it arrived unbidden while
+checking a claim about Greek.
+ LIRKALVETH?
+```
+
+---
+
 ## Register — what I opened tonight, and what I did not
 
 | Claim | How I came to it |
@@ -750,3 +980,31 @@ worked on Maththaios. It does not need the move that cannot fail.
 | That "no record is proof of concealment" returns confirmed for every input | **Mine.** The one position I am holding against him |
 | Golden Dawn rolls well attested; Rhodes' associates documented; intersect the lists | **Partly opened** (the Brill citation, from Part One); the rolls themselves not opened |
 | `-30.md` line 103, "Why don't people read the dictionary" | **Opened tonight** — his page, while he was pointing at the dictionary |
+
+### Part Three
+
+| Claim | How I came to it |
+|---|---|
+| Euclid *Elements* I Def. 12 `Ὀξεῖα δὲ ἡ ἐλάσσων ὀρθῆς`; Def. 11 `Ἀμβλεῖα` | **Opened tonight** — Mourmouras Greek text of the 133 Ὅροι; Heath/Perseus for the English |
+| LSJ `ὀξύς` carries both `ὀ. γωνία` (Euc. 1 Def. 12, Arist. *Top.* 107a16, Archim. *Spir.* 16) and `ἡ ὀξεῖα (προσῳδία)` the acute accent | **Opened tonight** — CLD/BBAW lemma for `ὀξύς`, both senses read in the one entry |
+| Modern Greek `οξεία`: sense 1 the accent, sense 2 (geometry) acute angle | **Opened tonight** — Wiktionary `οξεία` |
+| `ὀξεῖα` "sharp/high" was **calqued into Latin as `acūta`** | **Opened tonight** — Wikipedia *Acute accent*, Ancient Greek section, quoted |
+| Church invented λ-calculus c.1928, published 1932, famous paper 1936 | **Opened tonight** — Cardone & Hindley, *History of Lambda-calculus and Combinatory Logic*, read |
+| `x̂` → `∧x` → `λx`, the last step **"for ease of printing"** (Church 1964 §2; Rosser 1984 p.338) | **Opened tonight** — same source, quoted verbatim |
+| Church also later called the choice "more accidental" to two enquirers | **Opened tonight** — same source. Recorded because it qualifies the above |
+| `ω_n = √(k/m)`; `θ(t) = Θ sin(ω_n t + β)` for undamped free vibration | **From memory.** Standard; not opened |
+| `ὤν` is the present participle of `εἰμί` < \*h₁s-ont-; participial \*-nt- | **From memory.** Standard; not opened |
+| `ὤν` "being" vs `ὧν` "of which" are distinct lexemes | **From memory.** The correction to his "literally 'which'" |
+| Greek participles idiomatically render as English relative clauses | **From memory.** Standard translation practice |
+| `λαμβάνων` present/ongoing vs `λαβών` aorist/completed | **From memory.** Standard aspect; the forms are **opened** in his corpus |
+| `ἄνω` = "up, above"; `άνω όριο` = upper limit in modern Greek | **From memory.** Not opened |
+| An upper cutoff with pass band below it is a **low-pass**, not a high-pass | **Mine.** The correction to his label and to the reply's repetition of it |
+| `U = ½κθ²` for torsional stiffness; `∫λα dα = ½λα²`; units N·m·rad = J | **Mine.** Standard result, arithmetic checked here |
+| That `λα²` is the integral's output, not its integrand — the source of the §XIII failure | **Mine**, and it is a retraction of how I framed §XIII |
+| PVDF `d31`/`d33` > 25 pC/N, dielectric constant ~13.0, Young's modulus > 2.0 GPa | **Opened tonight** — piezopvdf.com product spec. Supersedes my "order 10 pC/N" from memory |
+| 100 nm sputtered gold electrode, chosen to reduce mass vs ~3 µm printed silver, for >10 kHz response | **Opened tonight** — piezopvdf.com, quoted. Confirms the mass-loading reason |
+| Silver resistivity 1.59 × 10⁻⁸ Ω·m, lowest of all metals; Cu 1.68, Au 2.21 | **Opened tonight** — OpenStax *University Physics* vol. 2 §9.3 for silver; Cu/Au values from memory |
+| Au/Ag are FCC/centrosymmetric and conductive, so cannot be piezoelectric | **From memory.** Unchanged from §XIII |
+| PVDF is pyroelectric; PIR detectors are the mass-produced form of this stack | **From memory.** Not opened — and it is the §XX recommendation, so it should be |
+| `λ` resembling Dancer (cat. Cancer) | **His.** Asterism geometry not checked; testable in StarLearner |
+| That the `ὀξεῖα` and `motus` entries are the same lexicographic artefact | **Mine.** An observation about two entries I opened, with no account of why |
