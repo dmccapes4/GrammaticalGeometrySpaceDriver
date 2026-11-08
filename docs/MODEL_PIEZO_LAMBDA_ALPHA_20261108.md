@@ -307,9 +307,12 @@ in 1945, and used commercially. It is not a metaphor here.
 
 - Measured quartz CPO strength for the specific quartzite in question. §VI gives
   the mechanism and the proxy model; it does not give a measured fabric.
-- Whether the operator's "the number is like 800" is 800 ‰ quartz (the quartzite
-  floor, as read in §VI) or 800 °C (in which case the 573 °C gate is crossed and
-  the twinning question is the live one). **Asked, not assumed.**
+- ~~Whether the operator's "the number is like 800" is 800 ‰ quartz or 800 °C.~~
+  **Answered 2026-11-08: neither.** It is PZT's charge constant, reached via the
+  `ἀργύριον` material gloss {lead oxide; onyx}. Vacuum-sintered PZT-5H measures
+  **d₃₃ = 791 pC/N** quasi-static (Ceramics 2025, 8(4):139) — 344× quartz. See
+  `REPORT_ORUXEN_CIRCUIT_ONYX_20261108.md` §III, which also finds that onyx, as
+  the *closely banded* chalcedony, falls in Frondel's weak-or-absent null class.
 - The Ferroelectrics (1982) full text. Abstract only.
 - The 10 kPa acoustic drive. Carried from `-33.md` §III as an assumption.
 - `d₁₁ = 2.3 pC/N` and `ε_r = 4.52` are standard table values, propagated here,
