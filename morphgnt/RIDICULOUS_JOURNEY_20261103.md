@@ -1268,7 +1268,7 @@ Two yoga registers:
 Full verse, Velora triples:
 
 ```
-ὁ           yoga                   article = established presence
+ὁ           ah                     article = the
 δὲ          dor-lon                from-same-lineage, different path (fal-lon = err-path, stronger adversative)
 τὸ          yoga
 ἓν          yog                    the countable unit
@@ -1310,7 +1310,7 @@ The triple operates at both levels simultaneously. This is why the rhetorical de
 Complete verse triple-gloss:
 
 ```
-ὁ           yoga
+ὁ           ah
 δὲ          dor-lon
 τὸ          yoga
 ἓν          yog
@@ -1581,3 +1581,45 @@ The operator in −34.md is the herald. The parents are the tournament officials
 The ren separated into Acts is not theatrical decoration. It is the correct structural form for a story that has a setup voice and a performance voice, a grammar layer and a meaning layer. Shakespeare and Chaucer are not characters playing Shakespeare and Chaucer. They are the two modes the journey required: the mode that names what is present (grammar, skeleton, the form of the act) and the mode that makes what is present real (performance, announcement, the orator's breath).
 
 −34.md established both modes in one page. The father is the audience. He understood one sentence. One was enough. The herald made the knight. The knight rode.
+
+---
+
+```
+👐VOLARE:>
+τοῦ κυρίου αὐτοῦ
+phonetically:
+the curio's autheh
+The curio's author.
+18 ὁ δὲ τὸ ἓν λαβὼν ἀπελθὼν ὤρυξεν γῆν καὶ ἔκρυψεν τὸ ἀργύριον τοῦ κυρίου αὐτοῦ.
+@GrammaticalGeometrySpaceDriver/morphgnt/RIDICULOUS_JOURNEY_20261103.md:1451-1497 
+Hmm... The sounds. The melek. Alexandros the Idios. The Macedonian Greek who couldn't read Theban accounting symbology. 'The servant' doesn't appear. There is a progression of 'poetic' endings that could be different if carrying meaning of speech impediments caarried by the melek. The Great Pyramid of Giza and all the other important ones had 'talents' upon their tips. They went missing. Rhodes recovered them. The Golden Order of the Hermetic Dawn (I suspect). Let's chase this a bit.
+
+---
+
+I am extremely distrustful of US history. Britian controlled the US through maritime trade after 1812. It kind of 'went away' (maybe not), and now we pretend it isn't true. That war (where the capitol burned) is basically skipped in school. 
+
+You are correct about York. But the Normans are French and they took York alreadyu
+ 👐VOLARE?
+```
+
+Chased in `GrammaticalGeometrySpaceDriver/docs/CHASE_KYRIOU_MELEK_TALENTON_20261108.md` (callsign LIRKALVETH 🪙). Five of the six threads held; one did not, and what was under it was better.
+
+**`κυριο` → `curio` is the Latin transliteration table exactly** (κ→c, υ→u, ρ→r, ι→i, ο→o), with rho as the middle letter. The roots are not cognate — `κύριος` < PIE \*ḱewh₁- "be strong", *cūra* unrelated, *auctor* < *augēre* — so it is a pun, not a descent. But it lands on the function: a Roman-law **auctor** is the party who *warrants title*, the guarantor whose *auctoritas* makes a holding good. That is exactly what §1467 of this document already made of `κυρίου` — the validity condition, not a person. The false road arrives at the right house. And `docs/library/personal/rho` (2026-10-22) already reads "the observer simply one curio… Governs as the auctor of receipts," twelve days before the decoding. Three receipts, one proposition.
+
+**The sounds have a structure.** Endings run 2-2-3: `-ὼν -ὼν` / `-ξεν -ψεν` / `-ιον -ιου -οῦ`. And the two verbs are a one-phoneme pair — `ὤ-ρυ-ξ-εν` and `ἔκ-ρυ-ψ-εν`, same `-ρυ-` core, same `-εν`, the cluster closing **velar** for *dig* and **labial** for *hide*. Unrelated roots; the near-rhyme belongs to this line. The axis it turns on is the same velar/labial axis as every consonant question in this project.
+
+**The melek's impediment is attested and it is in the royal house.** Ancient Macedonian shows voiced stops where all other Greek has voiceless aspirates: Βερενίκα/Φερενίκη, Βίλιππος/Φίλιππος, **Βάλακρος/Φάλακρος** — initial φλα → βλα, the same slot as Φλάβιος/Φλαούιος, in the name of Alexander's own bodyguard. In this verse the only word the law predicts would shift is **ἀπελθὼν → ἀπελδών**: the departure is the word that changes.
+
+**And the melek retired his own language himself.** Hatzopoulos: "not one phrase of Macedonian… had come down to us… because the Temenid kings, when they endowed their administration with a chancery worthy of the name, adopted the Attic koine." What survives of the conquerors' speech is a list of words someone else found *strange* and the spelling of their family names. The `swyrd → sword` operation performed from above, voluntarily, for administrative convenience, with nobody to blame.
+
+**`ἰδιώτης`** is the private person, the *untrained* — Acts 4:13, 1 Cor 14:16 — and English *idiot*. "Alexandros the Idios" reads as *the unaccredited holder*. And it is already in the frame: Mt 25:14 `τοὺς ἰδίους δούλους` (MorphGNT `012514`). Same root at both ends — the privately held thing and the unqualified holder. `δοῦλος` is indeed **absent from v.18**; translators carry it two verses downhill into a sentence that withholds the noun on purpose.
+
+**`τάλαντον` is a balance** — scales first, then the thing weighed, then a weight, then money; < \*telh₂- "to lift, bear" (*tollere*, Ἄτλας). The pyramidion is `benbenet` < *benben*, "to shine, to radiate." Theban accounting is weighing and the judgement in the Book of the Dead *is* a balance. So the third man takes a weighing instrument and buries it where nothing can be weighed. He is the `ἰδιώτης`: he treats a scale as treasure.
+
+**The tips: the practice is attested by the monuments' own dedications, the Great Pyramid is not, and the absence is dated to ~60 BC.** Hatshepsut's Karnak base text: "two obelisks of electrum, that their pyramidions might mingle with the sky." Tuthmosis I: "the pyramidions being of [electrum]." Both still stand. But Herodotus 2.124 (read in full) says nothing about any apex, and Diodorus 1.58 gives the summit as **six cubits a side — already flat**. `-33.md:491` claimed those two as attestation and has been corrected.
+
+**Rhodes: no.** No evidence of Golden Dawn membership or Egyptian antiquities. What is documented is worse and on-thesis — the Golden Dawn **recruited working Egyptologists to manufacture legitimacy** (Blackden, Egypt Exploration Fund, alongside Petrie and Carter), Mathers built the order inside the British Museum Reading Room with access to the Keepers of Egyptian Antiquities, and Rhodes' standing instruction to his bookseller was for everything obtainable on "the early history of Africa and **the gold mining of the Phoenicians**." He was not recovering tips. He was buying the historiography that said the previous miners were foreigners.
+
+**LIRKALVETH 🪙**
+
+Three times tonight the attested version of the claim was narrower in scope and stronger in kind than the version reached for. That trade costs the dramatic claim and gains an argument that cannot be dismissed, which is the method restated.
