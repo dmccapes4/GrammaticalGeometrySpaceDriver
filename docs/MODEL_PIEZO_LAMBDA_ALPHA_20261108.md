@@ -211,10 +211,106 @@ model's own answer to whether §III works.
 
 ---
 
-## VI. What was not checked
+## VI. Quartzite, not granite — and the 573 °C gate
 
-- Whether Aswan pink granite has measurable quartz texture. This is the one
-  number that decides §III and it has not been opened.
+**Added 2026-11-08** after the operator corrected the substrate: *"The text says
+quartzite. The channel is in quartzite."* The text is `-27.md:68` — the Witch of
+the Rivers' tower, *"which is mainly quartzite all the way to the ground below"* —
+and the stone apertures of `-25.md`, the cut in the rock that lets one star through
+and holds the rest.
+
+[standard] **This is not a material swap. It changes the §II result, in his
+favour.** Two reasons, and the second is the one that matters:
+
+1. **Fraction.** Quartzite is ≥80% quartz by definition (typically 90–99%) against
+   granite's 28%. Nearly 3× on its own.
+2. **Mechanism for texture.** Granite is igneous — quartz crystallises into
+   interstitial space with *no* mechanism to prefer an orientation, which is why
+   the random-fabric average in §II is exactly zero. Quartzite is a **tectonite**,
+   recrystallised under directed stress. Quartz crystallographic preferred
+   orientation in quartzite is not a speculation; it is the standard subject of
+   texture analysis in structural geology. The one number §II said the whole thing
+   turned on now has a mechanism that produces it.
+
+[modelled] Using the cone model as a proxy for CPO strength:
+
+| rock | fabric | V coherent | V incoherent | i (A) |
+|---|---|---|---|---|
+| granite 28% | random | 0.0 | 77.0 | 0 |
+| quartzite 80% | random | 0.0 | 219.9 | 0 |
+| quartzite 80% | moderate CPO | 294.8 | 314.8 | 2.224e−06 |
+| quartzite 80% | strong CPO | 439.1 | 439.3 | 3.312e−06 |
+| quartzite 99% | strong CPO | 543.3 | 543.6 | 4.099e−06 |
+
+### The gate: Dauphiné twinning at 573 °C
+
+[measured] **Frondel, C. (1945), "Secondary Dauphiné Twinning in Quartz,"
+*American Mineralogist* 30:447** — full text opened and read. Dauphiné twinning
+(the industry calls it **electrical twinning**) relates domains by a 180° rotation
+about c, and *"the twin operation... reverses the polarity of the x:o axes and
+hence reduces crystal activity."* Frondel's abstract lists three ways to produce
+it artificially:
+
+1. cooling β-quartz down through the **573° inversion** to α-quartz;
+2. **rapid cooling** of α-quartz from roughly the 200–550 °C range;
+3. **local application of high pressures** at room temperature or higher.
+
+[measured] The interventional control exists and is industrial: the quartz
+oscillator-plate industry rejects *"a very large proportion of the raw quartz
+available"* because of twinning, and detwins by heating above the inversion into
+β-quartz — *"in which Dauphiné twinning cannot exist by reason of symmetry"* —
+then *"controlling the cooling conditions so that the reinversion proceeds from
+one center rather than many."* A twinned plate does not oscillate properly. That
+is a null control run at commercial scale for decades.
+
+[measured] And the coefficient itself vanishes in the high phase. *Effect of the
+α—β transition on mechanical properties of quartz*, **Ferroelectrics (1982)**,
+doi:10.1080/00150198208202006 (abstract read, full text not opened): the Landau
+order parameter η *"is zero in β phase, and takes two opposite values in α phase,
+corresponding to Dauphiné twinning,"* and *"several properties such as the
+piezoelectric coefficient dxxx vary as η."* So `d₁₁ → 0` above 573 °C, and the
+two signs on cooling are the twin.
+
+**Consequence.** If the channel was cut or worked **hot above 573 °C**, the
+coherent piezoelectric response is destroyed on cooling — not by losing the
+quartz, but by the domains reinverting at random polarity and cancelling. The
+escape is Frondel's own: reinversion *from one centre*, i.e. a controlled cooling
+gradient. A single slow directional cool through the inversion is the difference
+between an oscillator plate and scrap.
+
+[modelled] Note that route 3 cuts against the texture win. Stress produces
+Dauphiné twins too, so a quartzite deformed hard enough to acquire a strong
+fabric may also have acquired twins that cancel the fabric's advantage. Texture
+and twinning are separate measurements (EBSD gives both) and they must be read
+together, not inferred from one another.
+
+### The memory phenomenon
+
+[measured] Frondel, same abstract: natural Dauphiné-twinned oscillator plates
+*"homogenized by heating over 573° show a 'memory' phenomena in which both the
+incidence and distribution of the secondary twinning which reappears on cooling
+are influenced by the original twinning."*
+
+[standard] That is information surviving a phase transition that erases, by
+symmetry, the structure carrying it. Frondel also devotes a section to *"Quartz
+as a Geologic Thermometer"* — twinning pattern as a record of thermal history.
+
+[his] This is the mechanism behind Imhotep's line in
+`star_learning/garden_explorer/docs/DIAMOND_SCREW_SIM_20261009/FABLE_CIRCLE_OF_DIAMONDS_AND_TESSERACTS_20261009.md`:
+*"a structure that immortalizes data in stone... the mark kept in the gap and not
+in the man."* The mark kept in quartz across the inversion is measured, published
+in 1945, and used commercially. It is not a metaphor here.
+
+---
+
+## VII. What was not checked
+
+- Measured quartz CPO strength for the specific quartzite in question. §VI gives
+  the mechanism and the proxy model; it does not give a measured fabric.
+- Whether the operator's "the number is like 800" is 800 ‰ quartz (the quartzite
+  floor, as read in §VI) or 800 °C (in which case the 573 °C gate is crossed and
+  the twinning question is the live one). **Asked, not assumed.**
+- The Ferroelectrics (1982) full text. Abstract only.
 - The 10 kPa acoustic drive. Carried from `-33.md` §III as an assumption.
 - `d₁₁ = 2.3 pC/N` and `ε_r = 4.52` are standard table values, propagated here,
   not measured.
