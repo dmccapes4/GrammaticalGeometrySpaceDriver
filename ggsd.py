@@ -48,6 +48,11 @@ from schema import (
 from sources import fetch_greekbible, fetch_all_for_word, load_morphgnt, morphgnt_verse_tokens
 from model import call_model, call_question
 from report import write_report
+from punctuation import (
+    tokenise_morph_tokens, tokenise_printed_text, cadence_map,
+    mark_counts, punctuation_block,
+)
+from math_layer import math_for_verse
 
 
 # ─── helpers ───────────────────────────────────────────────────────────────────
@@ -82,9 +87,17 @@ def _load_completed(jsonl_path: Path) -> dict[int, dict]:
                 continue
             try:
                 p = json.loads(line)
-                completed[i] = p
             except json.JSONDecodeError:
-                pass
+                continue
+            # Model-error primitives are NOT completions (audit finding A8):
+            # they stay out of the checkpoint so a resume retries the word.
+            if p.get("_model_error") or str(p.get("description", "")).startswith("[model error"):
+                continue
+            # Word identity is the stored index, NOT the JSONL line number
+            # (review 2026-11-11 #5): a retried word is appended at the end
+            # of the file, so line number and word position diverge.
+            idx = p.get("word", {}).get("index")
+            completed[idx if isinstance(idx, int) else i] = p
     return completed
 
 
@@ -95,10 +108,15 @@ def _log(log_fh, entry: dict) -> None:
     log_fh.flush()
 
 
-def _build_decoding_json(verse_ref: str, model_id: str, primitives: list[dict]) -> dict:
+def _build_decoding_json(verse_ref: str, model_id: str, primitives: list[dict],
+                         punct_tokens: list[dict] | None = None,
+                         verse_math: dict | None = None) -> dict:
     """Build the clean verse_grammatical_decoding.json structure."""
+    math_data = None
+    if punct_tokens is not None:
+        math_data = verse_math or math_for_verse(punct_tokens, verse_ref)
     words = []
-    for p in primitives:
+    for wi, p in enumerate(primitives):
         words.append({
             "surface":                p.get("word", {}).get("surface", "?"),
             "description":            p.get("description", ""),
@@ -108,14 +126,36 @@ def _build_decoding_json(verse_ref: str, model_id: str, primitives: list[dict]) 
             "possible_interpretations": p.get("possible_interpretations", []),
             "translations":           p.get("translations", []),
             "edges":                  p.get("edges", []),
+            "punctuation":            p.get("punctuation", {}),
+            "mathematical_rules":     p.get("mathematical_rules", []),
+            "reference_grade":        p.get("reference_grade", {}),
+            "cadence_role":           (p.get("cadence_role") or
+                                       (math_data or {}).get("cadence_roles", {}).get(str(wi), {})),
+            "grammations":            (p.get("grammations") or
+                                       (math_data or {}).get("grammations", {}).get(str(wi), {})),
         })
-    return {
+    n_failed = sum(1 for p in primitives
+                   if p.get("_model_error") or p.get("_schema_error"))
+    out = {
         "verse_ref":   verse_ref,
         "model_id":    model_id,
         "decoded_at":  _now_iso(),
         "word_count":  len(primitives),
+        # A returned decoding is not silently "complete" (review #6):
+        "status":      "incomplete" if n_failed else "finished",
+        "incomplete_words": n_failed,
         "words":       words,
     }
+    if punct_tokens is not None:
+        out["cadence_map"] = cadence_map(punct_tokens)
+        out["mark_counts"] = mark_counts(punct_tokens)
+        out["gates"] = math_data["gates"]
+        out["equations"] = math_data["equations"]
+        out["grammations"] = math_data.get("grammations", {})
+        out["math_lecture"] = math_data.get("math_lecture", {})
+        out["explicit_math_translation"] = math_data.get(
+            "explicit_math_translation", [])
+    return out
 
 
 # ─── run ───────────────────────────────────────────────────────────────────────
@@ -127,6 +167,7 @@ def run(
     greek_override: str = "",
     morphgnt_path: str = "",
     resume_dir: str = "",
+    prerun_path: str = "",
 ) -> Path:
 
     # ── Provider check ──────────────────────────────────────────────────────
@@ -177,7 +218,9 @@ def run(
         "started_at":   _now_iso(),
         "verse_ref":    verse_ref,
         "model_id":     model_id,
-        "driver_version": "0.0.2",
+        "driver_version": "0.0.4",
+        "text_source": {"edition": "pending tokenisation",
+                        "punctuation_layer": "punctuation.py v1 (deterministic)"},
         "resumed":      bool(resume_dir),
     }
 
@@ -242,25 +285,74 @@ def run(
         )
 
     # ── Tokenise ─────────────────────────────────────────────────────────────
+    # Punctuation layer (deterministic): surfaces still come from the clean
+    # field so word counts never change; punctuation/apparatus come from
+    # the as-printed field (MorphGNT field 3) or the punctuated string.
     if morphgnt_tokens and not greek_override:
-        # Use MorphGNT word list.
-        # word (field 4) is clean — no ⸀ apparatus markers or trailing punctuation.
-        # text (field 3) is the as-printed form and may include ⸀ markers.
-        surface_tokens = [w["word"] for w in morphgnt_tokens]
-        lemma_hints    = [w["lemma"] for w in morphgnt_tokens]
+        punct_tokens = tokenise_morph_tokens(morphgnt_tokens)
     else:
-        surface_tokens = tokenise_greek(greek_text)
-        lemma_hints    = [None] * len(surface_tokens)
+        punct_tokens = tokenise_printed_text(greek_text)
+    surface_tokens = [t["surface"] for t in punct_tokens]
+    lemma_hints    = [t.get("lemma_hint") for t in punct_tokens]
+    printed_text = " ".join(t["printed"] for t in punct_tokens)
+    run_meta["text_source"]["edition"] = (
+        "SBLGNT via MorphGNT (field 3 printed / field 4 clean)"
+        if morphgnt_tokens and not greek_override else "greekbible.com / override")
+
+    # Deterministic verse math context (cadence -> lecture -> grammations).
+    # Computed once, fed to Qwen as given/proposed context; Qwen keeps
+    # discretion over interpretations but may not alter these fields.
+    from grammations import corpus_stats as _corpus_stats
+    _morph_stats = _corpus_stats(morphgnt_data) if morphgnt_data else None
+    verse_math = math_for_verse(punct_tokens, verse_ref,
+                                morph_stats=_morph_stats)
+
+    # Pre-run context (v0.0.3): cadence, math identification, grammation,
+    # letter-by-letter, and MorphGNT grading generated BEFORE this Qwen
+    # run began (tools/build_prerun_context.py). When a bundle entry
+    # exists for this verse, it is the context of record.
+    prerun_entry = None
+    if prerun_path and Path(prerun_path).exists():
+        try:
+            _bundle = json.loads(Path(prerun_path).read_text(encoding="utf-8"))
+            prerun_entry = _bundle.get("verses", {}).get(verse_ref)
+        except Exception as e:
+            print(f"  WARNING: prerun context unreadable ({e}); computing live")
+    if prerun_entry:
+        verse_math["grammations"] = {
+            str(w["index"]): w["grammations"]
+            for w in prerun_entry["words"] if w.get("grammations")}
+        verse_math["cadence_roles"] = {
+            str(w["index"]): w.get("cadence_role", {})
+            for w in prerun_entry["words"]}
+        verse_math["math_lecture"] = prerun_entry["math_lecture"]
+        verse_math["explicit_math_translation"] = \
+            prerun_entry["explicit_math_translation"]
+        run_meta["prerun_context"] = prerun_path
+        print(f"  prerun context loaded for {verse_ref}")
 
     print(f"tokens ({len(surface_tokens)}): {surface_tokens}")
+    print(f"marks: {mark_counts(punct_tokens)}")
+    print(f"math lecture: {verse_math['math_lecture']['is_math_lecture']} "
+          f"{verse_math['math_lecture']['reasons']}; "
+          f"grammations on {len(verse_math['grammations'])} word(s)")
     print()
 
     if dry_run:
+        print("cadence map:")
+        for entry in cadence_map(punct_tokens):
+            print(f"  after [{entry['after_word']}] {entry['surface']}: "
+                  f"{entry['mark']} (weight {entry['weight']}) {entry['context']}")
+        print("explicit math translation:")
+        for line in verse_math["explicit_math_translation"]:
+            print(f"  {line}")
         print("[dry-run] would process these tokens. Exiting.")
         return run_dir
 
     # ── Walk ─────────────────────────────────────────────────────────────────
-    primitives: list[dict] = list(completed.values()) if completed else []
+    # Assemble in word-index order (review #5): retries appended later in
+    # the file must land back at their own positions, not at the end.
+    primitives: list[dict] = [completed[k] for k in sorted(completed)] if completed else []
 
     with (
         jsonl_path.open("a", encoding="utf-8") as jf,
@@ -275,6 +367,22 @@ def run(
 
             # Build empty primitive
             p = empty_primitive(verse_ref, surface, model_id)
+            p["word"]["index"] = i  # stored identity for resume (review #5)
+            if i < len(punct_tokens):
+                p["punctuation"] = punctuation_block(punct_tokens[i])
+            # Deterministic math/grade context for Qwen (proposed, given):
+            p["grammations"] = verse_math["grammations"].get(str(i), {})
+            p["cadence_role"] = verse_math["cadence_roles"].get(str(i), {})
+            if prerun_entry and i < len(prerun_entry["words"]):
+                p["reference_grade"] = \
+                    prerun_entry["words"][i].get("reference_grade", {})
+            elif morphgnt_tokens and i < len(morphgnt_tokens):
+                from grammations import (morphgnt_need as _need,
+                                          grade_morphgnt_word as _grade)
+                _w = morphgnt_tokens[i]
+                p["reference_grade"] = _grade(
+                    _w, _need(_w, _morph_stats) if _morph_stats else [],
+                    punct_tokens[i], p["grammations"] or None)
 
             # Store greekbible / MorphGNT retrieval
             p["source_retrievals"][greekbible_result["source_id"]] = {
@@ -309,11 +417,13 @@ def run(
                     logeion_entries=logeion_entries,
                     greekbible_result=greekbible_result,
                     prior_words=primitives,
+                    verse_math=verse_math,
                 )
             except Exception as e:
                 print(f"  ERROR from model: {e}")
                 filled = p
                 filled["description"] = f"[model error: {e}]"
+                filled["_model_error"] = str(e)  # not a completion (A8)
             duration = time.time() - t0
 
             # Restore driver-managed fields (model must not overwrite these)
@@ -321,6 +431,11 @@ def run(
             filled["meta_data"]         = p["meta_data"]
             filled["word"]["surface"]   = surface
             filled["word"]["letters"]   = list(surface)
+            filled["word"]["index"]     = i
+            filled["punctuation"]       = p.get("punctuation", {})
+            filled["grammations"]        = p.get("grammations", {})
+            filled["cadence_role"]      = p.get("cadence_role", {})
+            filled["reference_grade"]   = p.get("reference_grade", {})
 
             filled["source_agreements"] = compute_agreements(filled)
 
@@ -357,7 +472,9 @@ def run(
             print()
 
     # ── verse_grammatical_decoding.json ──────────────────────────────────────
-    decoding = _build_decoding_json(verse_ref, model_id, primitives)
+    decoding = _build_decoding_json(verse_ref, model_id, primitives,
+                                     punct_tokens=punct_tokens,
+                                     verse_math=verse_math)
     decoding_path.write_text(
         json.dumps(decoding, ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -366,8 +483,20 @@ def run(
 
     # ── Post-decode questions ─────────────────────────────────────────────────
     QUESTIONS = [
-        "What was taken?",
-        "Is it moral?",
+        (
+            "What grammatically possible readings does the KJV or standard English interpretation "
+            "foreclose? The possible grammatical structure is the primary source. "
+            "Name what is present in the open set — morphological, lexical, or semantic — "
+            "that the reductive standard translation collapses, narrows, or eliminates. "
+            "Be specific to this verse's decoded words."
+        ),
+        (
+            "Given what was taken from the grammatically possible set: "
+            "is that elimination moral? "
+            "Answer from the grammar and the decoded set. "
+            "If the taking is structural (the standard reading could not have preserved it), "
+            "say so. If it was a choice, name the choice and evaluate it."
+        ),
     ]
 
     qa_results: list[dict] = []
@@ -387,6 +516,9 @@ def run(
                     verse_decoding=decoding["words"],
                     question=question,
                     prior_qa=prior_qa,
+                    gates=decoding.get("gates"),
+                    equations=decoding.get("equations"),
+                    math_lines=decoding.get("explicit_math_translation"),
                 )
             except Exception as e:
                 answer = f"[question error: {e}]"
@@ -425,7 +557,10 @@ def run(
             prior_qa = {"question": question, "answer": answer}
 
     # ── Report ────────────────────────────────────────────────────────────────
-    write_report(verse_ref, run_meta, primitives, report_path)
+    write_report(verse_ref, run_meta, primitives, report_path, greek_text=greek_text,
+                 qa_results=qa_results, cadence=decoding.get("cadence_map"),
+                 gates=decoding.get("gates"), equations=decoding.get("equations"),
+                 math_lines=decoding.get("explicit_math_translation"))
 
     # ── Run meta ──────────────────────────────────────────────────────────────
     run_meta["finished_at"] = _now_iso()
@@ -485,6 +620,11 @@ def main() -> None:
         metavar="RUN_DIR",
         help="Resume an interrupted run. Supply the run directory path.",
     )
+    parser.add_argument(
+        "--prerun", default="",
+        metavar="JSON",
+        help="Pre-run context bundle (tools/build_prerun_context.py output).",
+    )
     args = parser.parse_args()
 
     run(
@@ -494,6 +634,7 @@ def main() -> None:
         greek_override=args.greek,
         morphgnt_path=args.morphgnt,
         resume_dir=args.resume,
+        prerun_path=args.prerun,
     )
 
 

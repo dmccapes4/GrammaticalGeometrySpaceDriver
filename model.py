@@ -42,6 +42,22 @@ numeral refers to from context outside this verse), you must label it \
 Never promote a training prior to a grammatical or lexical rule.
 6. Do not spend the set. Keep all members unless contradicted by a consented rule with a source quotation.
 7. Translations from greekbible.com go in the translations array. You do not choose which wins.
+8. The primitive may carry deterministic driver fields — punctuation, cadence_role,
+   reference_grade, grammations, and a verse-level explicit mathematical translation.
+   These are GIVEN context, computed by script, status "proposed" where interpretive.
+   Do not alter, restate as your own finding, or eliminate anything on their basis.
+   You keep discretion: where a grammations candidate or cadence scope bears on what
+   this word could mean, you may say so in possible_interpretations, labelled [proposed math].
+9. LETTER-BY-LETTER MATH (v0.0.4 — this word only, in this call). The user message carries a
+   LETTER-BY-LETTER section for THIS word: its grapheme walk and the script's candidate
+   segmentations under the operator's suggested letter table (status: suggested, not consented).
+   Do the letter math here, one word per call: walk the graphemes in order, and for each
+   candidate segmentation that parses, add ONE entry to mathematical_rules:
+   {"category":"mathematical","value":"letter-by-letter: <grapheme>=<role> ... => <expression>",
+    "source_id":"letter_math_v004","quotation":"<the candidate expression from the LETTER-BY-LETTER section>",
+    "status":"proposed","notes":"<which letters carry the reading; rivals kept>","added_at":"..."}.
+   Keep rival segmentations as rival entries — do not pick a winner, do not eliminate any
+   lexical reading on a math reading's basis. If no candidate parses, return mathematical_rules empty.
 
 OUTPUT:
 Return ONLY a JSON object with EXACTLY these keys — nothing else, no commentary:
@@ -51,12 +67,13 @@ Return ONLY a JSON object with EXACTLY these keys — nothing else, no commentar
   "grammatical_rules": [{"category":"grammatical","value":"...","source_id":"...","quotation":"...","status":"proposed","notes":"...","added_at":"..."}],
   "lexical_rules": [{"category":"lexical","value":"...","source_id":"...","quotation":"...","status":"proposed","notes":"...","added_at":"..."}],
   "semantic_rules": [{"category":"semantic","value":"...","source_id":"...","quotation":"...","status":"proposed","notes":"...","added_at":"..."}],
+  "mathematical_rules": [{"category":"mathematical","value":"letter-by-letter: ...","source_id":"letter_math_v004","quotation":"...","status":"proposed","notes":"...","added_at":"..."}],
   "translations": [{"value":"...","source_id":"...","notes":"..."}],
   "possible_interpretations": [],
   "edges": []
 }
 
-Do NOT output meta_data, verse, or word — those are already filled. Output only the 7 keys above.
+Do NOT output meta_data, verse, or word — those are already filled. Output only the 8 keys above.
 """
 
 
@@ -65,6 +82,7 @@ def _build_user_message(
     logeion_entries: dict[str, Any],
     greekbible_result: dict[str, Any],
     prior_words: list[dict[str, Any]],
+    verse_math: dict[str, Any] | None = None,
 ) -> str:
     parts = [
         "=== PRIMITIVE TO FILL ===",
@@ -87,6 +105,25 @@ def _build_user_message(
     for t in greekbible_result.get("translations", []):
         parts.append(f"  [{t.get('version','')}] {t.get('text','')}")
 
+    if verse_math:
+        parts += ["", "=== VERSE MATH CONTEXT (script-computed, proposed) ===",
+                  f"math lecture: {verse_math.get('math_lecture', {})}"]
+        parts += verse_math.get("explicit_math_translation", [])
+
+    # v0.0.4: letter-by-letter math handled here, one word per call.
+    grec = primitive.get("grammations") or {}
+    if grec:
+        parts += ["", "=== LETTER-BY-LETTER (this word only — Rule 9) ===",
+                  f"surface: {primitive.get('word', {}).get('surface', '')}",
+                  f"graphemes: {' '.join(grec.get('graphemes', []))}",
+                  f"signals: {', '.join(grec.get('signals', []))} "
+                  f"[triggered by {', '.join(grec.get('triggered_by', []))}]"]
+        for cand in grec.get("segmentation_candidates", []):
+            parts.append(f"candidate: {' | '.join(cand.get('segments', []))} "
+                         f"=> {cand.get('expression', '')}")
+        parts.append("Walk these graphemes in order into mathematical_rules "
+                     "(status proposed; rivals kept; nothing eliminated).")
+
     if prior_words:
         parts += ["", "=== PRIOR WORDS IN THIS VERSE (for context only) ==="]
         for pw in prior_words:
@@ -102,6 +139,7 @@ FILLABLE_KEYS = [
     "grammatical_rules",
     "lexical_rules",
     "semantic_rules",
+    "mathematical_rules",   # v0.0.4: letter-by-letter, one word per call (Rule 9)
     "translations",
     "possible_interpretations",
     "edges",
@@ -114,14 +152,16 @@ def call_model(
     logeion_entries: dict[str, Any],
     greekbible_result: dict[str, Any],
     prior_words: list[dict[str, Any]],
+    verse_math: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """
     Call the model to fill the variable fields of the primitive.
-    The model returns only the 7 fillable keys; we merge them into the primitive here.
+    The model returns only the 8 fillable keys; we merge them into the primitive here.
     Returns the updated primitive dict.
     Raises on parse failure (caller decides whether to retry).
     """
-    user_msg = _build_user_message(primitive, logeion_entries, greekbible_result, prior_words)
+    user_msg = _build_user_message(primitive, logeion_entries, greekbible_result, prior_words,
+                                   verse_math=verse_math)
 
     if model_id.startswith("claude"):
         partial = _call_anthropic(model_id, user_msg)
@@ -130,7 +170,6 @@ def call_model(
         partial = _call_ollama(model_id, user_msg)
     elif model_id.startswith("gpt") or model_id.startswith("o"):
         partial = _call_openai(model_id, user_msg)
-        partial = _call_ollama(model_id, user_msg)
     else:
         raise ValueError(
             f"Unknown model_id prefix: {model_id!r}. "
@@ -220,6 +259,7 @@ def _call_ollama(model_id: str, user_msg: str) -> dict[str, Any]:
             "temperature": 0,
             "top_p": 1,
             "repeat_penalty": 1.0,
+            "num_ctx": 32768,     # explicit; server default can truncate prompt head (A6)
             "num_predict": 8192,  # generous cap; 4096 was truncating κυρίου/καὶ
         },
         "messages": [
@@ -312,15 +352,20 @@ Each word entry contains what the sources say: grammatical rules, lexical rules,
 semantic rules, and possible interpretations. No interpretation has been eliminated.
 No meaning has been selected — until now.
 
-You are answering a question about this verse. Answer from the decoded set.
-You may draw on any of the possible interpretations. If the decoding does not
-settle the question, say so directly.
+QUESTION 1 asks: what grammatically possible readings does the KJV or standard
+English interpretation foreclose? Your job is to enumerate what the open decoded
+set licenses that the reductive translation does not carry. Lead with grammar:
+morphological form, case, tense, aspect, voice. Then lexical range. Then semantic.
+The standard translation is a single path through a field of possible structures.
+Name the paths it closed.
 
-If you add an inference not supported by the decoding, label it [inference]
-and keep it separate from what the sources support.
+QUESTION 2 asks: given what was taken from that grammatically possible set — is
+that elimination moral? Answer from the grammar and the decoded set. If the taking
+was structural (unavoidable given the target language), say so. If it was a choice
+among grammatically viable options, name the choice and evaluate it.
 
-Be direct. One or two paragraphs. Do not summarise the decoding back at the reader.
-Answer the question.
+If you add an inference not supported by the decoding, label it [inference].
+Be direct. Do not summarise the decoding back at the reader. Answer the question.
 """
 
 
@@ -329,19 +374,57 @@ def _build_question_message(
     verse_decoding: list[dict[str, Any]],
     question: str,
     prior_qa: dict[str, str] | None,
+    gates: list[dict[str, Any]] | None = None,
+    equations: dict[str, Any] | None = None,
+    math_lines: list[str] | None = None,
 ) -> str:
-    """Build the user message for a question call."""
+    """Build the user message for a question call.
+
+    Accepts the decoding-JSON word shape ({surface: str, grammatical_rules,
+    punctuation, ...}) — the shape _build_decoding_json actually produces —
+    and passes the grammatical evidence and proposed math records with it.
+    (Review 2026-11-11 #2: the previous shape lookup reduced every surface
+    to "?" and withheld the grammatical rules from the questions entirely.)
+    """
     lines = [f"VERSE: {verse_ref}", ""]
     for w in verse_decoding:
-        surface = w.get("word", {}).get("surface", "?")
+        if isinstance(w.get("word"), dict):
+            surface = w["word"].get("surface", "?")
+        else:
+            surface = w.get("surface", "?")
         desc    = (w.get("description") or "")[:200]
         interps = w.get("possible_interpretations") or []
         lex     = w.get("lexical_rules") or []
-        lines.append(f"  {surface}: {desc}")
+        gram    = w.get("grammatical_rules") or []
+        punct   = (w.get("punctuation") or {}).get("trailing_punct", "")
+        lines.append(f"  {surface}{' [' + punct + ']' if punct and punct != 'none' else ''}: {desc}")
+        grec = w.get("grammations") or {}
+        if grec:
+            cand = grec.get("segmentation_candidates", [{}])[-1]
+            lines.append(f"    math letters: {cand.get('expression', '')} "
+                         f"[proposed, {','.join(grec.get('triggered_by', []))}]")
+        grade = (w.get("reference_grade") or {}).get("grade_offline", "")
+        if grade:
+            lines.append(f"    morphgnt grade: {grade}")
+        for r in gram[:4]:
+            lines.append(f"    gram: {r.get('value','')[:100]}")
         for r in lex[:4]:
             lines.append(f"    lex: {r.get('value','')[:80]}")
         for p in interps[:3]:
             lines.append(f"    interpretation: {str(p)[:120]}")
+    if gates:
+        lines.append("")
+        lines.append("GATES (proposed math layer, status=proposed):")
+        for g in gates:
+            lines.append(f"  gate after word {g.get('after_word')}: head={g.get('head_type')} "
+                         f"return={g.get('return_proposed')} left={' '.join(g.get('left_terms', []))}")
+    if equations:
+        lines.append(f"KAI-EQUALITIES (proposed): {len(equations.get('kai_equalities', []))}; "
+                     f"NUMERALS: {equations.get('numerals', [])}")
+    if math_lines:
+        lines.append("")
+        lines.append("EXPLICIT MATHEMATICAL TRANSLATION (script, proposed):")
+        lines += math_lines
     if prior_qa:
         lines += [
             "",
@@ -359,6 +442,9 @@ def call_question(
     verse_decoding: list[dict[str, Any]],
     question: str,
     prior_qa: dict[str, str] | None = None,
+    gates: list[dict[str, Any]] | None = None,
+    equations: dict[str, Any] | None = None,
+    math_lines: list[str] | None = None,
 ) -> str:
     """
     Ask a question about a fully decoded verse. Returns a plain-text answer.
@@ -366,7 +452,9 @@ def call_question(
     verse_decoding: list of word primitives from the full run.
     prior_qa: {"question": str, "answer": str} — for Q2, pass Q1's result here.
     """
-    user_msg = _build_question_message(verse_ref, verse_decoding, question, prior_qa)
+    user_msg = _build_question_message(verse_ref, verse_decoding, question, prior_qa,
+                                       gates=gates, equations=equations,
+                                       math_lines=math_lines)
 
     if model_id.startswith("claude"):
         return _call_question_anthropic(model_id, user_msg)
@@ -386,7 +474,7 @@ def _call_question_anthropic(model_id: str, user_msg: str) -> str:
     client = anthropic.Anthropic(api_key=key)
     response = client.messages.create(
         model=model_id,
-        max_tokens=1024,
+        max_tokens=2048,
         system=QUESTION_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_msg}],
     )
@@ -425,7 +513,7 @@ def _call_question_ollama(model_id: str, user_msg: str) -> str:
     payload = {
         "model": tag,
         "stream": False,
-        "options": {"temperature": 0, "num_predict": 1024},
+        "options": {"temperature": 0, "num_ctx": 32768, "num_predict": 2048},
         "messages": [
             {"role": "system", "content": QUESTION_SYSTEM_PROMPT},
             {"role": "user",   "content": user_msg},
