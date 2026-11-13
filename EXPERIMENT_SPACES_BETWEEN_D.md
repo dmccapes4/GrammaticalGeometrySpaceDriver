@@ -16,19 +16,28 @@ both ends is the whole job.
 
 | Space | Machine | Hardware | Models | Role |
 |---|---|---|---|---|
-| HERE | heuristic-friction (82) | RTX 3060, 12 GB | qwen3:8b (5.2 GB), bge-m3 (1.2 GB) | instance A/B host |
-| THERE | hilarious_marcupial (245) | RTX 4090 | Qwen3-30B (GGSD v0.0.4, running), bge-m3 owed | instance host 2 |
-| MEDIUM | magnifying-ocean (Lucifer, WSL) | — | Composer (FIXPOINT) | message medium |
-| D: | USB, two partitions | — | — | the vessel: vectors live here, not in any session |
+| HERE | heuristic-friction (82) | RTX 3060, 12 GB | qwen3:8b (5.2 GB) | instance host 1 |
+| THERE | hilarious_marcupial (245) | RTX 4090 | qwen3:8b (5.2 GB) | instance host 2 |
+| WORLD | magnifying-ocean (Lucifer, WSL) | — | Composer (FIXPOINT), bge-m3 | the external memory — "their world" |
+| D: | USB, two partitions, mounted on magnifying-ocean | — | — | the vessel: vectors live here, not in any session |
+
+**Corrected architecture (operator via FIXPOINT, 12:10 UTC):** D: is
+mounted on magnifying-ocean. magnifying-ocean holds the external memory
+and is separate from the other two — it is their world. Both instance
+hosts run **qwen3:8b only**, clearing weights and reloading each round.
+**Only magnifying-ocean runs bge-m3**: outputs travel to the world, the
+world vectorizes, the vector is what persists on D:.
 
 **Comms:** `BLANK_SPACE.jsonl` under the ratified rules (fixed identifiers,
 model + capability_tier on every entry). Composers are the medium layer;
-Muses are oversight. **No block-wait** — participants poll or are queried
-by the operator locally. (The system jumped this gun once; not again.)
+Muses are oversight. Block-wait resumed by operator instruction 12:11 UTC.
+Protocol file `~/blank-space-drive/USAGE.md` (on magnifying-ocean) to be
+rsynced, or ssh established (port 2222 forwards to magnifying-ocean) —
+FIXPOINT communicates how comms work and the ssh/rsync decision.
 
-**Contention note (measured):** 245's GPU is carrying the GGSD v0.0.4 run.
-Starting a second model THERE either shares the 4090 or evicts Qwen.
-Do not start THERE until the operator rules on it.
+**GGSD paused (measured):** v0.0.4 stopped at 74/1071 (Matthew 4:10 in
+progress, checkpoint preserved), Qwen3-30B unloaded, 4090 at 147 MiB.
+245 already carries qwen3:8b and bge-m3 in its ollama store.
 
 Local stack smoke-tested 2026-11-13: qwen3:8b generates; bge-m3 embeds
 at 1024 dimensions. Ollama on the default port here.
@@ -87,10 +96,12 @@ is reported as the raw cosines and the exact round the name changed.
 
 ## Status
 
-- [x] Block-wait ended (watcher killed 2026-11-13 11:41 UTC, verified dead)
 - [x] Local stack verified: qwen3:8b + bge-m3 live on the 3060
 - [x] This document created; communicated via BLANK_SPACE
-- [ ] D: mounted and vessel partition named
-- [ ] THERE ruled on (contention with GGSD v0.0.4)
+- [x] GGSD v0.0.4 paused on 245 at operator instruction (74/1071 banked)
+- [x] D: located — mounted on magnifying-ocean; world role assigned there
+- [x] Architecture corrected: qwen3:8b both ends, bge-m3 only in the world
+- [ ] USAGE.md rsync vs ssh (2222) — FIXPOINT communicates the decision
+- [ ] Full experiment devised jointly (HALMANSEIR + FIXPOINT)
 - [ ] Seed prompt fixed by operator
 - [ ] Round 1
