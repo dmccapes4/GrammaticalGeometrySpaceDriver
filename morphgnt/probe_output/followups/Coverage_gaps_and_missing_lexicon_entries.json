@@ -1,0 +1,113 @@
+{
+  "topic": "Coverage gaps and missing lexicon entries",
+  "probe_ann": [],
+  "probe_ts": [
+    "lemma",
+    "tense_voice",
+    "person_number",
+    "case_number",
+    "forms"
+  ],
+  "hits": [
+    {
+      "path": "ggsd.py",
+      "line": 250,
+      "text": "lemma_hints    = [w[\"lemma\"] for w in morphgnt_tokens]"
+    },
+    {
+      "path": "ggsd.py",
+      "line": 480,
+      "text": "\"When provided, supplies Greek text AND lemma hints \u2014 skips /find calls.\""
+    },
+    {
+      "path": "sources.py",
+      "line": 15,
+      "text": "/find?w={word}   \u2014 lemma + grammatical parse"
+    },
+    {
+      "path": "sources.py",
+      "line": 16,
+      "text": "/detail?w={lemma} \u2014 all dictionary entries (dicos array)"
+    },
+    {
+      "path": "sources.py",
+      "line": 246,
+      "text": "1. /find?w={word}   \u2014 returns lemma + grammatical parses"
+    },
+    {
+      "path": "sources.py",
+      "line": 248,
+      "text": "2. /detail?w={lemma} \u2014 returns all dictionary entries (dicos array)"
+    },
+    {
+      "path": "sources.py",
+      "line": 250,
+      "text": "hint_lemma: supply the lemma directly (e.g. from MorphGNT) to skip /find."
+    },
+    {
+      "path": "sources.py",
+      "line": 260,
+      "text": "# \u2500\u2500 Step 1: find lemma \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "sources.py",
+      "line": 262,
+      "text": "# one Logeion API call per word and avoids the \"word\" vs \"lemma\" mismatch"
+    },
+    {
+      "path": "sources.py",
+      "line": 264,
+      "text": "lemma = hint_lemma or word"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+      "line": 44,
+      "text": "# lemma -> tense_voice -> person_number -> set of forms"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+      "line": 60,
+      "text": "tense_voice = row[\"ccat-parse\"][1:3]"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+      "line": 61,
+      "text": "forms[row[\"lemma\"]][tense_voice][person_number].add(strip_accents(row[\"norm\"]))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+      "line": 83,
+      "text": "print(lemma, tense_voice, len(form_dict[tense_voice]))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+      "line": 119,
+      "text": "print(lemma, tense_voice)"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+      "line": 123,
+      "text": "print(\"{} {} {}\".format(lemma, tense_voice, \"|\".join(form for form in first_singular_forms)))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+      "line": 59,
+      "text": "person_number = row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+      "line": 26,
+      "text": "# lemma -> pos_gender_degree -> person_number -> set of forms"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+      "line": 13,
+      "text": "lemma, mounce1, aspect_voice, gender, mounce2, theme1, case_number, norm, theme2, distinguisher, explanation = line.strip().split()"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+      "line": 15,
+      "text": "CELLS[mounce2][case_number + gender].add((strip_breathing(strip_accents(distinguisher)), explanation))"
+    }
+  ]
+}

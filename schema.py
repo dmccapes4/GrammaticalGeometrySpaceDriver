@@ -27,6 +27,11 @@ PRIMITIVE_FIELDS = [
     "source_retrievals",
     "source_agreements",
     "eliminations",
+    "punctuation",          # deterministic, driver-filled (punctuation.py)
+    "mathematical_rules",   # proposed only; may never eliminate (math_layer.py)
+    "reference_grade",      # deterministic MorphGNT grade (grammations.py)
+    "cadence_role",         # deterministic cadence scope (grammations.py)
+    "grammations",          # proposed letter-by-letter records (grammations.py)
 ]
 
 # ─── source registry ───────────────────────────────────────────────────────────
@@ -78,6 +83,11 @@ def empty_primitive(verse_ref: str, surface: str, model_id: str) -> dict[str, An
         "source_retrievals": {},   # source_id -> {retrieved_at, url, raw}
         "source_agreements": [],   # see AgreementRecord below
         "eliminations": [],        # see EliminationRecord below
+        "punctuation": {},         # filled by punctuation.py; model must not alter
+        "mathematical_rules": [],  # proposed math readings (math_layer.py)
+        "reference_grade": {},     # filled by grammations.py; model must not alter
+        "cadence_role": {},        # filled by grammations.py; model must not alter
+        "grammations": {},         # proposed grammations; model must not alter
     }
 
 
@@ -174,7 +184,14 @@ def compute_agreements(primitive: dict[str, Any]) -> list[dict[str, Any]]:
 
     agreements = []
     for (field, value), sources in field_value_sources.items():
-        agreements.append(record_agreement(field, value, sources))
+        # Repetition from ONE source is not agreement (review 2026-11-11 #11):
+        # deduplicate while preserving first-seen order. Distinct ids still
+        # do not establish independence of underlying evidence — that is
+        # stated in the record's notes, not implied by the count.
+        distinct = list(dict.fromkeys(sources))
+        agreements.append(record_agreement(
+            field, value, distinct,
+            notes="agreement counts distinct source ids; independence not implied"))
 
     return sorted(agreements, key=lambda a: (-len(a["source_ids"]), a["field"]))
 
@@ -209,3 +226,8 @@ def validate_primitive(p: dict[str, Any]) -> None:
             raise SchemaError(
                 f"elimination references unconsented rule: {elim.get('rule_id')}"
             )
+        # Mathematical rules propose; they may never eliminate (game plan §5).
+        if str(elim.get("rule_id", "")).startswith(
+                ("mathematical_rules", "grammations", "reference_grade",
+                 "cadence_role")):
+            raise SchemaError("elimination references a proposed math/grade field")

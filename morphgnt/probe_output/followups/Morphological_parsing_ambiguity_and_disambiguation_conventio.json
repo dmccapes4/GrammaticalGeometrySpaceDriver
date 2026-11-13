@@ -1,0 +1,113 @@
+{
+  "topic": "Morphological parsing ambiguity and disambiguation conventions",
+  "probe_ann": [],
+  "probe_ts": [
+    "lemma",
+    "mounce_morphcat",
+    "lexemes",
+    "form_entry",
+    "parse failure"
+  ],
+  "hits": [
+    {
+      "path": "ggsd.py",
+      "line": 250,
+      "text": "lemma_hints    = [w[\"lemma\"] for w in morphgnt_tokens]"
+    },
+    {
+      "path": "ggsd.py",
+      "line": 480,
+      "text": "\"When provided, supplies Greek text AND lemma hints \u2014 skips /find calls.\""
+    },
+    {
+      "path": "sources.py",
+      "line": 15,
+      "text": "/find?w={word}   \u2014 lemma + grammatical parse"
+    },
+    {
+      "path": "sources.py",
+      "line": 16,
+      "text": "/detail?w={lemma} \u2014 all dictionary entries (dicos array)"
+    },
+    {
+      "path": "sources.py",
+      "line": 246,
+      "text": "1. /find?w={word}   \u2014 returns lemma + grammatical parses"
+    },
+    {
+      "path": "sources.py",
+      "line": 248,
+      "text": "2. /detail?w={lemma} \u2014 returns all dictionary entries (dicos array)"
+    },
+    {
+      "path": "sources.py",
+      "line": 250,
+      "text": "hint_lemma: supply the lemma directly (e.g. from MorphGNT) to skip /find."
+    },
+    {
+      "path": "sources.py",
+      "line": 260,
+      "text": "# \u2500\u2500 Step 1: find lemma \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+    },
+    {
+      "path": "sources.py",
+      "line": 262,
+      "text": "# one Logeion API call per word and avoids the \"word\" vs \"lemma\" mismatch"
+    },
+    {
+      "path": "sources.py",
+      "line": 264,
+      "text": "lemma = hint_lemma or word"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 205,
+      "text": "mounce_morphcat.startswith(\"a-\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 208,
+      "text": "any(x.startswith(\"a-\") for x in mounce_morphcat)"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+      "line": 42,
+      "text": "mounce_morphcat = metadata.get(\"mounce-morphcat\", \"\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 181,
+      "text": "for lexeme, metadata in sorted_items(lexemes):"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+      "line": 37,
+      "text": "metadata = lexemes[lexeme]"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+      "line": 14,
+      "text": "pos1 = lexemes[lexeme][\"pos\"]"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/check_forms.py",
+      "line": 19,
+      "text": "form_entry = forms.get(row[\"lemma\"].decode(\"utf-8\"))"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/check_forms.py",
+      "line": 23,
+      "text": "expected_form = form_entry[row[\"ccat-parse\"][6]][row[\"ccat-parse\"][4:6]][\"form\"]"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/check_forms.py",
+      "line": 30,
+      "text": "expected_form = form_entry[row[\"ccat-parse\"][4:6]][\"form\"]"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/check_forms.py",
+      "line": 38,
+      "text": "expected_form = form_entry[row[\"ccat-parse\"][1:4]][row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]][\"form\"]"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+# Evidence for Morphological parsing ambiguity and disambiguation conventions
+
+- `model.py:0-5` → Raises on parse failure (caller decides whether to retry).
+- `model.py:0-5` → # Try direct parse first
+- `ggsd.py:0-5` → # Parse chapter:verse from the reference
+- `ggsd.py:0-5` → print("  WARNING: could not parse chapter:verse from verse_ref; MorphGNT unused")
+- `sources.py:0-5` → /find?w={word}   — lemma + grammatical parse
+- `sources.py:0-5` → # Parse the reference.
+- `sources.py:0-5` → """Parse 'Matthew 25:18' -> {book_slug, chapter, verse}."""
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → return the MorphGNT filename of the given book number.
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → yield a dict for each MorphGNT/SBLGNT row in the given book number.
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → "bcv", "ccat-pos", "ccat-parse", "robinson",
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ## multi-gender
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → pos = metadata.get("pos")
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get("dodson-pos", ""))
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → lexeme, metadata.get("mounce-morphcat", ""))
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → (pos == "N") or
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → (pos == "A") or
+- `morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py:0-5` → if "A" not in metadata["pos"]:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("pos")
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → if metadata["pos"] != "N":
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → if metadata["pos"] == "N":
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("dodson-pos")
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("mounce-morphcat")
+- `morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py:0-5` → pos == "N" or
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → if metadata["pos"] in ["A", "N/A", "A/N"]:
+- `morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py:0-5` → pos == "A" or
+- `morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py:0-5` → dodson_pos = metadata.get("dodson-pos", "")
+- `morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py:0-5` → mounce_morphcat = metadata.get("mounce-morphcat", "")
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → GENDER = defaultdict(set)
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → lemma, mounce1, aspect_voice, gender, mounce2, theme1, case_number, norm, theme2, distinguisher, explanation = line.strip().split()
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → CELLS[mounce2][case_number + gender].add((strip_breathing(strip_accents(distinguisher)), explanation))
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → GENDER[mounce2].add(gender)
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → LEMMAS[mounce2 + " " + gender].add(lemma)
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → for gender in ["M", "F", "N", "-"]:
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → if gender in GENDER[mounce]:
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → print("\n\n{} {} ({}):".format(mounce, gender, len(LEMMAS[mounce + " "+ gender])))
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → if case_number + gender in CELLS[mounce]:
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → if len(CELLS[mounce][case_number + gender]) == 1:
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → cell = CELLS[mounce][case_number + gender].pop()
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → for cell in CELLS[mounce][case_number + gender]:
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → def map_non_noun_categories(mounce_cat, aspect_voice, gender, lemma):
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → }[gender]
+- `morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py:0-5` → tree = ET.parse("abbott-smith.tei.xml")
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → pos1 = lexemes[lexeme]["pos"]
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → morphcat1 = lexemes[lexeme].get("mounce-morphcat")
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → pos2s.append(lexemes[other]["pos"])
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → morphcat2s.append(lexemes[other].get("mounce-morphcat", "?"))
+- `morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py:0-5` → pos2 = lexemes[other]["pos"]
+- `morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py:0-5` → morphcat2 = lexemes[other].get("mounce-morphcat")
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → if row["ccat-pos"] == "V-":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → mood = row["ccat-parse"][3]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → if mood in "I":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → person_number = row["ccat-parse"][0] + row["ccat-parse"][5]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → tense_voice = row["ccat-parse"][1:3]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → elif mood in "DSO":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → elif mood in "P":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → elif mood in "N":
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → if lexeme["pos"] in ["RA", "A", "N", "RR"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][6]][row["ccat-parse"][4:6]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in ["RP1"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][4:6]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in ["V"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → if row["ccat-parse"][3] in ["I"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][1:4]][row["ccat-parse"][0] + row["ccat-parse"][5]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in "P":
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → first_fail = "{} {} {} {} {}".format(row["norm"], row["ccat-pos"], row["ccat-parse"], row["robinson"], row["lemma"])
+- `morphgnt/lexicon/scripts/extract_indeclinables.py:0-5` → if lexemes[lexeme].get("mounce-morphcat") == "n-3g(2)":
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → if row["ccat-pos"] in ["N-", "A-", "RA", "RD", "RI", "RP", "RR"]:
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → pos_gender_degree = row["ccat-pos"] + ":" + row["ccat-parse"][6] + ":" + row["ccat-parse"][7]
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → case_number = row["ccat-parse"][4:6]
+- `morphgnt/lexicon/scripts/check_lexemes.py:0-5` → first_fail = "{} {} {}".format(row["lemma"], row["ccat-pos"], row["robinson"])
+- `morphgnt/lexicon/scripts/generate_differences.py:0-5` → tags.append("case")
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if row["ccat-pos"] == "N-":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][6], row["ccat-parse"][7])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → elif row["ccat-pos"] == "V-" and row["ccat-parse"][3] == "P":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][1:3], row["ccat-parse"][6])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → morphcat = lexemes[fail.split()[0]].get("mounce-morphcat")
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → morphcat = None
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → print("{} {}: {}".format(fail, morphcat, dict(forms[fail])))
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → forms[row["lemma"]][row["norm"]][row["ccat-parse"][4:7]] += 1
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → lexemes_entry = lexemes.get(lemma, {"mounce-morphcat": None})
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → morphcat = lexemes_entry.get("mounce-morphcat")
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → for parse in forms[lemma][form]:
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → form, parse, forms[lemma][form][parse]
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → print("{}|{}|{}".format(lemma, morphcat, "/".join(form_list)))
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → strongs, gk, pos, greek, short_gloss, long_gloss = line.strip().decode("utf-8").split("\t")
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → "pos": pos,
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → p("dodson-pos", "pos")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → lemma = "{}/{}".format(row["lemma"], row["ccat-pos"].strip("-")).decode("utf-8")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if isinstance(lexeme["pos"], list):
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → gender = row["ccat-parse"][6]
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if mood in ["N"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → tense_voice_mood = row["ccat-parse"][1:4]
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif mood in ["I", "D", "S", "O"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif mood in ["P"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → print >>sys.stderr, "*** can't handle mood {}".format(mood)
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif lexeme["pos"] in ["P", "X"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → pos = lexemes[form]["pos"]
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if pos in ["RA", "A", "N", "RR"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for gender in ["M", "F", "N"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if gender in metadata:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → print "    {}:".format(gender)
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if case_number in metadata[gender]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for form in metadata[gender][case_number]["forms"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif pos in ["RP1"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif pos in ["V"]:
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs with unknown morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # compound verbs missing full morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs that morphcat thinks is an adjective
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjectives that morphcat has as nouns
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # nouns missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # nouns missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → with open("../data-cleanup/mounce-morphcat/mounce-tauber-morphcat-utf8.txt") as f:
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → gk, greek, morphcat = line.strip().decode("utf-8").split(":")
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → "morphcat": morphcat,
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → if not q("mounce-morphcat"):
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → print "    mounce-morphcat: {}".format(mounce[source][0]["morphcat"])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if row["ccat-parse"][4] == "V":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → elif lemma in lexemes and "mounce-morphcat" in lexemes[lemma]:
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → mounce = lexemes[lemma]["mounce-morphcat"]
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → parse = row["ccat-parse"][4:7]
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add(parse)
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse[2] == "N":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse[0] == "N":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("A" + parse[1:])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse[0] == "A":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("N" + parse[1:])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse == "APF":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse == "GSF":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse == "NSM":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse == "APM":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse[:2] == "AP":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("NP" + parse[2])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if parse[:2] == "NP":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("AP" + parse[2])
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → print "    pos: {}".format(convert(row["ccat-pos"], row["robinson"]))
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → # (ending, parse)->int(count)
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → # (ending)->set(parse)
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → path, rule, parse, count = line.strip().split()
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → counts[(step, parse)] += int(count)
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → parses[step].add(parse)
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → "{}/{}".format(parse, counts[ending, parse])
+- `morphgnt/lexicon/scripts/process_ending_tree.py:0-5` → for parse in parses[ending]
+- `morphgnt/lexicon/morphgnt/filesets.py:0-5` → ("bcv", "ccat-pos", "ccat-parse", "robinson", "text", "word", "norm", "lemma"),

@@ -1,0 +1,25 @@
+{
+  "topic": "Morphological parsing ambiguity and disambiguation conventions",
+  "gap_ann": "greek morphology disambiguation rules",
+  "gap_ts": [
+    "ggsd parser",
+    "morphgnt_tokens"
+  ],
+  "hits": [
+    {
+      "path": "ggsd.py",
+      "line": 211,
+      "text": "greek_text = \" \".join(w[\"word\"] for w in morphgnt_tokens)"
+    },
+    {
+      "path": "ggsd.py",
+      "line": 249,
+      "text": "surface_tokens = [w[\"word\"] for w in morphgnt_tokens]"
+    },
+    {
+      "path": "ggsd.py",
+      "line": 250,
+      "text": "lemma_hints    = [w[\"lemma\"] for w in morphgnt_tokens]"
+    }
+  ]
+}

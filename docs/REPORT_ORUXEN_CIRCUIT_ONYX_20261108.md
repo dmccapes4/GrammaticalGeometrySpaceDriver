@@ -2,7 +2,8 @@
 
 **Filed:** 2026-11-08
 **Source of the derivation:** Dylan McCapes, `MATTHEW_25_18_MANUAL_DECODING.md:11` (the four
-senses, 2026-11-02) and this session (the electrical assignment)
+senses, 2026-11-02), this session (the electrical assignment), and the λαμβάνω cut
+in §I.b (two sends, 2026-11-08, 07:00 and 07:20)
 **Companions:** `MODEL_PIEZO_LAMBDA_ALPHA_20261108.md` (the transduction model),
 `PROCUREMENT_PIEZO_RESONANCE_BENCH_20261108.md` (the bench),
 `REALITY_USER_MANUAL/src/phase2/-07.md` (the bridge),
@@ -86,6 +87,83 @@ prepositions the operator is doing lexical work on. That is a coincidence of met
 not evidence for the reading. It is worth recording because it means the along/through
 split is a known-load-bearing distinction in physics, not a distinction invented to
 make the verse work.
+
+---
+
+## I.b λαβὼν, λαμβάνω, μά, ὼν, άνω
+
+[his] The verse has λαβὼν. He reads it through its dictionary form λαμβάνω, and he
+reads that form as a built expression. The two sends, with the surrounding matter
+and the model reply that sat between them left out. Spelling is his.
+
+```
+λαβὼν I recieve I take
+λαμβάνω
+μά receive
+ὼν - νω take
+λα
+
+(λα^2 or λαx2)μά (so integral as angular change becomes dα)
+μ is mu th infinetessimal
+ά is an acute angle
+μά is the smallest possible angle
+λαβὼν -> λαμβάνω
+lambda is a function. That is how it is used. It looks like Dancer. It is a sign.
+f(α + β)
+sin(α + β)
+ὼν is literally 'which' which is a running bit.
+ὼν also undamped natural frequency
+sin(α + β) ὼν
+λαμβάνω
+μ minus or infinitessimal or both
+άνω means top; upper limit; high pass filter
+```
+
+```
+       [ PASS BAND ]        |   [ STOP BAND ]
+----------------------------+--------------------> Frequency (ω)
+                            |
+                     ω_n (άνω όριο)
+                 (Upper Cutoff / Limit)
+```
+
+[his] Laid out as one chain. Each line is a line he wrote. Nothing here is filled in.
+
+| piece | where it sits | what he assigned |
+|---|---|---|
+| λαβὼν | the verse | receive; take. The form the sentence actually has |
+| λαμβάνω | the dictionary form he points λαβὼν at | the expression the pieces are cut from |
+| λα | the first two letters | λ is a function, and a sign. He said it looks like Dancer (cat. Cancer). He wrote it as λα² or as λα×2 |
+| μά | μ and ά, read as one piece | receive. μ is the infinitesimal, or a minus, or both. ά is an acute angle. μά is the smallest possible angle, and it is what becomes dα in the integral |
+| ὼν − νω | the ending pair, as he hyphenated it in the first send | take |
+| ὼν | the same ending, read again | literally "which", which he called a running bit; also the undamped natural frequency |
+| άνω | named on its own in the second send | top; upper limit; high-pass filter. The figure places ω_n at άνω όριο, the upper cutoff |
+
+[his] The expression, in the order he gave it:
+
+```
+(λα² or λα×2) μά        the thing integrated
+μά → dα                 the angular change, once it is a differential
+f(α + β)                a function of the sum of two angles
+sin(α + β)              that function as a sine
+sin(α + β) ὼν           the same sine with the undamped natural frequency
+```
+
+[standard] Two facts about the spelling, so the cut can be seen.
+
+λαμβάνω is λ-α-μ-β-ά-ν-ω. μά is his unit, and β stands between μ and ά in the
+lemma. He did not assign β. άνω is the last three letters of the lemma. In the
+MorphGNT text ἄνω is its own lemma, an adverb, 9 times, tagged `D-`. That is a
+lookup (`bold.py` on the 2026-11-03 run). It licenses the letters. It does not
+decide the filter.
+
+[standard] The figure and the sentence beside it name different corners. The
+sentence says high-pass filter. The drawing puts the pass band on the low side of
+the mark and the stop band on the high side, and it calls the mark an upper cutoff.
+Both are in the send. `MODEL_PIEZO_LAMBDA_ALPHA_20261108.md` §IV is a later
+assembly: it keeps ὼν as ω_n and άνω as a band edge, and it puts the electrical
+corner and the mechanical resonance on opposite edges of one band. That assembly
+is not this section.
 
 ---
 
@@ -312,7 +390,7 @@ honorific is the only thing in the way:
 | word | his gloss | reading |
 |---|---|---|
 | ἓν | one | the operand |
-| λαβὼν | receive; take | load |
+| λαβὼν | receive; take — the cut is §I.b | load |
 | ἀπελθὼν | depart; return | branch |
 | ὤρυξεν | reveal/conceal/channel/perforate | **the circuit** (§I) |
 | γῆν | soil; land; planet | the substrate |
@@ -361,6 +439,8 @@ statement in volts.
 ## VII. What is his, what is measured, what is open
 
 **His.** The four senses of ὤρυξεν as simultaneous. The electrical assignment of them.
+The λαμβάνω cut in §I.b, including λ as a function, μά as the differential, ὼν as
+ω_n, and άνω as the upper limit.
 The reading of ἀργύριον's material range. The point-of-view rule. The discriminator.
 The reading of κυρίου as bounded-and-constrained rather than lordly. The Diamond
 Approach. None of these are assigned to him by inference; they are in his files with

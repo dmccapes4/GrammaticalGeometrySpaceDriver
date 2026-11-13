@@ -1,0 +1,353 @@
+========================================
+MorphGNT ai_probe — Bias & Fidelity Run
+GGSD root: /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver
+Target:    /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt
+Output:    /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output
+Started:   2026-11-03T18:43:45Z
+========================================
+
+▶ Phase 1: embed_morphgnt (custom embedder)
+Files skipped (large NT data): 42
+Total chunks to embed: 37644
+   checkpoint: 64 embeddings saved
+   checkpoint: 704 embeddings saved
+   checkpoint: 1344 embeddings saved
+   checkpoint: 1984 embeddings saved
+   checkpoint: 2624 embeddings saved
+   checkpoint: 3264 embeddings saved
+   checkpoint: 3904 embeddings saved
+   checkpoint: 4544 embeddings saved
+   checkpoint: 5184 embeddings saved
+   checkpoint: 5824 embeddings saved
+   checkpoint: 6464 embeddings saved
+   checkpoint: 7104 embeddings saved
+   checkpoint: 7744 embeddings saved
+   checkpoint: 8384 embeddings saved
+   checkpoint: 9024 embeddings saved
+   checkpoint: 9664 embeddings saved
+   checkpoint: 10304 embeddings saved
+   checkpoint: 10944 embeddings saved
+   checkpoint: 11584 embeddings saved
+   checkpoint: 12224 embeddings saved
+   checkpoint: 12864 embeddings saved
+   checkpoint: 13504 embeddings saved
+   checkpoint: 14144 embeddings saved
+   checkpoint: 14784 embeddings saved
+   checkpoint: 15424 embeddings saved
+   checkpoint: 16064 embeddings saved
+   checkpoint: 16704 embeddings saved
+   checkpoint: 17344 embeddings saved
+   checkpoint: 17984 embeddings saved
+   checkpoint: 18624 embeddings saved
+   checkpoint: 19264 embeddings saved
+   checkpoint: 19904 embeddings saved
+   checkpoint: 20544 embeddings saved
+   checkpoint: 21184 embeddings saved
+   checkpoint: 21824 embeddings saved
+   checkpoint: 22464 embeddings saved
+   checkpoint: 23104 embeddings saved
+   checkpoint: 23744 embeddings saved
+   checkpoint: 24384 embeddings saved
+   checkpoint: 25024 embeddings saved
+   checkpoint: 25664 embeddings saved
+   checkpoint: 26304 embeddings saved
+   checkpoint: 26944 embeddings saved
+   checkpoint: 27584 embeddings saved
+   checkpoint: 28224 embeddings saved
+   checkpoint: 28864 embeddings saved
+   checkpoint: 29504 embeddings saved
+   checkpoint: 30144 embeddings saved
+   checkpoint: 30784 embeddings saved
+   checkpoint: 31424 embeddings saved
+   checkpoint: 32064 embeddings saved
+   checkpoint: 32704 embeddings saved
+   checkpoint: 33344 embeddings saved
+   checkpoint: 33984 embeddings saved
+   checkpoint: 34624 embeddings saved
+   checkpoint: 35264 embeddings saved
+   checkpoint: 35904 embeddings saved
+   checkpoint: 36544 embeddings saved
+   checkpoint: 37184 embeddings saved
+✅ Saved 37644 embeddings → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_index/embeddings.json
+
+▶ Phase 2: ts_search
+Traceback (most recent call last):
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/ts_search.py", line 244, in <module>
+    main()
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/ts_search.py", line 130, in main
+    config = yaml.safe_load(open(cfg_path))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/composer.py", line 110, in compose_sequence_node
+    while not self.check_event(SequenceEndEvent):
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/parser.py", line 384, in parse_block_sequence_entry
+    if not self.check_token(BlockEntryToken, BlockEndToken):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/scanner.py", line 227, in fetch_more_tokens
+    return self.fetch_alias()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/scanner.py", line 610, in fetch_alias
+    self.tokens.append(self.scan_anchor(AliasToken))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_venv/lib/python3.12/site-packages/yaml/scanner.py", line 922, in scan_anchor
+    raise ScannerError("while scanning an %s" % name, start_mark,
+yaml.scanner.ScannerError: while scanning an alias
+  in "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/config.yaml", line 79, column 9
+expected alphabetic or numeric character, but found '.'
+  in "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/config.yaml", line 79, column 10
+Restoring original config.yaml...
+========================================
+MorphGNT ai_probe — Resume from Phase 2
+GGSD root: /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver
+Embeddings: 1574721224 bytes ready
+Resumed:   2026-11-03T22:04:05Z
+========================================
+
+▶ Phase 2: ts_search
+🔎 Extracted 96 unique terms from 8 probe queries
+   Sample terms: A-, Alexandrian, BDAG, Byzantine, CCAT, Danker, Dodson, GK number, Majority Text, Mounce...
+📊 After dedup: 1129 hits (max 15000, 61 unique files)
+🧭 TS scope (git): 1129 → 1119 hits | root=/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver
+   Dropped sample paths: ['/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/tools/sem_sim.py', '/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/tools/sem_sim.py', '/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/tools/download_morphgnt.sh', '/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/tools/download_morphgnt.sh', '/home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/tools/download_morphgnt.sh']
+✅ Saved 1119 hits to /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/ts_hits.json
+
+▶ Phase 3: probe_agent
+📦 Loaded RepoVision: /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_coder_output/dogfood/dogfood_repo_vision.json
+📊 RepoVision files: 122 | entities: 0
+😎 Repo vision: 122 files, 0 entities
+
+▶️  Probe phase started at 14:04:06
+🦾 System invariants loaded: 17 (invariants/system_invariants.yaml)
+📥 Loaded 37644 embeddings, 1119 TS hits
+
+🧠 [1/8] Probing → Textual-critical tradition and SBLGNT editorial stance
+🧭 ANN scope (git) dropped 5 hits (sample: ['OWNERSHIP.md', 'sblgnt/README.md', 'lexicon/filesets.yaml', 'lexicon/projects/lemmatization_differences/differences.yaml', 'lexicon/projects/lemmatization_differences/differences.yaml'])
+   🔎 25 TS hits from 14 terms
+   📊 Confidence: medium, Score: 8
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Textual-critical_tradition_and_SBLGNT_editorial_stance.json
+   😎 +17 files, +0 entities → repo_vision
+   🧠 +14 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 8.4s
+
+🧠 [2/8] Probing → Lemmatization methodology and lexical authority
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/README.md', 'ai_probe_morphgnt_config.yaml', 'lexicon/projects/lemmatization_differences/differences.yaml', 'lexicon/projects/lemmatization_differences/differences.yaml', 'lexicon/projects/citation_forms/retired/check_full_citation.py'])
+   🔎 464 TS hits from 13 terms
+   📊 Confidence: high, Score: 10
+   🔮 ANN follow-ups: lexical authority integration | lemma normalization conflicts
+   🏷️  TS terms: morphcat, lexemes, forms, derivation, mounce-morphcat
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Lemmatization_methodology_and_lexical_authority.json
+   😎 +35 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 9.2s
+
+🧠 [3/8] Probing → Morphological parsing ambiguity and disambiguation conventions
+🧭 ANN scope (git) dropped 5 hits (sample: ['ai_probe_morphgnt_config.yaml', 'sblgnt/README.md', 'lexicon/filesets.yaml', 'sblgnt/README.md', 'lexicon/projects/lemmatization_differences/NOTES.md'])
+   🔎 225 TS hits from 15 terms
+   📊 Confidence: medium, Score: 8
+   🏷️  TS terms: lemma, mounce_morphcat, lexemes, form_entry, parse failure
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Morphological_parsing_ambiguity_and_disambiguation_conventio.json
+   😎 +34 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 9.3s
+
+🧠 [4/8] Probing → Coverage gaps and missing lexicon entries
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/projects/lemmatization_differences/NOTES.md', 'ai_probe_morphgnt_config.yaml', 'lexicon/scripts/add_danker_headwords.py', 'OWNERSHIP.md', 'lexicon/missing_danker.txt'])
+   🔎 103 TS hits from 11 terms
+   📊 Confidence: high, Score: 10
+   🏷️  TS terms: lemma, tense_voice, person_number, case_number, forms
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Coverage_gaps_and_missing_lexicon_entries.json
+   😎 +35 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 9.4s
+
+🧠 [5/8] Probing → Data provenance, versioning, and CCAT inheritance
+🧭 ANN scope (git) dropped 5 hits (sample: ['probe_venv/lib/python3.12/site-packages/packaging/licenses/_spdx.py', 'probe_venv/lib/python3.12/site-packages/packaging/licenses/_spdx.py', 'probe_venv/lib/python3.12/site-packages/openai/resources/__init__.py', 'probe_venv/lib/python3.12/site-packages/packaging/licenses/_spdx.py', 'probe_venv/lib/python3.12/site-packages/packaging/licenses/_spdx.py'])
+   🔎 98 TS hits from 11 terms
+   📊 Confidence: medium, Score: 9
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Data_provenance_versioning_and_CCAT_inheritance.json
+   😎 +34 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 9.0s
+
+🧠 [6/8] Probing → Normalized vs surface form discrepancies and apparatus markers
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/projects/nominal_distinguishers/nominals.txt', 'lexicon/forms.yaml', 'lexicon/projects/nominal_distinguishers/nominals.txt', 'lexicon/projects/nominal_distinguishers/nominals.yaml', 'lexicon/forms.yaml'])
+   🔎 161 TS hits from 12 terms
+   📊 Confidence: high, Score: 9
+   🔮 ANN follow-ups: text normalization impact on lemma parsing | apparatus marker extraction techniques
+   🏷️  TS terms: lemma parsing, tokenization, text retrieval, variant handling, word normalization
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Normalized_vs_surface_form_discrepancies_and_apparatus_marke.json
+   😎 +35 files, +1 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 7.9s
+
+🧠 [7/8] Probing → Numeral lemmatization and cardinal number handling (εἷς fidelity)
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/projects/nominal_distinguishers/make_noun_lexicon.py', 'lexicon/forms.yaml', 'lexicon/projects/nominal_distinguishers/make_noun_lexicon.py', 'lexicon/projects/nominal_distinguishers/make_noun_lexicon.py', 'lexicon/noun_forms_2.txt'])
+   🔎 195 TS hits from 10 terms
+   📊 Confidence: high, Score: 10
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/Numeral_lemmatization_and_cardinal_number_handling_fidelity.json
+   😎 +33 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 5.6s
+
+🧠 [8/8] Probing → GGSD compatibility — can MorphGNT hint_lemma be trusted as-is?
+🧭 ANN scope (git) dropped 5 hits (sample: ['ai_probe_morphgnt_config.yaml', 'sblgnt/README.md', 'OWNERSHIP.md', 'ai_probe_morphgnt_config.yaml', 'sblgnt/README.md'])
+   🔎 237 TS hits from 12 terms
+   📊 Confidence: medium, Score: 9
+   🏷️  TS terms: morphcat, lexeme, parses, metadata, MOUNCE_OVERRIDES
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/followups/GGSD_compatibility_can_MorphGNT_hint_lemma_be_trusted_as-is.json
+   😎 +32 files, +0 entities → repo_vision
+   🧠 +30 annotations (probe_agent) → repo_vision
+   ⏱️  Query completed in 12.4s
+Traceback (most recent call last):
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/probe_agent.py", line 769, in <module>
+    run_probe(args.index, args.ts, dogfood=args.dogfood, scope_git_root=args.scope_git_root)
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/probe_agent.py", line 755, in run_probe
+    vision_path = save_repo_vision(repo_vision)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/utils.py", line 637, in save_repo_vision
+    int(existing.get("version", 1)),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '0.1'
+Restoring original config.yaml...
+▶ Phase 4: gap_agent
+
+▶️  Gap phase started at 14:30:43
+📦 Using context-aware index from env: /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_index/embeddings.json
+📦 Loaded RepoVision: /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_coder_output/dogfood/dogfood_repo_vision.json
+📊 RepoVision files: 122 | entities: 0
+😎 Repo vision: 122 files, 0 entities
+📥 Loaded 8 probe topics
+📂 Loading embeddings for gap retrieval...
+📥 Loaded 37644 embeddings, 1119 TS hits
+
+🔬 [1/8] Gap analysis → Textual-critical tradition and SBLGNT editorial stance
+   📊 Confidence: medium, Signals: 5
+   🔮 ANN follow-ups: SBLGNT variant apparatus modeling
+   🏷️  TS terms: text_variant, apparatus_entry
+🧭 ANN scope (git) dropped 5 hits (sample: ['sblgnt/README.md', 'lexicon/filesets.yaml', 'OWNERSHIP.md', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/chardet/mbcssm.py', 'OWNERSHIP.md'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Textual-critical_tradition_and_SBLGNT_editorial_stance.json
+   ⏱️  Query completed in 11.8s
+
+🔬 [2/8] Gap analysis → Lemmatization methodology and lexical authority
+   📊 Confidence: medium-high, Signals: 7
+   🔮 ANN follow-ups: morphological parsing pipeline
+   🏷️  TS terms: lemma_hint, lexicon_mapping
+🧭 ANN scope (git) dropped 5 hits (sample: ['sblgnt/README.md', 'ai_probe_morphgnt_config.yaml', 'sblgnt/README.md', 'lexicon/filesets.yaml', 'lexicon/README.md'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Lemmatization_methodology_and_lexical_authority.json
+   ⏱️  Query completed in 7.5s
+
+🔬 [3/8] Gap analysis → Morphological parsing ambiguity and disambiguation conventions
+   📊 Confidence: medium, Signals: 7
+   🔮 ANN follow-ups: greek morphology disambiguation rules
+   🏷️  TS terms: ggsd parser, morphgnt_tokens
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/projects/lemmatization_differences/NOTES.md', 'lexicon/scripts/analyze_components.py', 'lexicon/scripts/analyze_components.py', 'lexicon/scripts/analyze_components.py', 'lexicon/scripts/analyze_components.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Morphological_parsing_ambiguity_and_disambiguation_conventio.json
+   ⏱️  Query completed in 7.6s
+
+🔬 [4/8] Gap analysis → Coverage gaps and missing lexicon entries
+   📊 Confidence: medium-high, Signals: 6
+   🔮 ANN follow-ups: lexicon loader implementation details
+   🏷️  TS terms: lexicon_loader, morphology_map
+🧭 ANN scope (git) dropped 5 hits (sample: ['probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Coverage_gaps_and_missing_lexicon_entries.json
+   ⏱️  Query completed in 7.7s
+
+🔬 [5/8] Gap analysis → Data provenance, versioning, and CCAT inheritance
+   📊 Confidence: low, Signals: 9
+   🔮 ANN follow-ups: provenance version schema definitions
+   🏷️  TS terms: ProvenanceRecord, CCATSchema
+🧭 ANN scope (git) dropped 5 hits (sample: ['probe_venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py', 'probe_venv/lib/python3.12/site-packages/pydantic/main.py', 'probe_venv/lib/python3.12/site-packages/pydantic/v1/schema.py', 'probe_venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py', 'probe_venv/lib/python3.12/site-packages/pydantic/_internal/_schema_gather.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Data_provenance_versioning_and_CCAT_inheritance.json
+   ⏱️  Query completed in 14.4s
+
+🔬 [6/8] Gap analysis → Normalized vs surface form discrepancies and apparatus markers
+   📊 Confidence: medium-high, Signals: 7
+   🔮 ANN follow-ups: lemma normalization fallback strategies
+   🏷️  TS terms: hint_lemma, apparatus parser
+🧭 ANN scope (git) dropped 5 hits (sample: ['probe_venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/top_level.txt', 'probe_venv/lib/python3.12/site-packages/charset_normalizer-3.5.2.dist-info/entry_points.txt', 'probe_venv/lib/python3.12/site-packages/charset_normalizer/api.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/distlib/version.py', 'probe_venv/lib/python3.12/site-packages/charset_normalizer/api.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Normalized_vs_surface_form_discrepancies_and_apparatus_marke.json
+   ⏱️  Query completed in 12.6s
+
+🔬 [7/8] Gap analysis → Numeral lemmatization and cardinal number handling (εἷς fidelity)
+   📊 Confidence: medium-high, Signals: 6
+   🔮 ANN follow-ups: greek numeral regex rules
+   🏷️  TS terms: numeral_parser, morphcat_rules
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/scripts/basic_noun_ending_regex2.py', 'lexicon/projects/citation_forms/citation_form_data.py', 'lexicon/projects/citation_forms/citation_form_data.py', 'lexicon/projects/citation_forms/citation_form_data.py', 'lexicon/scripts/basic_noun_ending_regex2.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/Numeral_lemmatization_and_cardinal_number_handling_fidelity.json
+   ⏱️  Query completed in 8.6s
+
+🔬 [8/8] Gap analysis → GGSD compatibility — can MorphGNT hint_lemma be trusted as-is?
+   📊 Confidence: medium, Signals: 8
+   🔮 ANN follow-ups: hint_lemma usage and overrides
+   🏷️  TS terms: hint_lemma, lemma_overrides
+🧭 ANN scope (git) dropped 5 hits (sample: ['lexicon/projects/nominal_distinguishers/make_noun_lexicon.py', 'lexicon/scripts/extract_noun_forms.py', 'ai_probe_morphgnt_config.yaml', 'lexicon/projects/nominal_distinguishers/make_noun_lexicon.py', 'probe_venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py'])
+   📦 Saved → /home/dylanmccapes/dev/GrammaticalGeometrySpaceDriver/morphgnt/probe_output/gap_followups/GGSD_compatibility_can_MorphGNT_hint_lemma_be_trusted_as-is.json
+   ⏱️  Query completed in 9.3s
+Traceback (most recent call last):
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/gap_agent.py", line 355, in <module>
+    run_gap(
+  File "/home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe/gap_agent.py", line 338, in run_gap
+    vision_path = update_repo_vision_file(repo_vision)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: update_repo_vision_file() missing 3 required positional arguments: 'file_path', 'summary', and 'discovered_by'
+gap done: 1
+▶ Phase 5: report_agent
+
+▶️  Report phase started at 14:32:14
+😎 Repo vision loaded: 1 files documented
+
+✅ Report phase complete at 14:32:38 (24.1s) → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/reports/repo_report_2026-11-03.md
+
+▶️  Citation phase started at 14:32:38
+😎 Repo vision: 1 files documented
+😎 Saving repo_vision: 1 files, 0 with key_functions (0 total), 0 with relationships (0 related files, 0 external functions), 1 with importance > 0.5
+😎 Repo vision updated by citation agent → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_coder_output/repo_vision.json
+✅ Citation phase complete at 14:32:58 (20.2s) → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/reports/citations_report_2026-11-03.md
+📎 Citation Agent completed → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/reports/citations_report_2026-11-03.md
+📦 Coder report generated → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe_output/coder_reports/report_probe_output.json
+📦 Latest coder report → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe_output/coder_reports/report_latest.json
+🔧 Coder report ready for ai_coder → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_probe_output/coder_reports/report_probe_output.json
+😎 Saving repo_vision: 1 files, 0 with key_functions (0 total), 0 with relationships (0 related files, 0 external functions), 1 with importance > 0.5
+😎 Repo vision finalized → /home/dylanmccapes/dev/PORTAL_VISION_LUCIFER/FullMetalPacket/ai_coder_output/repo_vision.json 🌍 1 files
+report done: 0

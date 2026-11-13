@@ -1,0 +1,187 @@
+# Evidence for GGSD compatibility — can MorphGNT hint_lemma be trusted as-is?
+
+- `model.py:0-5` → # and waste tokens. The JSON stripping below is a fallback if this is ignored.
+- `ggsd.py:0-5` → lemma_hints    = [w["lemma"] for w in morphgnt_tokens]
+- `ggsd.py:0-5` → print(f"  ERROR from model: {e}")
+- `ggsd.py:0-5` → filled["description"] = f"[model error: {e}]"
+- `ggsd.py:0-5` → print(f"  schema error: {e}")
+- `ggsd.py:0-5` → answer = f"[question error: {e}]"
+- `ggsd.py:0-5` → print(f"  ERROR: {e}")
+- `ggsd.py:0-5` → "When provided, supplies Greek text AND lemma hints — skips /find calls."
+- `sources.py:0-5` → /find?w={word}   — lemma + grammatical parse
+- `sources.py:0-5` → /detail?w={lemma} — all dictionary entries (dicos array)
+- `sources.py:0-5` → raw_snippet = f"[retrieval error: {e}]"
+- `sources.py:0-5` → # Fallback: look for any text that looks Greek (has Unicode Greek characters)
+- `sources.py:0-5` → 1. /find?w={word}   — returns lemma + grammatical parses
+- `sources.py:0-5` → 2. /detail?w={lemma} — returns all dictionary entries (dicos array)
+- `sources.py:0-5` → hint_lemma: supply the lemma directly (e.g. from MorphGNT) to skip /find.
+- `sources.py:0-5` → # ── Step 1: find lemma ──────────────────────────────────────────────────
+- `sources.py:0-5` → # one Logeion API call per word and avoids the "word" vs "lemma" mismatch
+- `sources.py:0-5` → lemma = hint_lemma or word
+- `sources.py:0-5` → # MorphGNT-supplied lemma: record it without calling /find
+- `sources.py:0-5` → "lemma": lemma,
+- `sources.py:0-5` → "entry_text": f"lemma={lemma} (from MorphGNT; /find skipped)",
+- `sources.py:0-5` → # key the API used internally — it is NOT the lemma. Use parses[0]["lemma"]
+- `sources.py:0-5` → # when available (e.g. ἓν → "word":"ἐν" but parses[0]["lemma"]:"εἷς").
+- `sources.py:0-5` → lemma = parses[0].get("lemma", found.get("word", word))
+- `sources.py:0-5` → lemma = found.get("word", word)
+- `morphgnt/embed_morphgnt.py:0-5` → embed_morphgnt.py — Custom embedder for MorphGNT bias/fidelity analysis.
+- `morphgnt/embed_morphgnt.py:0-5` → print(f"⚠️  API error: {e}. Retrying in 10s...")
+- `morphgnt/run_ai_probe.sh:0-5` → # run_ai_probe.sh — MorphGNT bias/fidelity probe
+- `morphgnt/run_ai_probe.sh:0-5` → echo "MorphGNT ai_probe — Bias & Fidelity Run"
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → "bcv", "ccat-pos", "ccat-parse", "robinson",
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → "text", "word", "norm", "lemma"
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → pos = metadata.get("pos")
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get("dodson-pos", ""))
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → (pos == "N") or
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → (pos == "A") or
+- `morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py:0-5` → if "A" not in metadata["pos"]:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("pos")
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → if metadata["pos"] != "N":
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → if metadata["pos"] == "N":
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("dodson-pos")
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → q("gloss")
+- `morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py:0-5` → pos == "N" or
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → if metadata["pos"] in ["A", "N/A", "A/N"]:
+- `morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py:0-5` → pos == "A" or
+- `morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py:0-5` → dodson_pos = metadata.get("dodson-pos", "")
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → lemma, mounce1, aspect_voice, gender, mounce2, theme1, case_number, norm, theme2, distinguisher, explanation = line.strip().split()
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py:0-5` → LEMMAS[mounce2 + " " + gender].add(lemma)
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → # and override the lemmatization of some forms
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἔννυχα": "a-3a",  # incorrect lemma?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "λεπτόν": "a-1a(2a)",  # @@@ lemma?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → def error(message):
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → def map_non_noun_categories(mounce_cat, aspect_voice, gender, lemma):
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → pos1 = lexemes[lexeme]["pos"]
+- `morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py:0-5` → pos2s.append(lexemes[other]["pos"])
+- `morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py:0-5` → pos2 = lexemes[other]["pos"]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → # lemma -> tense_voice -> person_number -> set of forms
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → if row["ccat-pos"] == "V-":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → forms[row["lemma"]][tense_voice][person_number].add(strip_accents(row["norm"]))
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → for lemma, form_dict in sorted_items(forms):
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → if lemma in SKIP_LIST:
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → print(lemma, tense_voice, len(form_dict[tense_voice]))
+- `morphgnt/lexicon/projects/principal_parts/principal_parts.py:0-5` → print(lemma, tense_voice)
+- `morphgnt/lexicon/projects/principal_parts/principal_parts.py:0-5` → print("{} {} {}".format(lemma, tense_voice, "|".join(form for form in first_singular_forms)))
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → for lemma in forms:
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → for tense_voice in forms[lemma]:
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → t = to_tuple(forms[lemma][tense_voice])
+- `morphgnt/lexicon/projects/preverbs/test.py:0-5` → lemma, analyses = content.split("|")
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → lexeme = lexemes.get(row["lemma"].decode("utf-8"))
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → form_entry = forms.get(row["lemma"].decode("utf-8"))
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → if lexeme["pos"] in ["RA", "A", "N", "RR"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in ["RP1"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in ["V"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → elif lexeme["pos"] in "P":
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → first_fail = "{} {} {} {} {}".format(row["norm"], row["ccat-pos"], row["ccat-parse"], row["robinson"], row["lemma"])
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → # lemma -> pos_gender_degree -> person_number -> set of forms
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → if row["ccat-pos"] in ["N-", "A-", "RA", "RD", "RI", "RP", "RR"]:
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → pos_gender_degree = row["ccat-pos"] + ":" + row["ccat-parse"][6] + ":" + row["ccat-parse"][7]
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → forms[row["lemma"]][pos_gender_degree][case_number].add(strip_accents(row["norm"]))
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → for pos_gender_degree in forms[lemma]:
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → t = to_tuple(forms[lemma][pos_gender_degree])
+- `morphgnt/lexicon/scripts/check_lexemes.py:0-5` → if row["lemma"].decode("utf-8") in lexemes:
+- `morphgnt/lexicon/scripts/check_lexemes.py:0-5` → first_fail = "{} {} {}".format(row["lemma"], row["ccat-pos"], row["robinson"])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → # lemma -> person_number -> set of forms
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if row["lemma"] in INDECLINABLE:
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if row["ccat-pos"] == "N-":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = row["lemma"]
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][6], row["ccat-parse"][7])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → elif row["ccat-pos"] == "V-" and row["ccat-parse"][3] == "P":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][1:3], row["ccat-parse"][6])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → for lemma in sorted(forms, key=collator.sort_key):
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if DEBUG: print(lemma, forms[lemma])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if DEBUG: print("        {} {} {}".format(case_number, forms[lemma][case_number], ending[case_number]))
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if not forms[lemma][case_number]:
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → form_list = sorted(forms[lemma][case_number])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → # print("RESULT {} {}".format(matches, lemma))
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → FAILS.append(lemma)
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → # lemma -> form -> cng -> count
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → forms[row["lemma"]][row["norm"]][row["ccat-parse"][4:7]] += 1
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → lexemes_entry = lexemes.get(lemma, {"mounce-morphcat": None})
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → for form in forms[lemma]:
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → for parse in forms[lemma][form]:
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → form, parse, forms[lemma][form][parse]
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → print("{}|{}|{}".format(lemma, morphcat, "/".join(form_list)))
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → strongs, gk, pos, greek, short_gloss, long_gloss = line.strip().decode("utf-8").split("\t")
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → "pos": pos,
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → "short-gloss": short_gloss,
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → "long-gloss": long_gloss
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → p("dodson-pos", "pos")
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → p("gloss", "short-gloss")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → lemma = row["lemma"].decode("utf-8")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → lexeme = lexemes.get(lemma)
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → lemma = "{}/{}".format(row["lemma"], row["ccat-pos"].strip("-")).decode("utf-8")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if isinstance(lexeme["pos"], list):
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(person_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif lexeme["pos"] in ["P", "X"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → print >>sys.stderr, "lexemes file doesn't have {}".format(row["lemma"])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → pos = lexemes[form]["pos"]
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → if pos in ["RA", "A", "N", "RR"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif pos in ["RP1"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → elif pos in ["V"]:
+- `morphgnt/lexicon/scripts/extract_nouns.py:0-5` → counts[row["lemma"]] += 1
+- `morphgnt/lexicon/scripts/extract_nouns.py:0-5` → for lemma, count in sorted(
+- `morphgnt/lexicon/scripts/extract_nouns.py:0-5` → lexemes_entry = lexemes.get(lemma, {"gloss": None})
+- `morphgnt/lexicon/scripts/extract_nouns.py:0-5` → gloss = lexemes_entry.get("gloss")
+- `morphgnt/lexicon/scripts/extract_nouns.py:0-5` → print("{}|{}|{}".format(lemma, count, gloss))
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → "ἑκατοντάρχης",  # @@@ fix lemma in sblgnt
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → lemma = row["lemma"]
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if lemma in indeclinables:
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if lemma in SKIP:
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if lemma in MOUNCE_OVERRIDES:
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → mounce = MOUNCE_OVERRIDES[lemma]
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → elif lemma in lexemes and "mounce-morphcat" in lexemes[lemma]:
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → mounce = lexemes[lemma]["mounce-morphcat"]
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → if row["lemma"].decode("utf-8") not in lexemes and row["lemma"] not in already_output:
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → print "{}:".format(row["lemma"])
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → print "    pos: {}".format(convert(row["ccat-pos"], row["robinson"]))
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → already_output.add(row["lemma"])
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "gloss": ur"‘([^’]|’s )+’",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "half-gloss": ur"‘[^’]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"2 aor\. of {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=earlier {greek}; {text}, then in past tenses {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=fem\. of {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=Hom\. {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=Macedonian {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"={greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"={greek} ’ {greek}; {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"={greek}, cp\. {greek} {gloss}; {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=ὁ {greek} {gloss}; {see} {greek}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"\*{greek} {gloss}, cp\. {greek} {gloss}; the concept of doubling expressed in {greek} is associated with this verb$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"\*{greek} {half-gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"\*{greek}-, {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"a connection w\. {greek} {gloss} is uncertain$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"a formation developed from \*{greek} {greek} {gloss} and present in {greek} {greek}, hence the gen\. {greek} {greek} and associated inflection$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"a hybrid formation fr\. \(ὁ\) {greek} {gloss} \+Lat\. {latin} \(hence Vulgate rendering {gloss}\)$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"adv\. of {greek} \(cp\. prec\.\) {gloss} as in {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to aor\. {greek} \({greek}\) which bears the sense {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss} \({text}\) and {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss}, e\. g\. {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss}; {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek}; {gloss}, {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"also {greek} {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"also {greek}; Heb\. {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"an old form beside {greek}; {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"assoc\. w\. {greek} {text}, pl\. as in {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"assoc\. w\. {greek}; {gloss}, also {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"assoc\. with {greek}, {text} \({gloss} and by metonymy {gloss} {text}\)$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"associated w\. the root of {greek} \({gloss} and {gloss}\), which in turn generates {greek}. S\. next\.$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"associated w\. {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"association has been made principally with {greek} {gloss} {text}, and w\. {greek} \({greek}\) {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"association with {greek} {gloss} is uncertain$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"Attic contracted form of {greek} {gloss}, perh\. Skt\. assoc\.$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"Attic contraction of {greek} {gloss}, Skt\. assoc\.$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"Attic {greek}; {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"based on the impv\. {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"by- form of {greek} \({greek}, {greek} {gloss}\)$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"by- form of {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"by- form of {greek}; {gloss}$",
+- `morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py:0-5` → endings[pos_gender_degree][t].add(lemma)
+- `morphgnt/lexicon/morphgnt/filesets.py:0-5` → ("bcv", "ccat-pos", "ccat-parse", "robinson", "text", "word", "norm", "lemma"),

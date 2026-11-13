@@ -1,0 +1,9 @@
+{
+  "topic": "Lemmatization methodology and lexical authority",
+  "gap_ann": "morphological parsing pipeline",
+  "gap_ts": [
+    "lemma_hint",
+    "lexicon_mapping"
+  ],
+  "hits": []
+}

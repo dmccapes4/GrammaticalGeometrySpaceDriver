@@ -1,0 +1,268 @@
+[
+  {
+    "topic": "Textual-critical tradition and SBLGNT editorial stance",
+    "key_findings": [
+      "The current view of the repository focuses on generic pipeline mechanics (parsing, chunking, coder agents) but lacks direct evidence of how the SBLGNT text and MorphGNT data are modeled, transformed, and compared to alternative textual traditions.",
+      "The editorial stance of the SBLGNT (e.g., eclectic principles, treatment of Byzantine vs Alexandrian readings, use of base texts) is not clearly surfaced in the available files; no obvious configuration, documentation, or code paths articulate edition-level rationale.",
+      "Links between raw textual sources (e.g., SBLGNT, MorphGNT, other editions) and higher-level critical annotations (variants, apparatus entries, decision notes) appear underexplored or absent in the current evidence.",
+      "There is minimal or no visible test coverage validating alignment between SBLGNT orthography, lemma choices, and morphological tags, or regression tests for textual-critical integrity when upstream datasets change.",
+      "The described connascence between raw data formats and parsing logic suggests brittleness, but concrete examples (e.g., specific parser functions tied to specific line formats in SBLGNT/MorphGNT files) are not yet documented.",
+      "No clear APIs or domain abstractions for representing textual variants, witnesses, or apparatus entries have been identified, leaving the relationship between computational tools and traditional textual criticism workflows unclear."
+    ],
+    "recommended_actions": [
+      "Inspect modules or scripts specifically referencing SBLGNT or MorphGNT to determine how text, morphology, and variant data are represented and whether editorial decisions are encoded or merely assumed from upstream data.",
+      "Search for documentation or configuration files (e.g., README subsections, YAML/JSON configs) that describe which textual editions are used as bases and how the repository conceptually aligns with SBLGNT\u2019s eclectic editorial principles.",
+      "Identify any code or data structures representing variants, apparatus entries, or parallel editions (e.g., NA28, Byzantine text) to clarify how textual-critical comparison is implemented, if at all.",
+      "Look for unit or integration tests that tie specific SBLGNT readings to morphological analyses or lemmas, to evaluate how well the editorial stance is safeguarded through automated checks.",
+      "Examine parser code for hardcoded assumptions about line formats, column positions, or tag schemes in SBLGNT and MorphGNT files, and consider refactoring toward more declarative or schema-driven parsing to reduce connascence.",
+      "Verify whether there are mapping layers or DTO-like structures between low-level text/morph lines and higher-level textual-critical domain objects (e.g., passages, variants, readings) to decouple core logic from raw data formats."
+    ],
+    "connascence_signals": [
+      "Strong data-structure connascence between text file formats and parser implementations",
+      "Tight coupling between lexical and morphological datasets and dependent API methods",
+      "Explicit lemma fix comments suggesting manual data correction",
+      "Cross-file reference dependencies between SBLGNT morph files and processing scripts",
+      "cross_layer_dto"
+    ],
+    "confidence": "medium",
+    "gap_ann": "SBLGNT variant apparatus modeling",
+    "gap_ts": [
+      "text_variant",
+      "apparatus_entry"
+    ]
+  },
+  {
+    "topic": "Lemmatization methodology and lexical authority",
+    "key_findings": [
+      "Integration across multiple Greek lexical authorities (MorphGNT, Dodson, Danker, Mounce, BDAG, Strongs) is central but the precise conflict resolution and precedence rules between them remain under-specified.",
+      "The lemmatization flow appears layered, skipping some lookups when lemma hints are present, yet the exact decision tree and error-handling behavior for ambiguous or missing lemmas is unclear.",
+      "Normalization of lemmas and reconciliation of divergent categorizations across authorities is identified as a risk, but the concrete normalization rules, override lists, and mapping tables are not fully documented.",
+      "Morphological category handling (e.g., mappings like mounce-morphcat) is a key dependency, but its coverage for edge cases, irregular forms, and derived forms is underexplored.",
+      "Test coverage is extremely low (~0.09%), suggesting high risk that subtle interactions between morphology, lexeme metadata, and conflicting authorities are untested.",
+      "There is significant data-driven coupling between lexemes and external lexicon metadata, but the repository\u2019s strategy for versioning or updating those external mappings is not evident."
+    ],
+    "recommended_actions": [
+      "Document and/or codify a clear precedence hierarchy and conflict-resolution strategy among MorphGNT, Dodson, Danker, Mounce, BDAG, and Strongs for both lemmas and grammatical categories.",
+      "Map and review all normalization rules and override mechanisms for lemma forms, including any skip-lists or special-case handling, to ensure consistent behavior across authorities.",
+      "Increase automated test coverage, particularly around ambiguous lemmas, overlapping lexical entries, and morphology-lemma interactions, using representative corpora and known problematic forms.",
+      "Isolate and centralize morphological category mappings and conversions, clarifying how they interoperate with lexeme metadata to reduce hidden dependencies and make inconsistencies easier to detect.",
+      "Introduce validation tooling or consistency checks that compare derived lemma outputs against a canonical gold standard, highlighting divergences attributable to authority conflicts or normalization errors."
+    ],
+    "connascence_signals": [
+      "Strong coupling between lexemes and multiple lexicons",
+      "Repeated pattern of lemma normalization and overrides",
+      "Multiple keys (lemma, part-of-speech, morphological category) tightly coupled",
+      "Metadata dependencies on full-citation-form presence and skip-lists",
+      "Cross references between morphological categories (mounce-morphcat) and lexical entries",
+      "shared_constant",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium-high",
+    "gap_ann": "morphological parsing pipeline",
+    "gap_ts": [
+      "lemma_hint",
+      "lexicon_mapping"
+    ]
+  },
+  {
+    "topic": "Morphological parsing ambiguity and disambiguation conventions",
+    "key_findings": [
+      "Morphological parsing relies on multiple heterogeneous category sources (e.g., Mounce, Dodson, Robinson) with no clearly documented priority or conflict resolution strategy, leaving ambiguity handling conventions underexplained.",
+      "Disambiguation appears to depend on lexeme metadata and lemma hints from external sources (e.g., /find and /detail lookups), but the exact decision flow when parses disagree or are missing is unclear.",
+      "The relationship between raw parses, normalized morphology (case, gender, number, voice), and any override tables or mapping rules is only partially evident; rules for reconciling conflicting or incomplete feature sets are underexplored.",
+      "Error-handling pathways for parse failures (e.g., malformed tags, missing forms, or inconsistent lexeme metadata) are hinted at but not systematically described, especially regarding fallbacks versus hard exceptions.",
+      "Test coverage for ambiguity and edge-case parsing is extremely low, increasing the risk that subtle disambiguation rules or overrides may behave inconsistently or regress unnoticed.",
+      "Connascence between lexeme metadata, morphological parse tags, and morphology lookup tables appears strong, especially where form lookup keys are derived from composite parse tags or category overrides."
+    ],
+    "recommended_actions": [
+      "Document and codify a clear precedence order among morphological category sources and specify how conflicts between Mounce, Dodson, Robinson, and internal overrides are resolved.",
+      "Map out the full parsing pipeline, from external /find and /detail responses through internal lexeme metadata to final normalized parse objects, highlighting where lemma hints shortcut or override morphology.",
+      "Introduce explicit, centralized normalization utilities for case-gender-number-voice mappings, and reference them consistently wherever parse tags are interpreted or compared.",
+      "Define a uniform error-handling and fallback policy for parse failures and ambiguous forms, distinguishing between recoverable ambiguities (with heuristics) and hard errors that should surface to callers.",
+      "Expand automated tests focusing on ambiguous POS tags, conflicting morphological features, and missing/partial metadata cases; include regression tests for known disambiguation rules and overrides.",
+      "Reduce hidden connascence by encapsulating form-lookup keys and parse-tag construction in shared helper functions or DTOs, rather than duplicating string/tag assembly logic in multiple places."
+    ],
+    "connascence_signals": [
+      "Lexeme metadata dependency",
+      "Morphcat, Dodson POS overrides",
+      "Parse vs form consistency",
+      "Case-gender mapping rules",
+      "Form lookup keyed by parse tags",
+      "cross_layer_dto",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium",
+    "gap_ann": "greek morphology disambiguation rules",
+    "gap_ts": [
+      "ggsd parser",
+      "morphgnt_tokens"
+    ]
+  },
+  {
+    "topic": "Coverage gaps and missing lexicon entries",
+    "key_findings": [
+      "Morphological coverage logic is described but concrete data structures for each lexicon (BDAG, Mounce, Danker, Dodson) are not visible, leaving unclear which lemmas or forms are missing where.",
+      "Error handling for unknown model IDs and missing lexicon entries is referenced but not fully illustrated, obscuring how failures propagate to downstream NLP or morphological tasks.",
+      "The extent of test coverage for lexicon completeness and morphological mapping is unknown beyond a very low global coverage figure, so detection of regressions or newly introduced gaps is underexplored.",
+      "The interaction between external sources (/find and /detail endpoints) and internal lexicon aggregation is only partially documented, especially how conflicting or partial parses are reconciled.",
+      "High reliance on nested dictionaries keyed by grammatical properties suggests tight coupling, but boundaries, interfaces, or DTO-like abstractions (if any) are not yet evident."
+    ],
+    "recommended_actions": [
+      "Inspect modules that define or load lexicon data for BDAG, Mounce, Danker, and Dodson to enumerate where entries or forms are explicitly missing or marked TODO.",
+      "Review error-handling paths around unknown model IDs and lexicon membership checks to determine how often and where these conditions are raised, and whether they are logged or quietly skipped.",
+      "Locate and examine any existing unit or integration tests related to lexicon coverage or morphological parsing, and identify crucial scenarios that lack automated verification.",
+      "Analyze how /find and /detail API responses are transformed into internal nested dictionary structures, including any normalization or fallback logic when parses disagree.",
+      "Consider extracting shared morphology structures into well-defined data-transfer objects or classes to reduce connascence on shared mutable nested dictionaries."
+    ],
+    "connascence_signals": [
+      "nested defaultdict structures keyed by lemma and grammatical property",
+      "conditional checks on lexicon membership",
+      "shared mutable data structures for forms aggregation",
+      "exception raising on unknown model_id",
+      "shared_constant",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium-high",
+    "gap_ann": "lexicon loader implementation details",
+    "gap_ts": [
+      "lexicon_loader",
+      "morphology_map"
+    ]
+  },
+  {
+    "topic": "Data provenance, versioning, and CCAT inheritance",
+    "key_findings": [
+      "The current view of the repo is high-level and tool-focused (ai_coder agents and utilities) with no direct visibility yet into the linguistic data structures, schemas, or CCAT-specific code paths that were referenced in the summary.",
+      "Details of how data provenance is represented (e.g., source identifiers, version tags, inheritance or override rules) are missing; no concrete schema or class definitions for provenance, lexicon entries, or morphological parses are available.",
+      "The mechanisms for versioning linguistic resources (lexicons, morphcat data, CCAT layers) are unclear, including how versions are stored, resolved, migrated, or validated.",
+      "The nature of CCAT inheritance (e.g., how ccat-pos and ccat-parse fields relate, share schemas, or propagate changes) is underexplored; there is no direct evidence of the described connascence beyond the narrative summary.",
+      "Testing and verification code for provenance and versioning behavior has not been surfaced; the quoted low test coverage is not yet backed by file-level evidence connected to CCAT or provenance modules.",
+      "The relationship between the ai_coder framework and the linguistic/CCAT data domain is unclear; it is not evident whether ai_coder agents operate on, generate, or validate provenance-aware linguistic data."
+    ],
+    "recommended_actions": [
+      "Locate and inspect modules, packages, or data files that define CCAT-related schemas (e.g., ccat-pos, ccat-parse) and any parsing or tagging logic that uses them, to substantiate or revise the claimed connascence of name and type.",
+      "Identify classes or structures that represent provenance (e.g., source, gk identifiers, version tags, quotation or citation strings) to confirm connascence of meaning and value formatting and to see how inheritance/versioning is implemented.",
+      "Search for configuration or metadata files (YAML, JSON, database schemas) that describe lexicon or morphcat versioning rules, including any migration or upgrade logic that might introduce temporal dependencies.",
+      "Review indexing and lookup code for form entries and morphological parses to confirm the suspected connascence of algorithm and to check for algorithmic duplication across layers or modules.",
+      "Investigate test directories and CI configuration to measure actual coverage for provenance and CCAT-related components and to detect any cross-layer DTOs or shared constants that couple parsing with lexicon metadata.",
+      "Probe for any singleton-like or globally shared registries of sources, versions, or CCAT schemas that might introduce hidden global dependencies or temporal initialization ordering constraints."
+    ],
+    "connascence_signals": [
+      "connascence of name between 'ccat-pos' and 'ccat-parse' fields",
+      "connascence of type in morphological parser and lexicon metadata structures",
+      "connascence of algorithm in form_entry indexing with parse data",
+      "connascence of meaning between 'source' and 'gk' identifiers across provenance data",
+      "connascence of value formatting between source_id and quotation strings",
+      "shared_constant",
+      "cross_layer_dto",
+      "temporal_dependency",
+      "algorithmic_duplication"
+    ],
+    "confidence": "low",
+    "gap_ann": "provenance version schema definitions",
+    "gap_ts": [
+      "ProvenanceRecord",
+      "CCATSchema"
+    ]
+  },
+  {
+    "topic": "Normalized vs surface form discrepancies and apparatus markers",
+    "key_findings": [
+      "Normalization rules appear ad hoc in places (e.g., hard-coded corrections like specific norm replacements), suggesting incomplete centralization of normalization policy across the codebase.",
+      "Comparatives and superlatives are being systematically skipped in some lexicon-generation paths, indicating underexplored handling of degree-related normalization and lemmatization.",
+      "Fallback logic for lexeme lookup (e.g., augmenting lemma with POS when not found) hints at unresolved discrepancies between normalized forms, surface forms, and lexicon keys.",
+      "MorphGNT hint_lemma reliability is explicitly questioned in config, implying unclear or underdocumented trust boundaries between external lemma hints and internal normalization/lemma systems.",
+      "Morphological ambiguity and disambiguation policies are referenced but not clearly surfaced in the current evidence, leaving gaps on how normalized vs surface forms interact with ambiguous parses.",
+      "Apparatus markers and polytonic/diacritic handling are known concerns, but concrete utilities or shared abstractions for them are not yet visible, suggesting potential duplication or inconsistent parsing logic."
+    ],
+    "recommended_actions": [
+      "Identify and centralize all normalization rules for Greek forms, replacing scattered one-off adjustments with a shared normalization module and regression tests.",
+      "Audit pipelines that skip comparatives/superlatives to define a consistent policy and extension point for future re-lemmatization of degree-marked forms.",
+      "Map how lexeme lookup fallback strategies interact with normalized vs surface forms and adjust data structures or keys to reduce ad hoc lemma/POS concatenation.",
+      "Document and, if needed, implement verification or override mechanisms for MorphGNT hint_lemma to ensure clear precedence between external hints and internal normalization/lemmatization.",
+      "Locate and review all utilities that handle apparatus markers and diacritics to consolidate logic, minimize duplication, and ensure consistent tokenization across modules.",
+      "Introduce higher-level tests that track a sample of verses from raw surface text through normalization, apparatus stripping, lemma selection, and morphological disambiguation to catch regressions in cross-module behavior."
+    ],
+    "connascence_signals": [
+      "Dependence between normalized and surface word forms",
+      "Shared reliance on apparatus marker processing functions",
+      "Coupling between text retrieval and lemma parsing modules",
+      "Variant and diacritic parsing entanglement",
+      "Tokenization tightly coupled with punctuation and accent handling",
+      "shared_constant",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium-high",
+    "gap_ann": "lemma normalization fallback strategies",
+    "gap_ts": [
+      "hint_lemma",
+      "apparatus parser"
+    ]
+  },
+  {
+    "topic": "Numeral lemmatization and cardinal number handling (\u03b5\u1f37\u03c2 fidelity)",
+    "key_findings": [
+      "Implementation details for numeral-specific lemmatization logic, especially for \u03b5\u1f37\u03c2 and other complex Greek cardinals, are not visible, leaving unclear how morphology, accent, and context are disambiguated.",
+      "The interaction surface between regex-driven morphcat rules and external lexical resources (e.g., Logeion) is underdocumented, obscuring how conflicts between regex classification and lexical lookup are resolved.",
+      "Coverage of irregular and suppletive numeral forms, as well as inflected variants across gender, case, and number, is underexplored, so robustness for real-world text is uncertain.",
+      "The handling of indeclinable numerals versus fully inflected numerals is only described at a high level, with no clear evidence of dedicated test cases or validation datasets for these categories.",
+      "Extremely low automated test coverage (0.09%) suggests that behavioral guarantees for numeral tagging and lemmatization are weak, particularly for edge cases and ambiguous forms.",
+      "The degree of duplication or reuse among regex-based morphcat rules for different numeral patterns is unknown, making it hard to assess maintainability and risk of inconsistent behavior."
+    ],
+    "recommended_actions": [
+      "Locate and review the modules or functions responsible for numeral detection and lemmatization, focusing on explicit handling of \u03b5\u1f37\u03c2 and other cardinal paradigms.",
+      "Inspect the regex rule sets and morphcat category definitions to identify specific patterns dedicated to numerals and determine how they interact with generic noun/adjective rules.",
+      "Analyze the integration layer with the Logeion API or other lexical services to understand when external lemma suggestions override or confirm internal regex-based classifications.",
+      "Search for and evaluate unit or integration tests that involve numerals, and design additional tests for irregular, ambiguous, and heavily inflected numeral forms if coverage is lacking.",
+      "Identify shared constant sets for indeclinable words and confirm whether numerals are included or separately modeled, to reduce hidden coupling and unintended side effects.",
+      "Check for repeated or parallel regex implementations for numeral handling across components to detect algorithmic duplication and opportunities for centralizing shared logic."
+    ],
+    "connascence_signals": [
+      "Heavy reliance on regex morphcat classification rules",
+      "Tight coupling of lemma forms with morphcat category codes",
+      "Integration with external lexical API (Logeion) for lemma validation",
+      "Use of shared ignore sets for indeclinables across components",
+      "shared_constant",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium-high",
+    "gap_ann": "greek numeral regex rules",
+    "gap_ts": [
+      "numeral_parser",
+      "morphcat_rules"
+    ]
+  },
+  {
+    "topic": "GGSD compatibility \u2014 can MorphGNT hint_lemma be trusted as-is?",
+    "key_findings": [
+      "Existing evidence indicates MorphGNT lemmas are used as performance-oriented hints to bypass more expensive dictionary/API lookups, but there is no clear, centralized policy or specification for when these hints are authoritative versus provisional.",
+      "The interaction between hint_lemma, lexeme metadata (e.g., mounce-morphcat), and override tables (such as various *_OVERRIDES) is underexplored, particularly how conflicts are resolved when hint_lemma disagrees with morphological categories or known exception lists.",
+      "Error-handling pathways and fallback strategies for incorrect or missing hint_lemma values are unclear, including whether downstream components can detect and recover from false lemma inputs without significant propagation of inaccuracies.",
+      "The repository\u2019s low test coverage suggests that edge cases\u2014such as ambiguous forms, irregular lemmas, or derivationally complex lexemes\u2014are likely insufficiently validated, making unconditional trust in hint_lemma risky for GGSD compatibility.",
+      "Dependencies between external morphological resources (e.g., Mounce-based categories), GGSD alignment requirements, and MorphGNT-sourced lemmas are referenced but not fully mapped, leaving gaps in understanding of transitive error propagation across layers."
+    ],
+    "recommended_actions": [
+      "Locate and review all code paths where hint_lemma is consumed to determine whether it is treated as authoritative or advisory, and document explicit rules for when it may be overridden or validated.",
+      "Map the flow from MorphGNT lemma/morphcat metadata through lexeme creation, derivational morphology utilities, and citation-form generation to identify points where inconsistencies between hint_lemma and mounce-morphcat can arise.",
+      "Examine and catalogue all override tables and correction mechanisms related to lemmas and morphcats, clarifying how they interact with hint_lemma and whether they imply systematic distrust for certain lemma patterns.",
+      "Assess existing test coverage around lemma resolution, especially in modules dealing with citation forms and derivational morphology, and design targeted tests for ambiguous or known-problematic Greek forms to evaluate hint_lemma reliability.",
+      "Define GGSD-specific acceptance criteria for lemma correctness and add validation or reconciliation steps wherever MorphGNT hint_lemma values are integrated with GGSD or external lexicon APIs, rather than skipping checks unconditionally."
+    ],
+    "connascence_signals": [
+      "hint_lemma tightly coupled to API skipping",
+      "Overrides link morphological categories with lemma fixes",
+      "Lexeme metadata depends on external morphological sets",
+      "Parsing and lemma extraction tightly linked",
+      "Error handling depends on fallback or overrides",
+      "shared_constant",
+      "transitive",
+      "algorithmic_duplication"
+    ],
+    "confidence": "medium",
+    "gap_ann": "hint_lemma usage and overrides",
+    "gap_ts": [
+      "hint_lemma",
+      "lemma_overrides"
+    ]
+  }
+]

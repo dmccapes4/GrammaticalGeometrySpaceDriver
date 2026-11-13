@@ -1,0 +1,113 @@
+{
+  "topic": "GGSD compatibility \u2014 can MorphGNT hint_lemma be trusted as-is?",
+  "probe_ann": [],
+  "probe_ts": [
+    "morphcat",
+    "lexeme",
+    "parses",
+    "metadata",
+    "MOUNCE_OVERRIDES"
+  ],
+  "hits": [
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 186,
+      "text": "lexeme, metadata.get(\"mounce-morphcat\", \"\"))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+      "line": 54,
+      "text": "q(\"mounce-morphcat\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+      "line": 42,
+      "text": "mounce_morphcat = metadata.get(\"mounce-morphcat\", \"\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+      "line": 15,
+      "text": "morphcat1 = lexemes[lexeme].get(\"mounce-morphcat\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+      "line": 24,
+      "text": "morphcat2s.append(lexemes[other].get(\"mounce-morphcat\", \"?\"))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+      "line": 80,
+      "text": "morphcat2 = lexemes[other].get(\"mounce-morphcat\")"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 181,
+      "text": "for lexeme, metadata in sorted_items(lexemes):"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 184,
+      "text": "dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get(\"dodson-pos\", \"\"))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+      "line": 233,
+      "text": "print(lexeme)"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+      "line": 29,
+      "text": "if \"full-citation-form\" in metadata and lexeme not in SKIP:"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+      "line": 30,
+      "text": "lexeme = lexeme.split(\"/\")[0]"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+      "line": 32,
+      "text": "print(\"{}: {}\".format(lexeme, citation_form))"
+    },
+    {
+      "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+      "line": 15,
+      "text": "print(\"{}:\".format(lexeme))"
+    },
+    {
+      "path": "sources.py",
+      "line": 246,
+      "text": "1. /find?w={word}   \u2014 returns lemma + grammatical parses"
+    },
+    {
+      "path": "sources.py",
+      "line": 283,
+      "text": "# key the API used internally \u2014 it is NOT the lemma. Use parses[0][\"lemma\"]"
+    },
+    {
+      "path": "sources.py",
+      "line": 284,
+      "text": "# when available (e.g. \u1f13\u03bd \u2192 \"word\":\"\u1f10\u03bd\" but parses[0][\"lemma\"]:\"\u03b5\u1f37\u03c2\")."
+    },
+    {
+      "path": "sources.py",
+      "line": 286,
+      "text": "lemma = parses[0].get(\"lemma\", found.get(\"word\", word))"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+      "line": 199,
+      "text": "form1, mounce, parses, count = line.strip().split(\"|\")"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+      "line": 225,
+      "text": "print(form, mounce, parses, count, form_match, solution_match)"
+    },
+    {
+      "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+      "line": 230,
+      "text": "print(parses, mounce, form, form1)"
+    }
+  ]
+}

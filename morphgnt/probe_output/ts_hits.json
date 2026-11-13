@@ -1,0 +1,5597 @@
+[
+  {
+    "path": "model.py",
+    "line": 4,
+    "text": "One model per run. The model id is configuration the operator supplies."
+  },
+  {
+    "path": "model.py",
+    "line": 26,
+    "text": "Your job is to fill the variable fields for one Greek word."
+  },
+  {
+    "path": "model.py",
+    "line": 27,
+    "text": "You work from source retrievals already fetched and provided to you."
+  },
+  {
+    "path": "model.py",
+    "line": 34,
+    "text": "3. Every rule you add must carry the source_id and a quotation from that source."
+  },
+  {
+    "path": "model.py",
+    "line": 35,
+    "text": "If you cannot quote from the source, do not add the rule."
+  },
+  {
+    "path": "model.py",
+    "line": 39,
+    "text": "supplying a referent not present in the source retrievals (for example, inferring what a \\"
+  },
+  {
+    "path": "model.py",
+    "line": 40,
+    "text": "numeral refers to from context outside this verse), you must label it \\"
+  },
+  {
+    "path": "model.py",
+    "line": 43,
+    "text": "6. Do not spend the set. Keep all members unless contradicted by a consented rule with a source quotation."
+  },
+  {
+    "path": "model.py",
+    "line": 50,
+    "text": "\"description\": \"string \u2014 what this word is, from the sources only. Do not interpret.\","
+  },
+  {
+    "path": "model.py",
+    "line": 59,
+    "text": "Do NOT output meta_data, verse, or word \u2014 those are already filled. Output only the 7 keys above."
+  },
+  {
+    "path": "model.py",
+    "line": 73,
+    "text": "\"=== LOGEION SOURCE RETRIEVALS ===\","
+  },
+  {
+    "path": "model.py",
+    "line": 77,
+    "text": "# 400 chars per source: words with 13+ dictionaries were hitting the 8192-token"
+  },
+  {
+    "path": "model.py",
+    "line": 79,
+    "text": "parts.append(entry.get(\"entry_text\", \"[no text]\")[:400])"
+  },
+  {
+    "path": "model.py",
+    "line": 84,
+    "text": "f\"Greek text: {greekbible_result.get('greek_text', '[not retrieved]')}\","
+  },
+  {
+    "path": "model.py",
+    "line": 88,
+    "text": "parts.append(f\"  [{t.get('version','')}] {t.get('text','')}\")"
+  },
+  {
+    "path": "model.py",
+    "line": 94,
+    "text": "f\"  {pw['word']['surface']}: {pw.get('description','')[:120]}\""
+  },
+  {
+    "path": "model.py",
+    "line": 122,
+    "text": "Raises on parse failure (caller decides whether to retry)."
+  },
+  {
+    "path": "model.py",
+    "line": 136,
+    "text": "f\"Unknown model_id prefix: {model_id!r}. \""
+  },
+  {
+    "path": "model.py",
+    "line": 163,
+    "text": "# Find the first block that has a .text attribute."
+  },
+  {
+    "path": "model.py",
+    "line": 164,
+    "text": "text = None"
+  },
+  {
+    "path": "model.py",
+    "line": 166,
+    "text": "if hasattr(block, \"text\"):"
+  },
+  {
+    "path": "model.py",
+    "line": 167,
+    "text": "text = block.text.strip()"
+  },
+  {
+    "path": "model.py",
+    "line": 169,
+    "text": "if text is None:"
+  },
+  {
+    "path": "model.py",
+    "line": 170,
+    "text": "raise ValueError(f\"No text block in model response. Content: {response.content}\")"
+  },
+  {
+    "path": "model.py",
+    "line": 171,
+    "text": "return _parse_json_response(text)"
+  },
+  {
+    "path": "model.py",
+    "line": 191,
+    "text": "text = response.choices[0].message.content.strip()"
+  },
+  {
+    "path": "model.py",
+    "line": 192,
+    "text": "return _parse_json_response(text)"
+  },
+  {
+    "path": "model.py",
+    "line": 211,
+    "text": "# and waste tokens. The JSON stripping below is a fallback if this is ignored."
+  },
+  {
+    "path": "model.py",
+    "line": 243,
+    "text": "text = result[\"message\"][\"content\"].strip()"
+  },
+  {
+    "path": "model.py",
+    "line": 244,
+    "text": "return _parse_json_response(text)"
+  },
+  {
+    "path": "model.py",
+    "line": 247,
+    "text": "def _parse_json_response(text: str) -> dict[str, Any]:"
+  },
+  {
+    "path": "model.py",
+    "line": 250,
+    "text": "text = _re.sub(r\"<think>.*?</think>\", \"\", text, flags=_re.DOTALL).strip()"
+  },
+  {
+    "path": "model.py",
+    "line": 253,
+    "text": "if text.startswith(\"```\"):"
+  },
+  {
+    "path": "model.py",
+    "line": 254,
+    "text": "lines = text.split(\"\\n\")"
+  },
+  {
+    "path": "model.py",
+    "line": 259,
+    "text": "text = \"\\n\".join(inner)"
+  },
+  {
+    "path": "model.py",
+    "line": 261,
+    "text": "# Try direct parse first"
+  },
+  {
+    "path": "model.py",
+    "line": 263,
+    "text": "return json.loads(text)"
+  },
+  {
+    "path": "model.py",
+    "line": 269,
+    "text": "start = text.find(\"{\")"
+  },
+  {
+    "path": "model.py",
+    "line": 271,
+    "text": "raise ValueError(f\"No JSON object found in model response:\\n{text[:500]}\")"
+  },
+  {
+    "path": "model.py",
+    "line": 275,
+    "text": "for i, ch in enumerate(text[start:], start=start):"
+  },
+  {
+    "path": "model.py",
+    "line": 292,
+    "text": "candidate = text[start : i + 1]"
+  },
+  {
+    "path": "model.py",
+    "line": 299,
+    "text": "raise ValueError(f\"Unbalanced braces in model response:\\n{text[:500]}\")"
+  },
+  {
+    "path": "model.py",
+    "line": 310,
+    "text": "You are reading a verse decoded word by word from original Greek Koine."
+  },
+  {
+    "path": "model.py",
+    "line": 311,
+    "text": "Each word entry contains what the sources say: grammatical rules, lexical rules,"
+  },
+  {
+    "path": "model.py",
+    "line": 322,
+    "text": "Be direct. One or two paragraphs. Do not summarise the decoding back at the reader."
+  },
+  {
+    "path": "model.py",
+    "line": 336,
+    "text": "surface = w.get(\"word\", {}).get(\"surface\", \"?\")"
+  },
+  {
+    "path": "model.py",
+    "line": 364,
+    "text": "Ask a question about a fully decoded verse. Returns a plain-text answer."
+  },
+  {
+    "path": "model.py",
+    "line": 366,
+    "text": "verse_decoding: list of word primitives from the full run."
+  },
+  {
+    "path": "model.py",
+    "line": 378,
+    "text": "raise ValueError(f\"Unknown model_id: {model_id!r}\")"
+  },
+  {
+    "path": "model.py",
+    "line": 394,
+    "text": "if hasattr(block, \"text\"):"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 8,
+    "text": "python3 ggsd.py --verse \"Matthew 25:18\" --model ollama/... --morphgnt tools/sblgnt/Matthew-morphgnt.txt"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 17,
+    "text": "verse.jsonl                     \u2014 one primitive per word, in verse order"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 61,
+    "text": "Split Greek text into word tokens."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 62,
+    "text": "Strips punctuation, preserves polytonic Unicode."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 63,
+    "text": "Returns a list of surface forms in order."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 72,
+    "text": "Load already-completed word primitives from an existing verse.jsonl."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 92,
+    "text": "\"\"\"Append one JSON line to verse_log.jsonl.\"\"\""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 103,
+    "text": "\"surface\":                p.get(\"word\", {}).get(\"surface\", \"?\"),"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 149,
+    "text": "f\"Unknown model_id: {model_id!r}. \""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 154,
+    "text": "slug = re.sub(r\"[^a-zA-Z0-9]\", \"_\", verse_ref)"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 174,
+    "text": "print(f\"checkpoint: {len(completed)} word(s) already completed \u2014 resuming\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 189,
+    "text": "# \u2500\u2500 MorphGNT source \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 197,
+    "text": "# Parse chapter:verse from the reference"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 204,
+    "text": "print(\"  WARNING: could not parse chapter:verse from verse_ref; MorphGNT unused\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 209,
+    "text": "# \u2500\u2500 Verse text source \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 211,
+    "text": "greek_text = \" \".join(w[\"word\"] for w in morphgnt_tokens)"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 212,
+    "text": "print(f\"  greek text: [MorphGNT] {greek_text[:120]}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 224,
+    "text": "print(f\"  greek text: [manual] {greek_text[:120]}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 232,
+    "text": "print(f\"  greek text: {greek_text[:120] or '[not retrieved]'}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 239,
+    "text": "\"WARNING: no Greek text available. \""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 246,
+    "text": "# Use MorphGNT word list."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 247,
+    "text": "# word (field 4) is clean \u2014 no \u2e00 apparatus markers or trailing punctuation."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 248,
+    "text": "# text (field 3) is the as-printed form and may include \u2e00 markers."
+  },
+  {
+    "path": "ggsd.py",
+    "line": 249,
+    "text": "surface_tokens = [w[\"word\"] for w in morphgnt_tokens]"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 250,
+    "text": "lemma_hints    = [w[\"lemma\"] for w in morphgnt_tokens]"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 284,
+    "text": "\"note\": \"fetched once for the verse; shared across all word primitives\","
+  },
+  {
+    "path": "ggsd.py",
+    "line": 314,
+    "text": "print(f\"  ERROR from model: {e}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 316,
+    "text": "filled[\"description\"] = f\"[model error: {e}]\""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 322,
+    "text": "filled[\"word\"][\"surface\"]   = surface"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 323,
+    "text": "filled[\"word\"][\"letters\"]   = list(surface)"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 330,
+    "text": "print(f\"  schema error: {e}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 392,
+    "text": "answer = f\"[question error: {e}]\""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 393,
+    "text": "print(f\"  ERROR: {e}\")"
+  },
+  {
+    "path": "ggsd.py",
+    "line": 471,
+    "text": "\"Supply the Greek text of the verse manually. \""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 479,
+    "text": "\"(e.g. tools/sblgnt/Matthew-morphgnt.txt). \""
+  },
+  {
+    "path": "ggsd.py",
+    "line": 480,
+    "text": "\"When provided, supplies Greek text AND lemma hints \u2014 skips /find calls.\""
+  },
+  {
+    "path": "report.py",
+    "line": 7,
+    "text": "- the source agreements (where dictionaries converge)"
+  },
+  {
+    "path": "report.py",
+    "line": 11,
+    "text": "The report does not say what the verse means while more than one member remains."
+  },
+  {
+    "path": "report.py",
+    "line": 44,
+    "text": "f\"- Word count: {len(primitives)}\","
+  },
+  {
+    "path": "report.py",
+    "line": 68,
+    "text": "# Source agreements"
+  },
+  {
+    "path": "report.py",
+    "line": 69,
+    "text": "lines += [\"## Source agreements\", \"\"]"
+  },
+  {
+    "path": "report.py",
+    "line": 72,
+    "text": "word = p[\"word\"][\"surface\"]"
+  },
+  {
+    "path": "report.py",
+    "line": 76,
+    "text": "lines.append(f\"**{word}**\")"
+  },
+  {
+    "path": "report.py",
+    "line": 83,
+    "text": "lines.append(\"No multi-source agreements recorded in this run.\")"
+  },
+  {
+    "path": "report.py",
+    "line": 86,
+    "text": "# Per-word: the set that remains"
+  },
+  {
+    "path": "report.py",
+    "line": 87,
+    "text": "lines += [\"## The set (per word)\", \"\"]"
+  },
+  {
+    "path": "report.py",
+    "line": 89,
+    "text": "word = p[\"word\"][\"surface\"]"
+  },
+  {
+    "path": "report.py",
+    "line": 90,
+    "text": "lines.append(f\"### {word}\")"
+  },
+  {
+    "path": "report.py",
+    "line": 141,
+    "text": "open_words.append(p[\"word\"][\"surface\"])"
+  },
+  {
+    "path": "report.py",
+    "line": 145,
+    "text": "\"The following words have more than one translation standing. \""
+  },
+  {
+    "path": "report.py",
+    "line": 146,
+    "text": "\"The verse does not yet mean one thing. The set is open.\""
+  },
+  {
+    "path": "report.py",
+    "line": 153,
+    "text": "\"Every word has one translation standing. \""
+  },
+  {
+    "path": "report.py",
+    "line": 154,
+    "text": "\"If every elimination was made by a consented rule with a source quotation, \""
+  },
+  {
+    "path": "schema.py",
+    "line": 4,
+    "text": "A primitive is one JSON object for one word in a verse."
+  },
+  {
+    "path": "schema.py",
+    "line": 19,
+    "text": "\"word\","
+  },
+  {
+    "path": "schema.py",
+    "line": 32,
+    "text": "# \u2500\u2500\u2500 source registry \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "schema.py",
+    "line": 45,
+    "text": "\"logeion_dodson\",      # Dodson (NT Greek)"
+  },
+  {
+    "path": "schema.py",
+    "line": 59,
+    "text": "\"\"\"Return an empty primitive for a word.\"\"\""
+  },
+  {
+    "path": "schema.py",
+    "line": 67,
+    "text": "\"word\": {"
+  },
+  {
+    "path": "schema.py",
+    "line": 89,
+    "text": "source_id: str,         # which source stated this"
+  },
+  {
+    "path": "schema.py",
+    "line": 90,
+    "text": "quotation: str,         # verbatim from the source"
+  },
+  {
+    "path": "schema.py",
+    "line": 127,
+    "text": "# \u2500\u2500\u2500 source agreement tracking \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "schema.py",
+    "line": 136,
+    "text": "Adapted from sacred_concepts_atlas source-registry pattern."
+  },
+  {
+    "path": "schema.py",
+    "line": 137,
+    "text": "One record = two or more sources independently stating the same value"
+  },
+  {
+    "path": "schema.py",
+    "line": 138,
+    "text": "for the same field on the same word."
+  },
+  {
+    "path": "schema.py",
+    "line": 139,
+    "text": "Divergences are also stored: source_ids length == 1 means only one source"
+  },
+  {
+    "path": "schema.py",
+    "line": 155,
+    "text": "Call this after all source retrievals have been processed for a word."
+  },
+  {
+    "path": "schema.py",
+    "line": 192,
+    "text": "raise SchemaError(f\"missing field: {f}\")"
+  },
+  {
+    "path": "schema.py",
+    "line": 197,
+    "text": "if not p[\"word\"].get(\"surface\"):"
+  },
+  {
+    "path": "schema.py",
+    "line": 198,
+    "text": "raise SchemaError(\"word.surface is empty\")"
+  },
+  {
+    "path": "sources.py",
+    "line": 2,
+    "text": "GrammaticalGeometrySpaceDriver \u2014 source retrievals."
+  },
+  {
+    "path": "sources.py",
+    "line": 4,
+    "text": "greekbible.com   \u2014 Bible source. Retrieves verse text and available translations."
+  },
+  {
+    "path": "sources.py",
+    "line": 15,
+    "text": "/find?w={word}   \u2014 lemma + grammatical parse"
+  },
+  {
+    "path": "sources.py",
+    "line": 16,
+    "text": "/detail?w={lemma} \u2014 all dictionary entries (dicos array)"
+  },
+  {
+    "path": "sources.py",
+    "line": 43,
+    "text": "# pipeline \u2014 each word is looked up once and the result is kept. Keep the"
+  },
+  {
+    "path": "sources.py",
+    "line": 76,
+    "text": "Retrieve verse text and available translations from greekbible.com."
+  },
+  {
+    "path": "sources.py",
+    "line": 85,
+    "text": "greek_text: str          \u2014 the Greek text of the verse (SBL GNT or similar)"
+  },
+  {
+    "path": "sources.py",
+    "line": 86,
+    "text": "translations: list[dict] \u2014 each entry: {version, text}"
+  },
+  {
+    "path": "sources.py",
+    "line": 95,
+    "text": "# Parse the reference."
+  },
+  {
+    "path": "sources.py",
+    "line": 103,
+    "text": "soup = BeautifulSoup(r.text, \"lxml\")"
+  },
+  {
+    "path": "sources.py",
+    "line": 104,
+    "text": "raw_snippet = r.text[:3000]"
+  },
+  {
+    "path": "sources.py",
+    "line": 106,
+    "text": "# Extract Greek text \u2014 look for the main verse display"
+  },
+  {
+    "path": "sources.py",
+    "line": 115,
+    "text": "raw_snippet = f\"[retrieval error: {e}]\""
+  },
+  {
+    "path": "sources.py",
+    "line": 129,
+    "text": "\"\"\"Parse 'Matthew 25:18' -> {book_slug, chapter, verse}.\"\"\""
+  },
+  {
+    "path": "sources.py",
+    "line": 132,
+    "text": "# Handle multi-word books: \"1 Corinthians 3:4\""
+  },
+  {
+    "path": "sources.py",
+    "line": 161,
+    "text": "\"\"\"Best-effort extraction of the Greek text from greekbible.com.\"\"\""
+  },
+  {
+    "path": "sources.py",
+    "line": 163,
+    "text": "for selector in [\"span.greek\", \"div.greek\", \".greek-text\", \"#greek\", \"span[lang='grc']\"]:"
+  },
+  {
+    "path": "sources.py",
+    "line": 167,
+    "text": "# Fallback: look for any text that looks Greek (has Unicode Greek characters)"
+  },
+  {
+    "path": "sources.py",
+    "line": 169,
+    "text": "text = el.get_text()"
+  },
+  {
+    "path": "sources.py",
+    "line": 170,
+    "text": "if any(\"\\u0370\" <= c <= \"\\u03ff\" for c in text):"
+  },
+  {
+    "path": "sources.py",
+    "line": 171,
+    "text": "return text.strip()[:500]"
+  },
+  {
+    "path": "sources.py",
+    "line": 179,
+    "text": "for el in soup.select(\"div.translation, div.version, table.translations tr\"):"
+  },
+  {
+    "path": "sources.py",
+    "line": 180,
+    "text": "label_el = el.select_one(\".version-name, .label, th, td:first-child\")"
+  },
+  {
+    "path": "sources.py",
+    "line": 181,
+    "text": "text_el = el.select_one(\".version-text, .text, td:last-child\")"
+  },
+  {
+    "path": "sources.py",
+    "line": 184,
+    "text": "\"version\": label_el.get_text().strip(),"
+  },
+  {
+    "path": "sources.py",
+    "line": 185,
+    "text": "\"text\": text_el.get_text().strip(),"
+  },
+  {
+    "path": "sources.py",
+    "line": 207,
+    "text": "\"Dodson\": \"logeion_dodson\","
+  },
+  {
+    "path": "sources.py",
+    "line": 234,
+    "text": "def _strip_html(text: str) -> str:"
+  },
+  {
+    "path": "sources.py",
+    "line": 237,
+    "text": "return BS(text, \"lxml\").get_text(separator=\" \").strip()"
+  },
+  {
+    "path": "sources.py",
+    "line": 240,
+    "text": "def fetch_logeion(word: str, hint_lemma: str | None = None) -> dict[str, Any]:"
+  },
+  {
+    "path": "sources.py",
+    "line": 242,
+    "text": "Retrieve dictionary entries for a Greek word from Logeion via the"
+  },
+  {
+    "path": "sources.py",
+    "line": 246,
+    "text": "1. /find?w={word}   \u2014 returns lemma + grammatical parses"
+  },
+  {
+    "path": "sources.py",
+    "line": 247,
+    "text": "(skipped when hint_lemma is provided \u2014 saves one Logeion request)"
+  },
+  {
+    "path": "sources.py",
+    "line": 248,
+    "text": "2. /detail?w={lemma} \u2014 returns all dictionary entries (dicos array)"
+  },
+  {
+    "path": "sources.py",
+    "line": 250,
+    "text": "hint_lemma: supply the lemma directly (e.g. from MorphGNT) to skip /find."
+  },
+  {
+    "path": "sources.py",
+    "line": 253,
+    "text": "Returns a dict keyed by source_id, one entry per dictionary that has content."
+  },
+  {
+    "path": "sources.py",
+    "line": 257,
+    "text": "web_url = f\"{LOGEION_WEB}/{requests.utils.quote(word)}\""
+  },
+  {
+    "path": "sources.py",
+    "line": 260,
+    "text": "# \u2500\u2500 Step 1: find lemma \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "sources.py",
+    "line": 262,
+    "text": "# one Logeion API call per word and avoids the \"word\" vs \"lemma\" mismatch"
+  },
+  {
+    "path": "sources.py",
+    "line": 264,
+    "text": "lemma = hint_lemma or word"
+  },
+  {
+    "path": "sources.py",
+    "line": 267,
+    "text": "# MorphGNT-supplied lemma: record it without calling /find"
+  },
+  {
+    "path": "sources.py",
+    "line": 272,
+    "text": "\"word\": word,"
+  },
+  {
+    "path": "sources.py",
+    "line": 273,
+    "text": "\"lemma\": lemma,"
+  },
+  {
+    "path": "sources.py",
+    "line": 275,
+    "text": "\"entry_text\": f\"lemma={lemma} (from MorphGNT; /find skipped)\","
+  },
+  {
+    "path": "sources.py",
+    "line": 279,
+    "text": "r_find = _logeion_get(\"find\", {\"w\": word})"
+  },
+  {
+    "path": "sources.py",
+    "line": 282,
+    "text": "# IMPORTANT: \"word\" in the API response is the deaccented/debreathed lookup"
+  },
+  {
+    "path": "sources.py",
+    "line": 283,
+    "text": "# key the API used internally \u2014 it is NOT the lemma. Use parses[0][\"lemma\"]"
+  },
+  {
+    "path": "sources.py",
+    "line": 284,
+    "text": "# when available (e.g. \u1f13\u03bd \u2192 \"word\":\"\u1f10\u03bd\" but parses[0][\"lemma\"]:\"\u03b5\u1f37\u03c2\")."
+  },
+  {
+    "path": "sources.py",
+    "line": 286,
+    "text": "lemma = parses[0].get(\"lemma\", found.get(\"word\", word))"
+  },
+  {
+    "path": "sources.py",
+    "line": 288,
+    "text": "lemma = found.get(\"word\", word)"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 3,
+    "text": "embed_morphgnt.py \u2014 Custom embedder for MorphGNT bias/fidelity analysis."
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 10,
+    "text": "- Large NT data files in sblgnt/ and python/pysblgnt/sblgnt/ (\u22651000 lines)"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 38,
+    "text": "# Skip large NT data files \u2014 they contain tokenized text, not methodology."
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 70,
+    "text": "parser.add_argument(\"--model\", default=\"text-embedding-3-small\")"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 103,
+    "text": "text = open(fpath, encoding=\"utf-8\", errors=\"ignore\").read()"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 108,
+    "text": "line_count = text.count(\"\\n\")"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 115,
+    "text": "for chunk in splitter.split_text(text):"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 116,
+    "text": "corpus.append({\"path\": rel_path, \"text\": chunk})"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 131,
+    "text": "input=[c[\"text\"] for c in batch],"
+  },
+  {
+    "path": "morphgnt/embed_morphgnt.py",
+    "line": 146,
+    "text": "print(f\"\u26a0\ufe0f  API error: {e}. Retrying in 10s...\")"
+  },
+  {
+    "path": "morphgnt/run_ai_probe.sh",
+    "line": 2,
+    "text": "# run_ai_probe.sh \u2014 MorphGNT bias/fidelity probe"
+  },
+  {
+    "path": "morphgnt/run_ai_probe.sh",
+    "line": 24,
+    "text": "echo \"MorphGNT ai_probe \u2014 Bias & Fidelity Run\""
+  },
+  {
+    "path": "morphgnt/run_ai_probe.sh",
+    "line": 70,
+    "text": "# \u2500\u2500 Phase 4: Gap \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 4,
+    "text": "name=\"py-sblgnt\","
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 5,
+    "text": "version=\"0.10\","
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 6,
+    "text": "description=\"pip-installable MorphGNT/SBLGNT with Python API\","
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 8,
+    "text": "url=\"https://github.com/morphgnt/py-sblgnt\","
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 9,
+    "text": "author=\"James Tauber\","
+  },
+  {
+    "path": "morphgnt/python/setup.py",
+    "line": 12,
+    "text": "package_data={\"\": [\"sblgnt/*.txt\"]},"
+  },
+  {
+    "path": "morphgnt/python/pysblgnt/__init__.py",
+    "line": 6,
+    "text": "return the MorphGNT filename of the given book number."
+  },
+  {
+    "path": "morphgnt/python/pysblgnt/__init__.py",
+    "line": 10,
+    "text": "return \"sblgnt/{}-{}-morphgnt.txt\".format("
+  },
+  {
+    "path": "morphgnt/python/pysblgnt/__init__.py",
+    "line": 21,
+    "text": "yield a dict for each MorphGNT/SBLGNT row in the given book number."
+  },
+  {
+    "path": "morphgnt/python/pysblgnt/__init__.py",
+    "line": 32,
+    "text": "\"bcv\", \"ccat-pos\", \"ccat-parse\", \"robinson\","
+  },
+  {
+    "path": "morphgnt/python/pysblgnt/__init__.py",
+    "line": 33,
+    "text": "\"text\", \"word\", \"norm\", \"lemma\""
+  },
+  {
+    "path": "morphgnt/lexicon/setup.py",
+    "line": 5,
+    "text": "version = \"0.1dev\","
+  },
+  {
+    "path": "morphgnt/lexicon/setup.py",
+    "line": 7,
+    "text": "author = \"James Tauber\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 267,
+    "text": "## Danker nouns that Mounce and/or Dodson have as adjectives"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 269,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03c5, \u1f41$\", r\"^a-3a$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 270,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03c5, \u1f41$\", r\"^a-1a\\(1\\)$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 272,
+    "text": "## Danker adjectives that Mounce and/or Dodson have as nouns"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 275,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\", r\"^a-1a\\(1\\)$\", r\"^N:M$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 277,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\", r\"^a-1a\\(2a\\)$\", r\"^N:M$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 279,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\", r\"^a-3a$\", r\"^N:M$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 281,
+    "text": "## multi-word"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 283,
+    "text": "((r\"~\", r\"^n-|^a-\", r\"^N|^A|^$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 291,
+    "text": "## indeclinable"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 307,
+    "text": "## multi-gender"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 329,
+    "text": "## nouns missing articles?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 339,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 340,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-3b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 341,
+    "text": "((r\"\u03bf\u03c2, \\(\u03b1\\), \u03bf\u03bd$\",       r\"^a-3b\\(1\\)$\",     r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 343,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 344,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 345,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^ADV-S$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 349,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2[ab]\\)$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 350,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2a\\)$\",    r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 351,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2a\\)$\",    r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 352,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-3b\\(2\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 353,
+    "text": "((r\"\u03bf\u03c2, \\(\u03b7\\), \u03bf\u03bd$\",       r\"^a-3b\\(2\\)$\",     r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 358,
+    "text": "((r\"\u03c1\u03bf\u03c5\u03c2, \u03b1, \u03bf\u03c5\u03bd$\",        r\"^a-1b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 360,
+    "text": "((r\"\u03bf\u03c5\u03c2, \u03b7, \u03bf\u03c5\u03bd$\",         r\"^a-1b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 363,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03c5\u03c3\u03b1, \u03bf\u03bd$\",        r\"^a-2a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 365,
+    "text": "((r\"\u03c5\u03c2, \u03b5\u03b9\u03b1, \u03c5$\",          r\"^a-2b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 366,
+    "text": "((r\"^(\\w+)$\",              r\"^a-2b$\",          r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 367,
+    "text": "((r\"^\u03c0\u03c1\u03b1\u03cb\u03c2, \u03c0\u03c1\u03b1\u03b5\u03b9\u03b1, \u03c0\u03c1\u03b1\u03cb$\", r\"^a-2b$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 369,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 370,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 371,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 374,
+    "text": "((r\"\u03bf\u03c2$\",                  r\"^a-3a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 376,
+    "text": "((r\"(.+)\u03bf\u03c5\u03c2, \u03bf\u03c5\u03bd, gen\\. \\1\u03bf\u03b4\u03bf\u03c2$\", r\"^a-5$\",       r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 378,
+    "text": "((r\"^(\\w+), \u1f41/\u1f21/\u03c4\u03bf$\", r\"^a-5$\", r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 380,
+    "text": "((r\"^\u1f31\u03bb\u03b5\u03c9\u03c2, nt\\. \\(Attic 2 decl\\.\\) \u03c9\u03bd$\", r\"^a-5$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 382,
+    "text": "((r\"^(\\w+)$\", r\"^a-5$\", r\"^A,A-NUI$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 384,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2$\",              r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 385,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2$\",              r\"^a-4a$\",          r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 387,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2, gen\\. \u03bf\u03c5\u03c2$\",   r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 389,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2, \u03bf\u03c5\u03c2$\",         r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 391,
+    "text": "((r\"^(\\w+)\u03b7\u03c2, \u03b5\u03c2, acc\\. \\1\u03b7$\", r\"^a-4a$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 393,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd$\",              r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 395,
+    "text": "((r\"^\u1f10\u03bb\u03b1\u03c3\u03c3\u03c9\u03bd/\u1f10\u03bb\u03b1\u03c3\u03c3\u03bf\u03bd$\",    r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 397,
+    "text": "((r\"\u03b7\u03bd, \u03b5\u03bd, gen\\. \u03b5\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 398,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd, gen\\. \u03bf\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 399,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd, gen\\. \u03bf\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^$\"),  \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 401,
+    "text": "((r\"\u03bf\u03b9, \u03b1\u03b9, \u03b1$\",           r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 405,
+    "text": "((r\"\u03c4\u03b5\u03c1\u03bf\u03c2, \u03c4\u03b5\u03c1\u03b1, \u03bf\u03bd$\",     r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/citation_form_data.py",
+    "line": 407,
+    "text": "((r\"\u03b1\u03c2, \u03b1\u03c3\u03b1, \u03b1\u03bd$\",         r\"^a-2a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 141,
+    "text": "\"\u03b4\u03ad\u03ba\u03b1\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 142,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03bf\u03ba\u03c4\u03ce\":         \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 143,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03c0\u03ad\u03bd\u03c4\u03b5\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 144,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03c4\u03ad\u03c3\u03c3\u03b1\u03c1\u03b5\u03c2\":     \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 145,
+    "text": "\"\u03b4\u03ce\u03b4\u03b5\u03ba\u03b1\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 146,
+    "text": "\"\u1f11\u03b2\u03b4\u03bf\u03bc\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":      \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 148,
+    "text": "\"\u03b5\u1f34\u03ba\u03bf\u03c3\u03b9(\u03bd)\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 149,
+    "text": "\"\u1f11\u03ba\u03b1\u03c4\u03cc\u03bd\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 150,
+    "text": "\"\u1f15\u03bd\u03b4\u03b5\u03ba\u03b1\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 151,
+    "text": "\"\u1f10\u03bd\u03b5\u03bd\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 152,
+    "text": "\"\u1f10\u03bd\u03bd\u03ad\u03b1\":            \"a-indecl\",  # danker has citation form with articles"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 153,
+    "text": "\"\u1f15\u03be\":               \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 154,
+    "text": "\"\u1f11\u03be\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":         \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 155,
+    "text": "\"\u1f11\u03c0\u03c4\u03ac\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 159,
+    "text": "\"\u1f40\u03b3\u03b4\u03bf\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 160,
+    "text": "\"\u1f40\u03ba\u03c4\u03ce\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 161,
+    "text": "\"\u03c0\u03b1\u03c1\u03b1\u03bb\u03c5\u03c4\u03b9\u03ba\u03cc\u03c2\":      \"a-?\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 162,
+    "text": "\"\u03c0\u03ad\u03bd\u03c4\u03b5\":            \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 163,
+    "text": "\"\u03c0\u03b5\u03bd\u03c4\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 165,
+    "text": "\"\u03c4\u03b5\u03c3\u03c3\u03b5\u03c1\u03ac\u03ba\u03bf\u03bd\u03c4\u03b1\":     \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 166,
+    "text": "\"\u03c4\u03c1\u03b9\u03ac\u03ba\u03bf\u03bd\u03c4\u03b1\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 181,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 182,
+    "text": "pos = metadata.get(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 183,
+    "text": "full_citation = metadata.get(\"full-citation-form\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 184,
+    "text": "dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get(\"dodson-pos\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 186,
+    "text": "lexeme, metadata.get(\"mounce-morphcat\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 192,
+    "text": "(pos == \"N\") or"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 201,
+    "text": "(pos == \"A\") or"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 205,
+    "text": "mounce_morphcat.startswith(\"a-\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 208,
+    "text": "any(x.startswith(\"a-\") for x in mounce_morphcat)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 222,
+    "text": "end, cat, dodson = match_tuple"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 228,
+    "text": "re.search(dodson, dodson_pos)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py",
+    "line": 233,
+    "text": "print(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 12,
+    "text": "\"\u1f11\u03b4\u03c1\u03b1\u1fd6\u03bf\u03c2\", \"\u03b5\u1f34\u03ba\u03bf\u03c3\u03b9(\u03bd)\", \"\u03b5\u1f37\u03c2\", \"\u1f11\u03ba\u03b1\u03c4\u03cc\u03bd\", \"\u1f10\u03bb\u03ac\u03c3\u03c3\u03c9\u03bd\", \"\u1f10\u03bb\u03c9\u0390\", \"\u1f15\u03bd\u03b4\u03b5\u03ba\u03b1\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 25,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 26,
+    "text": "if \"A\" not in metadata[\"pos\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 29,
+    "text": "if \"full-citation-form\" in metadata and lexeme not in SKIP:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 30,
+    "text": "lexeme = lexeme.split(\"/\")[0]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 31,
+    "text": "citation_form = metadata[\"full-citation-form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py",
+    "line": 32,
+    "text": "print(\"{}: {}\".format(lexeme, citation_form))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 14,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 15,
+    "text": "print(\"{}:\".format(lexeme))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 26,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 28,
+    "text": "if \"full-citation-form\" in metadata:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 30,
+    "text": "\"    full-citation-form: {}\".format("
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 31,
+    "text": "metadata[\"full-citation-form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 35,
+    "text": "if lexeme in full_citation:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 37,
+    "text": "\"    full-citation-form: {}\".format(full_citation[lexeme])"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 39,
+    "text": "used.append(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 40,
+    "text": "if metadata[\"pos\"] != \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 41,
+    "text": "non_n_found.append(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 43,
+    "text": "if metadata[\"pos\"] == \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 44,
+    "text": "n_missed.append(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 46,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 47,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 48,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 49,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 50,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 52,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 53,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 54,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 57,
+    "text": "for lexeme in full_citation:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 58,
+    "text": "if lexeme not in used:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 59,
+    "text": "not_used.append(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 62,
+    "text": "for word in n_missed:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 63,
+    "text": "print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 66,
+    "text": "for word in non_n_found:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 67,
+    "text": "print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 70,
+    "text": "for word in not_used:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py",
+    "line": 71,
+    "text": "print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 28,
+    "text": "## missing full citation"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 47,
+    "text": "\"\u1f19\u03b2\u03c1\u03b1\u0390\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 54,
+    "text": "\"\u1f31\u03b5\u03c1\u03cc\u03bd\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 57,
+    "text": "\"\u1f31\u03bb\u03b1\u03c3\u03c4\u03ae\u03c1\u03b9\u03bf\u03bd\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 64,
+    "text": "\"\u03bc\u03b9\u03c3\u03b8\u03c9\u03c4\u03cc\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 65,
+    "text": "\"\u03bc\u03bf\u03b9\u03c7\u03b1\u03bb\u03af\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 67,
+    "text": "\"\u03bd\u1fc6\u03c3\u03c4\u03b9\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 70,
+    "text": "\"\u03c0\u03ad\u03bd\u03b7\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 71,
+    "text": "\"\u03c0\u03b5\u03c4\u03b5\u03b9\u03bd\u03cc\u03bd\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 72,
+    "text": "\"\u03c0\u03bb\u03b1\u03bd\u03ae\u03c4\u03b7\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 73,
+    "text": "\"\u03c0\u03bb\u03b1\u03c4\u03b5\u1fd6\u03b1\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 77,
+    "text": "\"\u03c3\u03c4\u03b5\u1fd6\u03c1\u03b1\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 78,
+    "text": "\"\u03c3\u03cd\u03b6\u03c5\u03b3\u03bf\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 79,
+    "text": "\"\u03c3\u03c5\u03bd\u03b5\u03c1\u03b3\u03cc\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 82,
+    "text": "\"\u03a4\u03c1\u03b1\u03c7\u03c9\u03bd\u1fd6\u03c4\u03b9\u03c2\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 83,
+    "text": "\"\u03c7\u03ae\u03c1\u03b1\",  # danker gives noun citation form but morphgnt has as adj."
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 199,
+    "text": "\"\u03b4\u03ad\u03ba\u03b1\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 200,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03bf\u03ba\u03c4\u03ce\":         \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 201,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03c0\u03ad\u03bd\u03c4\u03b5\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 202,
+    "text": "\"\u03b4\u03b5\u03ba\u03b1\u03c4\u03ad\u03c3\u03c3\u03b1\u03c1\u03b5\u03c2\":     \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 203,
+    "text": "\"\u03b4\u03ce\u03b4\u03b5\u03ba\u03b1\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 204,
+    "text": "\"\u1f11\u03b2\u03b4\u03bf\u03bc\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":      \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 206,
+    "text": "\"\u03b5\u1f34\u03ba\u03bf\u03c3\u03b9(\u03bd)\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 207,
+    "text": "\"\u1f11\u03ba\u03b1\u03c4\u03cc\u03bd\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 208,
+    "text": "\"\u1f15\u03bd\u03b4\u03b5\u03ba\u03b1\":           \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 209,
+    "text": "\"\u1f10\u03bd\u03b5\u03bd\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 210,
+    "text": "\"\u1f10\u03bd\u03bd\u03ad\u03b1\":            \"a-indecl\",  # danker has citation form with articles"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 211,
+    "text": "\"\u1f15\u03be\":               \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 212,
+    "text": "\"\u1f11\u03be\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":         \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 213,
+    "text": "\"\u1f11\u03c0\u03c4\u03ac\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 217,
+    "text": "\"\u1f40\u03b3\u03b4\u03bf\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 218,
+    "text": "\"\u1f40\u03ba\u03c4\u03ce\":             \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 219,
+    "text": "\"\u03c0\u03b1\u03c1\u03b1\u03bb\u03c5\u03c4\u03b9\u03ba\u03cc\u03c2\":      \"a-?\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 220,
+    "text": "\"\u03c0\u03ad\u03bd\u03c4\u03b5\":            \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 221,
+    "text": "\"\u03c0\u03b5\u03bd\u03c4\u03ae\u03ba\u03bf\u03bd\u03c4\u03b1\":       \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 223,
+    "text": "\"\u03c4\u03b5\u03c3\u03c3\u03b5\u03c1\u03ac\u03ba\u03bf\u03bd\u03c4\u03b1\":     \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 224,
+    "text": "\"\u03c4\u03c1\u03b9\u03ac\u03ba\u03bf\u03bd\u03c4\u03b1\":        \"a-indecl\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 235,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 236,
+    "text": "pos = metadata.get(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 237,
+    "text": "full_citation = metadata.get(\"full-citation-form\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 238,
+    "text": "dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get(\"dodson-pos\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 240,
+    "text": "lexeme, metadata.get(\"mounce-morphcat\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 243,
+    "text": "pos == \"N\" or"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 254,
+    "text": "if lexeme in SKIP:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 270,
+    "text": "end, cat, dodson = match_tuple"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py",
+    "line": 276,
+    "text": "re.search(dodson, dodson_pos)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 12,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 13,
+    "text": "print(\"{}:\".format(lexeme))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 24,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 26,
+    "text": "if \"full-citation-form\" in metadata:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 28,
+    "text": "\"    full-citation-form: {}\".format("
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 29,
+    "text": "metadata[\"full-citation-form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 33,
+    "text": "if metadata[\"pos\"] in [\"A\", \"N/A\", \"A/N\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 34,
+    "text": "if metadata.get(\"danker-entry\"):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 36,
+    "text": "\"    full-citation-form: {}\".format("
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 37,
+    "text": "metadata[\"danker-entry\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 41,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 42,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 43,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 44,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 45,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 47,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 48,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 49,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 53,
+    "text": "# for word in n_missed:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 54,
+    "text": "#     print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 57,
+    "text": "# for word in non_n_found:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 58,
+    "text": "#     print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 61,
+    "text": "# for word in not_used:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py",
+    "line": 62,
+    "text": "#     print(\"\\t{}\".format(word), file=sys.stderr)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 30,
+    "text": "\"\u1f11\u03b4\u03c1\u03b1\u1fd6\u03bf\u03c2\", \"\u03b5\u1f34\u03ba\u03bf\u03c3\u03b9(\u03bd)\", \"\u03b5\u1f37\u03c2\", \"\u1f11\u03ba\u03b1\u03c4\u03cc\u03bd\", \"\u1f10\u03bb\u03ac\u03c3\u03c3\u03c9\u03bd\", \"\u1f10\u03bb\u03c9\u0390\", \"\u1f15\u03bd\u03b4\u03b5\u03ba\u03b1\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 121,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 122,
+    "text": "pos = metadata.get(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 123,
+    "text": "full_citation = metadata.get(\"full-citation-form\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 124,
+    "text": "dodson_pos = DODSON_OVERRIDES.get(lexeme, metadata.get(\"dodson-pos\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 126,
+    "text": "lexeme, metadata.get(\"mounce-morphcat\", \"\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 129,
+    "text": "pos == \"A\" or"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 133,
+    "text": "mounce_morphcat.startswith(\"a-\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 136,
+    "text": "any(x.startswith(\"a-\") for x in mounce_morphcat)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 140,
+    "text": "if lexeme in SKIP:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 153,
+    "text": "end, cat, dodson = match_tuple"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_full_citation_patterns.py",
+    "line": 159,
+    "text": "re.search(dodson, dodson_pos)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 33,
+    "text": "for lexeme in ["
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 37,
+    "text": "metadata = lexemes[lexeme]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 39,
+    "text": "pos = metadata.get(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 40,
+    "text": "full_citation = metadata.get(\"full-citation-form\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 41,
+    "text": "dodson_pos = metadata.get(\"dodson-pos\", \"\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 42,
+    "text": "mounce_morphcat = metadata.get(\"mounce-morphcat\", \"\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 55,
+    "text": "end, cat, dodson = match_tuple"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 67,
+    "text": "print(lexeme, success[0][0])"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/calc_mounce_from_citation.py",
+    "line": 69,
+    "text": "print(\"no matching citation form for {}\".format(lexeme))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 3,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 4,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-3b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 6,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 7,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 8,
+    "text": "((r\"\u03bf\u03c2, \u03b1, \u03bf\u03bd$\",           r\"^a-1a\\(1\\)$\",     r\"^ADV-S$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 12,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2[ab]\\)$\", r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 13,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2a\\)$\",    r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 14,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-1a\\(2a\\)$\",    r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 15,
+    "text": "((r\"\u03bf\u03c2, \u03b7, \u03bf\u03bd$\",           r\"^a-3b\\(2\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 20,
+    "text": "((r\"\u03c1\u03bf\u03c5\u03c2, \u03b1, \u03bf\u03c5\u03bd$\",        r\"^a-1b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 22,
+    "text": "((r\"\u03bf\u03c5\u03c2, \u03b7, \u03bf\u03c5\u03bd$\",         r\"^a-1b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 25,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03c5\u03c3\u03b1, \u03bf\u03bd$\",        r\"^a-2a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 27,
+    "text": "((r\"\u03c5\u03c2, \u03b5\u03b9\u03b1, \u03c5$\",          r\"^a-2b$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 29,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 30,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 31,
+    "text": "((r\"\u03bf\u03c2, \u03bf\u03bd$\",              r\"^a-3a$\",          r\"^A,\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 35,
+    "text": "((r\"(.+)\u03bf\u03c5\u03c2, \u03bf\u03c5\u03bd, gen\\. \\1\u03bf\u03b4\u03bf\u03c2$\", r\"^a-5$\",       r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 37,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2$\",              r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 38,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2$\",              r\"^a-4a$\",          r\"^$\"),  \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 40,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2, gen\\. \u03bf\u03c5\u03c2$\",   r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 42,
+    "text": "((r\"\u03b7\u03c2, \u03b5\u03c2, \u03bf\u03c5\u03c2$\",         r\"^a-4a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 44,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd$\",              r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 46,
+    "text": "((r\"\u03b7\u03bd, \u03b5\u03bd, gen\\. \u03b5\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 47,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd, gen\\. \u03bf\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 48,
+    "text": "((r\"\u03c9\u03bd, \u03bf\u03bd, gen\\. \u03bf\u03bd\u03bf\u03c2$\",  r\"^a-4b\\(1\\)$\",     r\"^$\"),  \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 50,
+    "text": "((r\"\u03bf\u03b9, \u03b1\u03b9, \u03b1$\",           r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 54,
+    "text": "((r\"\u03c4\u03b5\u03c1\u03bf\u03c2, \u03c4\u03b5\u03c1\u03b1, \u03bf\u03bd$\",     r\"^a-1a\\(1\\)$\",     r\"^A$\"), \"\", []),  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/adjective_citation_form_data.py",
+    "line": 56,
+    "text": "((r\"\u03b1\u03c2, \u03b1\u03c3\u03b1, \u03b1\u03bd$\",         r\"^a-2a$\",          r\"^A$\"), \"\", []),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 10,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 11,
+    "text": "if \"full-citation-form\" in metadata and lexeme not in SKIP:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 12,
+    "text": "lexeme = lexeme.split(\"/\")[0]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 13,
+    "text": "citation_form = metadata[\"full-citation-form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 14,
+    "text": "print(\"{}: {}\".format(lexeme, citation_form))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 19,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 21,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 25,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 28,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 37,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/citation_forms/retired/check_full_citation.py",
+    "line": 43,
+    "text": "assert components[0] == lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 8,
+    "text": "GENDER = defaultdict(set)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 13,
+    "text": "lemma, mounce1, aspect_voice, gender, mounce2, theme1, case_number, norm, theme2, distinguisher, explanation = line.strip().split()"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 15,
+    "text": "CELLS[mounce2][case_number + gender].add((strip_breathing(strip_accents(distinguisher)), explanation))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 16,
+    "text": "GENDER[mounce2].add(gender)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 17,
+    "text": "LEMMAS[mounce2 + \" \" + gender].add(lemma)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 20,
+    "text": "for mounce in sorted(CELLS, key=lambda x: x[0] + x[2:]):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 21,
+    "text": "for gender in [\"M\", \"F\", \"N\", \"-\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 22,
+    "text": "if gender in GENDER[mounce]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 23,
+    "text": "print(\"\\n\\n{} {} ({}):\".format(mounce, gender, len(LEMMAS[mounce + \" \"+ gender])))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 25,
+    "text": "if case_number + gender in CELLS[mounce]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 26,
+    "text": "if len(CELLS[mounce][case_number + gender]) == 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 27,
+    "text": "cell = CELLS[mounce][case_number + gender].pop()"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_paradigms.py",
+    "line": 31,
+    "text": "for cell in CELLS[mounce][case_number + gender]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 17,
+    "text": "# we will ignore indeclinable nominals"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 19,
+    "text": "IGNORE_SET = load_wordset(\"../../nominal-indeclinable.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 39,
+    "text": "# and override the lemmatization of some forms"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 48,
+    "text": "# finally we need to correct and extend a lot of mounce categories"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 53,
+    "text": "\"\u03b1\u1f34\u03c4\u03b9\u03bf\u03bd\": \"a-1a(1)\",  # should it be \u03b1\u1f34\u03c4\u03b9\u03bf\u03c2?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 54,
+    "text": "\"\u1f04\u03ba\u03c9\u03bd\": \"a-2a(2)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 71,
+    "text": "\"\u03b2\u03b1\u03c3\u03af\u03bb\u03b5\u03b9\u03bf\u03bd\": \"a-3a\",  # should it be \u03b2\u03b1\u03c3\u03af\u03bb\u03b5\u03b9\u03bf\u03c2 in Luke?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 77,
+    "text": "\"\u03b4\u03b5\u03ba\u03ac\u03c4\u03b7\": \"a-1a(2a)\",  # should it be \u03b4\u03ad\u03ba\u03b1\u03c4\u03bf\u03c2"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 82,
+    "text": "\"\u03b4\u03bf\u1fe6\u03bb\u03bf\u03c2\": \"a-1a(2a)\",  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 83,
+    "text": "\"\u03b4\u03cd\u03bf\": \"a-5(DUO)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 86,
+    "text": "\"\u03b5\u1f30\u03b4\u03c9\u03bb\u03cc\u03b8\u03c5\u03c4\u03bf\u03bd\": \"a-3a\",  # should it be \u03b5\u1f30\u03b4\u03c9\u03bb\u03cc\u03b8\u03c5\u03c4\u03bf\u03c2 ?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 87,
+    "text": "\"\u03b5\u1f37\u03c2\": \"a=4b(2-EIS)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 91,
+    "text": "\"\u1f11\u03ba\u03ce\u03bd\": \"a-2a(2)\",  # made up subcategory to select n-3c(5b) in masculine/neuter"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 92,
+    "text": "\"\u1f14\u03bd\u03bd\u03c5\u03c7\u03b1\": \"a-3a\",  # incorrect lemma?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 97,
+    "text": "\"\u1f14\u03c1\u03b7\u03bc\u03bf\u03c2\": \"a-3a\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 101,
+    "text": "\"\u03b5\u1f50\u03c0\u03ac\u03c1\u03b5\u03b4\u03c1\u03bf\u03bd\": \"a-3a\",  # should it be \u03b5\u1f50\u03c0\u03ac\u03c1\u03b5\u03b4\u03c1\u03bf\u03c2?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 109,
+    "text": "\"\u1f31\u03bc\u03ac\u03c2\": \"n=3c(5a-ALPHA)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 111,
+    "text": "\"\u1f31\u03c0\u03c0\u03b9\u03ba\u03cc\u03bd\": \"a-1a(2a)\",  # should it be \u1f31\u03c0\u03c0\u03b9\u03ba\u03cc\u03c2?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 114,
+    "text": "\"\u03ba\u03b1\u03ba\u03bf\u03c0\u03bf\u03b9\u03cc\u03c2\": \"a-3a\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 117,
+    "text": "\"\u03bb\u03b5\u03c0\u03c4\u03cc\u03bd\": \"a-1a(2a)\",  # @@@ lemma?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 122,
+    "text": "\"\u03bc\u03ac\u03c4\u03b1\u03b9\u03bf\u03c2\": \"a=1a(1)/a-3\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 123,
+    "text": "\"\u03bc\u03ad\u03b3\u03b1\u03c2\": \"a=1a(2a-MEGAS)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 124,
+    "text": "\"\u03bc\u03ad\u03bb\u03b1\u03bd\": \"a-2a(3)\",  # made up subcategory"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 130,
+    "text": "\"\u03bd\u1fc6\u03c3\u03c4\u03b9\u03c2\": \"n-3e(5a)\",  # Mounce gives n-3c(2) with n-3e(5a) as footnote (typo'd as n-3c(5a)) but in NT it's only latter"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 131,
+    "text": "\"\u03bd\u03b7\u03c6\u03ac\u03bb\u03b9\u03bf\u03c2\": \"a-3a\",  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 137,
+    "text": "\"\u1f40\u03b4\u03bf\u03cd\u03c2\": \"n=3c(5a-OMICRON)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 140,
+    "text": "\"\u1f45\u03c3\u03b9\u03bf\u03c2\": \"a-3a\",  # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 146,
+    "text": "\"\u03c0\u03b1\u03c1\u03b1\u03c0\u03bb\u03ae\u03c3\u03b9\u03bf\u03bd\": \"a-1a(1)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 152,
+    "text": "\"\u03c0\u03bf\u03bb\u03cd\u03c2\": \"a=1a(2a-POLUS)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 155,
+    "text": "\"\u03c0\u03c5\u03ba\u03bd\u03ac\": \"a-1a(2a)\",  # change to \u03c0\u03c5\u03ba\u03bd\u03cc\u03c2 in Luke?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 160,
+    "text": "\"\u03c3\u03b9\u03b4\u03b7\u03c1\u03bf\u1fe6\u03c2\": \"a=1b(ALPHA-F)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 167,
+    "text": "\"\u03c4\u03ad\u03c3\u03c3\u03b1\u03c1\u03b5\u03c2\": \"a-4c\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 170,
+    "text": "\"\u03c4\u03af\u03c2\": \"a-4b(2-TIS)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 171,
+    "text": "\"\u03c4\u03b9\u03c2\": \"a-4b(2-TIS)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 177,
+    "text": "\"\u03c4\u03c1\u03af\u03bc\u03b7\u03bd\u03bf\u03bd\": \"a-3a\",  # should it be \u03c4\u03c1\u03af\u03bc\u03b7\u03bd\u03bf\u03c2?"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 183,
+    "text": "\"\u03c7\u03b5\u03af\u03c1\": \"n=3f(2a-XEIR)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 184,
+    "text": "\"\u03c7\u03c1\u03cd\u03c3\u03b5\u03bf\u03c2\": \"a-1b\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 185,
+    "text": "\"\u03c7\u03c1\u03c5\u03c3\u03bf\u1fe6\u03c2\": \"a=1b(ALPHA-F)\","
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 203,
+    "text": "def error(message):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 208,
+    "text": "def map_non_noun_categories(mounce_cat, aspect_voice, gender, lemma):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 211,
+    "text": "if cat == \"a-1a(1)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 216,
+    "text": "}[gender]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 217,
+    "text": "elif cat == \"a=1a(1)/a-3\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 222,
+    "text": "}[gender]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 223,
+    "text": "elif cat == \"a-1a(2a)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 228,
+    "text": "}[gender]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 229,
+    "text": "elif cat == \"a=1a(2a-POLUS)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 234,
+    "text": "}[gender]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 235,
+    "text": "elif cat == \"a=1a(2a-MEGAS)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py",
+    "line": 240,
+    "text": "}[gender]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py",
+    "line": 5,
+    "text": "tree = ET.parse(\"abbott-smith.tei.xml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py",
+    "line": 11,
+    "text": "body = tree.getroot().find(\"TEIOSIS:text/TEIOSIS:body\", ns)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py",
+    "line": 17,
+    "text": "if form.text:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py",
+    "line": 18,
+    "text": "s = form.text"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 9,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 10,
+    "text": "if lexeme in derivation.keys():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 11,
+    "text": "if derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 12,
+    "text": "if \"derivation\" in derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 13,
+    "text": "if len(derivation[lexeme][\"derivation\"]) > 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 14,
+    "text": "pos1 = lexemes[lexeme][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 15,
+    "text": "morphcat1 = lexemes[lexeme].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 17,
+    "text": "others = derivation[lexeme][\"derivation\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 23,
+    "text": "pos2s.append(lexemes[other][\"pos\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 24,
+    "text": "morphcat2s.append(lexemes[other].get(\"mounce-morphcat\", \"?\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/multi_derivation.py",
+    "line": 34,
+    "text": "lexeme,"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 23,
+    "text": "for x in ndiff(strip_accents(lexeme), strip_accents(other)):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 70,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 71,
+    "text": "if lexeme in derivation.keys():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 72,
+    "text": "if derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 73,
+    "text": "if \"derivation\" in derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 74,
+    "text": "if len(derivation[lexeme][\"derivation\"]) == 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 75,
+    "text": "other = derivation[lexeme][\"derivation\"][0]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 77,
+    "text": "pos1 = lexemes[lexeme][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 78,
+    "text": "pos2 = lexemes[other][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 79,
+    "text": "morphcat1 = lexemes[lexeme].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 80,
+    "text": "morphcat2 = lexemes[other].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 85,
+    "text": "diff(lexeme, other),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/nav_derivations.py",
+    "line": 88,
+    "text": "lexeme,"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 23,
+    "text": "for x in ndiff(strip_accents(lexeme), strip_accents(other)):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 70,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 71,
+    "text": "if lexeme in derivation.keys():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 72,
+    "text": "if derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 73,
+    "text": "if \"derivation\" in derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 74,
+    "text": "if len(derivation[lexeme][\"derivation\"]) == 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 75,
+    "text": "other = derivation[lexeme][\"derivation\"][0]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 77,
+    "text": "pos1 = lexemes[lexeme][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 78,
+    "text": "pos2 = lexemes[other][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 79,
+    "text": "morphcat1 = lexemes[lexeme].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 80,
+    "text": "morphcat2 = lexemes[other].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 87,
+    "text": "diff(lexeme, other),"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/non_nav_derivations.py",
+    "line": 90,
+    "text": "lexeme,"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 18,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 20,
+    "text": "if lexeme in derivation.keys():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 22,
+    "text": "if derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 23,
+    "text": "if \"derivation\" in derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 24,
+    "text": "if len(derivation[lexeme][\"derivation\"]) == 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 25,
+    "text": "other = derivation[lexeme][\"derivation\"][0]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 27,
+    "text": "pos1 = lexemes[lexeme][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/derivational_morphology/derivation_counts.py",
+    "line": 28,
+    "text": "pos2 = lexemes[other][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 44,
+    "text": "# lemma -> tense_voice -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 45,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 55,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 56,
+    "text": "if row[\"ccat-pos\"] == \"V-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 57,
+    "text": "mood = row[\"ccat-parse\"][3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 58,
+    "text": "if mood in \"I\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 59,
+    "text": "person_number = row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 60,
+    "text": "tense_voice = row[\"ccat-parse\"][1:3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 61,
+    "text": "forms[row[\"lemma\"]][tense_voice][person_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 62,
+    "text": "elif mood in \"DSO\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 64,
+    "text": "elif mood in \"P\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 66,
+    "text": "elif mood in \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 77,
+    "text": "for lemma, form_dict in sorted_items(forms):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 78,
+    "text": "if lemma in SKIP_LIST:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/check_endings.py",
+    "line": 83,
+    "text": "print(lemma, tense_voice, len(form_dict[tense_voice]))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 47,
+    "text": "# lemma -> tense_voice -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 48,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 58,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 59,
+    "text": "if row[\"ccat-pos\"] == \"V-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 60,
+    "text": "mood = row[\"ccat-parse\"][3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 61,
+    "text": "if mood in \"I\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 62,
+    "text": "person_number = row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 63,
+    "text": "tense_voice = row[\"ccat-parse\"][1:3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 64,
+    "text": "forms[row[\"lemma\"]][tense_voice][person_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 65,
+    "text": "elif mood in \"DSO\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 67,
+    "text": "elif mood in \"P\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 69,
+    "text": "elif mood in \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 80,
+    "text": "for lemma, form_dict in sorted_items(forms):"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 81,
+    "text": "if lemma in SKIP_LIST:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 119,
+    "text": "print(lemma, tense_voice)"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/principal_parts.py",
+    "line": 123,
+    "text": "print(\"{} {} {}\".format(lemma, tense_voice, \"|\".join(form for form in first_singular_forms)))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 26,
+    "text": "# lemma -> tense_voice -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 27,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 35,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 36,
+    "text": "if row[\"ccat-pos\"] == \"V-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 37,
+    "text": "mood = row[\"ccat-parse\"][3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 38,
+    "text": "if mood in \"I\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 39,
+    "text": "person_number = row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 40,
+    "text": "tense_voice = row[\"ccat-parse\"][1:3]"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 41,
+    "text": "forms[row[\"lemma\"]][tense_voice][person_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 42,
+    "text": "elif mood in \"DSO\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 44,
+    "text": "elif mood in \"P\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 46,
+    "text": "elif mood in \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 78,
+    "text": "for lemma in forms:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 79,
+    "text": "for tense_voice in forms[lemma]:"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/principal_parts/retired/paradigm.py",
+    "line": 80,
+    "text": "t = to_tuple(forms[lemma][tense_voice])"
+  },
+  {
+    "path": "morphgnt/lexicon/projects/preverbs/test.py",
+    "line": 28,
+    "text": "lemma, analyses = content.split(\"|\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 7,
+    "text": "forms = load_yaml(\"forms.yaml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 14,
+    "text": "for row in fs[\"sblgnt-forms\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 16,
+    "text": "lexeme = lexemes.get(row[\"lemma\"].decode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 18,
+    "text": "if lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 19,
+    "text": "form_entry = forms.get(row[\"lemma\"].decode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 21,
+    "text": "if lexeme[\"pos\"] in [\"RA\", \"A\", \"N\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 23,
+    "text": "expected_form = form_entry[row[\"ccat-parse\"][6]][row[\"ccat-parse\"][4:6]][\"form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 28,
+    "text": "elif lexeme[\"pos\"] in [\"RP1\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 30,
+    "text": "expected_form = form_entry[row[\"ccat-parse\"][4:6]][\"form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 35,
+    "text": "elif lexeme[\"pos\"] in [\"V\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 36,
+    "text": "if row[\"ccat-parse\"][3] in [\"I\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 38,
+    "text": "expected_form = form_entry[row[\"ccat-parse\"][1:4]][row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]][\"form\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 43,
+    "text": "elif lexeme[\"pos\"] in \"P\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_forms.py",
+    "line": 54,
+    "text": "first_fail = \"{} {} {} {} {}\".format(row[\"norm\"], row[\"ccat-pos\"], row[\"ccat-parse\"], row[\"robinson\"], row[\"lemma\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_indeclinables.py",
+    "line": 7,
+    "text": "for lexeme in lexemes:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_indeclinables.py",
+    "line": 8,
+    "text": "if lexemes[lexeme].get(\"mounce-morphcat\") == \"n-3g(2)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_indeclinables.py",
+    "line": 9,
+    "text": "print(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 26,
+    "text": "# lemma -> pos_gender_degree -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 27,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 31,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 32,
+    "text": "if row[\"ccat-pos\"] in [\"N-\", \"A-\", \"RA\", \"RD\", \"RI\", \"RP\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 33,
+    "text": "pos_gender_degree = row[\"ccat-pos\"] + \":\" + row[\"ccat-parse\"][6] + \":\" + row[\"ccat-parse\"][7]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 34,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 35,
+    "text": "forms[row[\"lemma\"]][pos_gender_degree][case_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 60,
+    "text": "for lemma in forms:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 61,
+    "text": "for pos_gender_degree in forms[lemma]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm.py",
+    "line": 62,
+    "text": "t = to_tuple(forms[lemma][pos_gender_degree])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_lexemes.py",
+    "line": 13,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_lexemes.py",
+    "line": 15,
+    "text": "if row[\"lemma\"].decode(\"utf-8\") in lexemes:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_lexemes.py",
+    "line": 18,
+    "text": "first_fail = \"{} {} {}\".format(row[\"lemma\"], row[\"ccat-pos\"], row[\"robinson\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 19,
+    "text": "\"bdag-headword\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 20,
+    "text": "\"danker-entry\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 21,
+    "text": "\"dodson-entry\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 22,
+    "text": "\"mounce-headword\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 28,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 31,
+    "text": "v = metadata.get(metadata_name, \"<missing>\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 34,
+    "text": "return v if v != lexeme else None"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 42,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 45,
+    "text": "if value.lower() == lexeme.lower():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 46,
+    "text": "tags.append(\"case\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 47,
+    "text": "elif strip_accents(value) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 49,
+    "text": "elif strip_accents(value.lower()) == strip_accents(lexeme.lower()):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 50,
+    "text": "tags.append(\"case\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 52,
+    "text": "elif value.replace(u\"\u03bf\u03b5\", u\"\u03bf\u03c5\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 54,
+    "text": "elif value.replace(u\"\u03b5\u03bf\", u\"\u03bf\u03c5\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 56,
+    "text": "elif value.replace(u\"\u03cc\u03bf\", u\"\u03bf\u1fe6\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 58,
+    "text": "elif re.sub(u\"\u03c9$\", u\"\u03bf\u03bc\u03b1\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 60,
+    "text": "elif re.sub(u\"\u03c9$\", u\"\u03bf\u03bc\u03b1\u03b9\", strip_accents(value)) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 63,
+    "text": "elif re.sub(u\"\u03bf\u03bc\u03b1\u03b9$\", u\"\u03c9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 65,
+    "text": "elif re.sub(u\"\u03bf\u03bc\u03b1\u03b9$\", u\"\u03c9\", strip_accents(value)) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 68,
+    "text": "elif re.sub(u\"\u03b7\", u\"\u03bf\u03bc\u03b1\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 70,
+    "text": "elif re.sub(u\"\u03b7\u03bc\u03b9$\", u\"\u03b5\u03bc\u03b1\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 72,
+    "text": "elif re.sub(u\"\u03b5\u03bc\u03b1\u03b9$\", u\"\u03b7\u03bc\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 74,
+    "text": "elif re.sub(u\"\u03b7\u03bc\u03b9$\", u\"\u03b1\u03bc\u03b1\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 76,
+    "text": "elif re.sub(u\"\u03b1\u03bc\u03b1\u03b9$\", u\"\u03b7\u03bc\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 78,
+    "text": "elif re.sub(u\"\u03c5\u03bc\u03b9$\", u\"\u03c5\u03bc\u03b1\u03b9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 80,
+    "text": "elif strip_accents(value).replace(u\"\u03b1\u03bd\u03bd\u03c5\u03bc\u03b9\", u\"\u03b1\u03bc\u03b1\u03b9\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 82,
+    "text": "elif strip_accents(value).replace(u\"\u03c2\", u\"\u03c4\u03b5\u03c1\u03bf\u03c2\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 84,
+    "text": "elif strip_accents(value).replace(u\"\u03bf\u03c2\", u\"\u03c9\u03c4\u03b5\u03c1\u03bf\u03c2\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 86,
+    "text": "elif strip_accents(value).replace(u\"\u03c2\", u\"\u03c4\u03b5\u03c1\u03bf\u03bd\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 88,
+    "text": "elif strip_accents(value).replace(u\"\u03c9\u03c2\", u\"\u03b5\u03c3\u03c4\u03b5\u03c1\u03bf\u03bd\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 90,
+    "text": "elif value.replace(u\"\u1f10\u03bd\u03b4\u03ad\u03c7\u03bf\u03bc\u03b1\u03b9\", u\"\u1f10\u03bd\u03b4\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 92,
+    "text": "elif re.sub(u\"\u03bf\u03bd$\", u\"\u03bf\u03c2\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 94,
+    "text": "elif re.sub(u\"\u03bf\u03c2$\", u\"\u03bf\u03bd\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 96,
+    "text": "elif re.sub(u\"\u03cc\u03c2$\", u\"\u03cc\u03bd\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 98,
+    "text": "elif re.sub(u\"\u03bf\u03bd$\", u\"\u03b1\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 100,
+    "text": "elif re.sub(u\"\u03b1$\", u\"\u03bf\u03bd\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 102,
+    "text": "elif re.sub(u\"\u03b1$\", u\"\u03bf\u03bd\", strip_accents(value)) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 104,
+    "text": "elif re.sub(u\"\u03bf\u03c2$\", u\"\u03b1\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 106,
+    "text": "elif strip_accents(value).replace(u\"\u03b7\u03c2\", u\"\u03bf\u03c2\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 108,
+    "text": "elif strip_accents(value).replace(u\"\u03bf\u03c2\", u\"\u03b7\") == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 110,
+    "text": "elif re.sub(u\"\u03cc\u03c9$\", u\"\u03ac\u03c9\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 112,
+    "text": "elif strip_accents(re.sub(u\"\u03cd\u03c9$\", u\"\u03c9\", value)) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 114,
+    "text": "elif re.sub(u\"\u03c9$\", u\"\u03b1\u03c9\", strip_accents(value)) == strip_accents(lexeme):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 116,
+    "text": "elif re.sub(u\"\u03b1$\", u\"\u03b5\u03bd\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 118,
+    "text": "elif re.sub(u\"\u03b1$\", u\"\u03b7\", value) == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 120,
+    "text": "elif value.replace(u\"\u03bb\u03b7\u03c8\", u\"\u03bb\u03b7\u03bc\u03c8\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 122,
+    "text": "elif value.replace(u\"\u03bb\u03ae\u03c0\", u\"\u03bb\u03ae\u03bc\u03c0\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 124,
+    "text": "elif value.replace(u\"\u03bb\u03b7\u03c0\", u\"\u03bb\u03b7\u03bc\u03c0\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_differences.py",
+    "line": 126,
+    "text": "elif value.replace(u\"(\u03bc)\u03c0\", u\"\u03bc\u03c0\") == lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 31,
+    "text": "INDECLINABLE = load_wordset(\"nominal-indeclinable.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 34,
+    "text": "# lemma -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 35,
+    "text": "forms = defaultdict(lambda: defaultdict(set))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 39,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 40,
+    "text": "if row[\"lemma\"] in INDECLINABLE:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 42,
+    "text": "if row[\"ccat-pos\"] in [\"N-\", \"A-\", \"RA\", \"RD\", \"RI\", \"RP\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 43,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 44,
+    "text": "if row[\"ccat-pos\"] == \"N-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 45,
+    "text": "key = row[\"lemma\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 47,
+    "text": "key = \"{} ({}:{})\".format(row[\"lemma\"], row[\"ccat-parse\"][6], row[\"ccat-parse\"][7])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 48,
+    "text": "forms[key][case_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 49,
+    "text": "elif row[\"ccat-pos\"] == \"V-\" and row[\"ccat-parse\"][3] == \"P\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 50,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 51,
+    "text": "key = \"{} ({}:{})\".format(row[\"lemma\"], row[\"ccat-parse\"][1:3], row[\"ccat-parse\"][6])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 52,
+    "text": "forms[key][case_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 82,
+    "text": "for lemma in sorted(forms, key=collator.sort_key):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 84,
+    "text": "if DEBUG: print(lemma, forms[lemma])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 92,
+    "text": "if DEBUG: print(\"        {} {} {}\".format(case_number, forms[lemma][case_number], ending[case_number]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 93,
+    "text": "if not forms[lemma][case_number]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 96,
+    "text": "form_list = sorted(forms[lemma][case_number])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 128,
+    "text": "# print(\"RESULT {} {}\".format(matches, lemma))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 130,
+    "text": "FAILS.append(lemma)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 146,
+    "text": "morphcat = lexemes[fail.split()[0]].get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 148,
+    "text": "morphcat = None"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_nominal_endings.py",
+    "line": 149,
+    "text": "print(\"{} {}: {}\".format(fail, morphcat, dict(forms[fail])))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 11,
+    "text": "danker = load_yaml(\"../data-cleanup/danker-concise-lexicon/components.yaml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 14,
+    "text": "with open(\"../data-cleanup/greenlee-morphology/morphemes-utf8.txt\") as f:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 22,
+    "text": "words = [n(word) for word in set(danker.keys()).union(set(greenlee.keys()))]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 25,
+    "text": "for word in sorted(words, key=collator.sort_key):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 27,
+    "text": "print \"{}:\".format(word.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 28,
+    "text": "if word in danker:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 29,
+    "text": "print \"    danker-full-entry: \\\"{}\\\"\".format(danker[word][\"full-entry\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 30,
+    "text": "print \"    danker-components: \\\"{}\\\"\".format(danker[word][\"components\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 31,
+    "text": "if word in greenlee:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 32,
+    "text": "print \"    greenlee-full-entry: \\\"{}\\\"\".format(greenlee[word][\"full-entry\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/combine_components.py",
+    "line": 33,
+    "text": "print \"    greenlee-components: \\\"{}\\\"\".format(greenlee[word][\"components\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+    "line": 199,
+    "text": "form1, mounce, parses, count = line.strip().split(\"|\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+    "line": 201,
+    "text": "if not mounce.startswith(\"n-\"):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+    "line": 217,
+    "text": "if re.match(mounce_re, mounce):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+    "line": 225,
+    "text": "print(form, mounce, parses, count, form_match, solution_match)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex2.py",
+    "line": 230,
+    "text": "print(parses, mounce, form, form1)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 12,
+    "text": "# lemma -> form -> cng -> count"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 13,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 15,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 16,
+    "text": "if row[\"ccat-pos\"] == \"N-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 17,
+    "text": "forms[row[\"lemma\"]][row[\"norm\"]][row[\"ccat-parse\"][4:7]] += 1"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 20,
+    "text": "for lemma in forms:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 21,
+    "text": "lexemes_entry = lexemes.get(lemma, {\"mounce-morphcat\": None})"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 22,
+    "text": "morphcat = lexemes_entry.get(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 24,
+    "text": "for form in forms[lemma]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 25,
+    "text": "for parse in forms[lemma][form]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 27,
+    "text": "form, parse, forms[lemma][form][parse]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns2.py",
+    "line": 29,
+    "text": "print(\"{}|{}|{}\".format(lemma, morphcat, \"/\".join(form_list)))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 6,
+    "text": "already = load_wordset(\"nominal-indeclinable.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 8,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 9,
+    "text": "danker = metadata.get(\"danker-entry\", \"\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 10,
+    "text": "dodson_pos = metadata.get(\"dodson-pos\", \"\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 11,
+    "text": "mounce_morphcat = metadata.get(\"mounce-morphcat\", \"\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 14,
+    "text": "lexeme in already or"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 19,
+    "text": "lexeme,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 20,
+    "text": "danker,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 23,
+    "text": "\"yes\" if lexeme in already else \"no\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 26,
+    "text": "if lexeme in already:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/indeclinable-nouns.py",
+    "line": 27,
+    "text": "already.remove(lexeme)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 10,
+    "text": "missing_dodson = load_wordset(\"missing_dodson.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 12,
+    "text": "dodson = defaultdict(list)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 13,
+    "text": "with open(\"../data-cleanup/dodson-lexicon/dodson_lexicon.txt\") as f:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 15,
+    "text": "strongs, gk, pos, greek, short_gloss, long_gloss = line.strip().decode(\"utf-8\").split(\"\\t\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 17,
+    "text": "dodson[head_word].append({"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 18,
+    "text": "\"strongs\": strongs,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 20,
+    "text": "\"pos\": pos,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 22,
+    "text": "\"short-gloss\": short_gloss,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 23,
+    "text": "\"long-gloss\": long_gloss"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 27,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 28,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 34,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 35,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 36,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 38,
+    "text": "if lexeme in dodson or metadata.get(\"bdag-headword\") in dodson:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 39,
+    "text": "if lexeme in dodson:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 40,
+    "text": "data = dodson[lexeme]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 42,
+    "text": "data = dodson[metadata[\"bdag-headword\"]]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 57,
+    "text": "not_in_dodson.add(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 59,
+    "text": "p(\"dodson-entry\", \"greek\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 61,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 63,
+    "text": "p(\"strongs\", \"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 65,
+    "text": "p(\"dodson-pos\", \"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 66,
+    "text": "p(\"gloss\", \"short-gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 68,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 71,
+    "text": "print >>sys.stderr, \"missing\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 72,
+    "text": "for word in not_in_dodson:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 73,
+    "text": "if word.decode(\"utf-8\") not in missing_dodson:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_dodson.py",
+    "line": 74,
+    "text": "print >>sys.stderr, \"\\t\", word"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 9,
+    "text": "missing_bdag = load_wordset(\"missing_bdag.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 13,
+    "text": "with open(\"../data-cleanup/bdag-headwords/bdag_headwords.txt\") as f:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 20,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 21,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 27,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 29,
+    "text": "if \"bdag-headword\" in metadata:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 30,
+    "text": "print \"    bdag-headword: {}\".format(metadata[\"bdag-headword\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 31,
+    "text": "if metadata[\"bdag-headword\"] not in headwords:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 32,
+    "text": "existing_not_in_headwords.append(metadata[\"bdag-headword\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 34,
+    "text": "if lexeme in headwords:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 35,
+    "text": "print \"    bdag-headword: {}\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 36,
+    "text": "added.append(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 38,
+    "text": "missing_not_in_headwords.append(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 40,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 41,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 42,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 43,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 45,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 46,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 47,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 51,
+    "text": "for word in existing_not_in_headwords:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 52,
+    "text": "print >>sys.stderr, \"\\t\", word"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 53,
+    "text": "print >>sys.stderr, \"missing\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 54,
+    "text": "for word in missing_not_in_headwords:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 55,
+    "text": "if word.decode(\"utf-8\") not in missing_bdag:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 56,
+    "text": "print >>sys.stderr, \"\\t\", word"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 58,
+    "text": "for word in added:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_bdag_headword.py",
+    "line": 59,
+    "text": "print >>sys.stderr, \"\\t\", word"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 9,
+    "text": "forms = load_yaml(\"forms.yaml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 12,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 13,
+    "text": "lemma = row[\"lemma\"].decode(\"utf-8\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 14,
+    "text": "lexeme = lexemes.get(lemma)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 15,
+    "text": "if lexeme is None:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 16,
+    "text": "lemma = \"{}/{}\".format(row[\"lemma\"], row[\"ccat-pos\"].strip(\"-\")).decode(\"utf-8\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 17,
+    "text": "lexeme = lexemes.get(lemma)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 18,
+    "text": "if lexeme:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 20,
+    "text": "if isinstance(lexeme[\"pos\"], list):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 21,
+    "text": "print >> sys.stderr, lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 22,
+    "text": "if lexeme[\"pos\"] in [\"RA\", \"A\", \"N\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 23,
+    "text": "gender = row[\"ccat-parse\"][6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 24,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 25,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 28,
+    "text": "elif lexeme[\"pos\"] in [\"RP1\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 29,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 30,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(case_number, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 33,
+    "text": "elif lexeme[\"pos\"] in [\"V\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 34,
+    "text": "mood = row[\"ccat-parse\"][3]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 35,
+    "text": "if mood in [\"N\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 36,
+    "text": "tense_voice_mood = row[\"ccat-parse\"][1:4]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 37,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 40,
+    "text": "elif mood in [\"I\", \"D\", \"S\", \"O\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 41,
+    "text": "tense_voice_mood = row[\"ccat-parse\"][1:4]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 42,
+    "text": "person_number = row[\"ccat-parse\"][0] + row[\"ccat-parse\"][5]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 43,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(person_number, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 46,
+    "text": "elif mood in [\"P\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 47,
+    "text": "tense_voice_mood = row[\"ccat-parse\"][1:4]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 48,
+    "text": "gender = row[\"ccat-parse\"][6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 49,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 50,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 54,
+    "text": "print >>sys.stderr, \"*** can't handle mood {}\".format(mood)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 55,
+    "text": "elif lexeme[\"pos\"] in [\"P\", \"X\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 56,
+    "text": "form_list = forms.setdefault(lemma, {}).setdefault(\"forms\", [])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 60,
+    "text": "print >>sys.stderr, \"lexemes file doesn't have {}\".format(row[\"lemma\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 63,
+    "text": "for form, metadata in sorted_items(forms):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 65,
+    "text": "pos = lexemes[form][\"pos\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 66,
+    "text": "if pos in [\"RA\", \"A\", \"N\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 67,
+    "text": "for gender in [\"M\", \"F\", \"N\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 68,
+    "text": "if gender in metadata:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 69,
+    "text": "print \"    {}:\".format(gender)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 71,
+    "text": "if case_number in metadata[gender]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 73,
+    "text": "print \"            forms:\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 74,
+    "text": "for form in metadata[gender][case_number][\"forms\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 77,
+    "text": "elif pos in [\"RP1\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 81,
+    "text": "print \"        forms:\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 82,
+    "text": "for form in metadata[case_number][\"forms\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 85,
+    "text": "elif pos in [\"V\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 94,
+    "text": "print \"        forms:\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_forms.py",
+    "line": 95,
+    "text": "for form in metadata[tense_voice_mood][\"forms\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 13,
+    "text": "r\"V@V@v-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 15,
+    "text": "# verbs missing in dodson"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 16,
+    "text": "r\"V@None@v-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 18,
+    "text": "# verbs missing in morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 21,
+    "text": "# verbs with unknown morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 24,
+    "text": "# verbs missing in dodson and morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 28,
+    "text": "r\"V@V@v-[0-9a-z\\(\\)]+; v-[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 31,
+    "text": "r\"V@V@cv-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 33,
+    "text": "# compound verbs missing in dodson"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 34,
+    "text": "r\"V@None@cv-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 36,
+    "text": "# compound verbs missing full morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 40,
+    "text": "# compound verbs that dodson thinks can be adjectives"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 41,
+    "text": "r\"V@A,V@cv-[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 43,
+    "text": "# verbs that morphcat thinks is an adjective"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 44,
+    "text": "r\"V@V@a-1a\\(1\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 46,
+    "text": "# indeclinable verb"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 56,
+    "text": "r\"A@A@a-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 58,
+    "text": "# adjective missing in dodson"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 59,
+    "text": "r\"A@None@a-[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 61,
+    "text": "# adjective missing in morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 64,
+    "text": "# adjective missing in dodson and morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 67,
+    "text": "# adjectives that morphcat has as nouns"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 71,
+    "text": "# adjectives that dodson has as adverbs"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 72,
+    "text": "r\"A@A,ADV@a-[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 73,
+    "text": "r\"A@A,ADV-C@a-[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 74,
+    "text": "r\"A@ADV-S@a-1a\\(1\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 79,
+    "text": "r\"A/ADV-S\\?@A@a-1a\\(2a\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 82,
+    "text": "r\"A/ADV-C@A@a-1a\\(1\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 85,
+    "text": "r\"A/ADV@A@a-1a\\(1\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 88,
+    "text": "# adjectives that mounce has as adverbs"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 92,
+    "text": "r\"A@A,A-NUI@a-5$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 93,
+    "text": "r\"A@A-NUI@n-3g\\(2\\)$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 98,
+    "text": "# adjective / adverb conflation"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 99,
+    "text": "r\"A/ADV@ADV@\\['a-1a\\(1\\)', 'adverb'\\]$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 128,
+    "text": "r\"N@N:M@n-3[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 129,
+    "text": "r\"N@N:F@n-3[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 130,
+    "text": "r\"N@N:N@n-3[0-9a-z\\(\\)]+$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 135,
+    "text": "# indeclinable proper nouns"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 145,
+    "text": "# indeclinable letter names"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 148,
+    "text": "# indeclinable hebrew nouns"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 153,
+    "text": "# indeclinable aramaic nouns"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 158,
+    "text": "# nouns with multiple genders (according to dodson)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 164,
+    "text": "r\"N@N:M,N:N@n-3[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 165,
+    "text": "r\"N@N:F,N:M@n-3[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 172,
+    "text": "# nouns missing in dodson"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 173,
+    "text": "r\"N@None@n-[0-9a-z\\(\\)]+$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 175,
+    "text": "# nouns missing in morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 181,
+    "text": "# nouns missing in dodson and morphcat"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 185,
+    "text": "# noun / adjective / cross-over conflation"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_pos.py",
+    "line": 188,
+    "text": "r\"N@A@a-2a$\", # @@@"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 14,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 15,
+    "text": "if row[\"ccat-pos\"] == \"N-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 16,
+    "text": "counts[row[\"lemma\"]] += 1"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 19,
+    "text": "for lemma, count in sorted("
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 22,
+    "text": "lexemes_entry = lexemes.get(lemma, {\"gloss\": None})"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 23,
+    "text": "gloss = lexemes_entry.get(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_nouns.py",
+    "line": 24,
+    "text": "print(\"{}|{}|{}\".format(lemma, count, gloss))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 12,
+    "text": "mounce = defaultdict(list)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 13,
+    "text": "with open(\"../data-cleanup/mounce-morphcat/mounce-tauber-morphcat-utf8.txt\") as f:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 15,
+    "text": "gk, greek, morphcat = line.strip().decode(\"utf-8\").split(\":\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 17,
+    "text": "mounce[greek].append({"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 19,
+    "text": "\"morphcat\": morphcat,"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 24,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 25,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 32,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 33,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 34,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 35,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 36,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 37,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 39,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 40,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 42,
+    "text": "if not q(\"mounce-morphcat\"):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 43,
+    "text": "if lexeme in missing_morphcat:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 46,
+    "text": "if lexeme in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 47,
+    "text": "source = lexeme"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 48,
+    "text": "elif metadata.get(\"bdag-headword\") in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 49,
+    "text": "source = metadata[\"bdag-headword\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 51,
+    "text": "source = None"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 52,
+    "text": "if source:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 53,
+    "text": "if len(mounce[source]) == 1:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 55,
+    "text": "gk = int(mounce[source][0][\"gk\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 59,
+    "text": "print \"    mounce-morphcat: {}\".format(mounce[source][0][\"morphcat\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 61,
+    "text": "problems.append(\"{} {} != {}\".format(source.encode(\"utf-8\"), metadata.get(\"gk\"), gk))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 63,
+    "text": "problems.append(\"{} len({}) > 1\".format(source.encode(\"utf-8\"), mounce[source]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_morphcat.py",
+    "line": 65,
+    "text": "problems.append(\"{} not found (gk={})\".format(lexeme.encode(\"utf-8\"), metadata.get(\"gk\")))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex.py",
+    "line": 297,
+    "text": "(r\"GS.$\",           r\"n-2[a-d]\",            r(\"-(\u03bf\u03c5|\u03bf\u1fe6)\")),           # 112"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex.py",
+    "line": 446,
+    "text": "form, mounce, parses, count = line.strip().split(\"|\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex.py",
+    "line": 452,
+    "text": "re.match(mounce_re, mounce) and re.match(form_re, form):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex.py",
+    "line": 455,
+    "text": "print(form, mounce, parses, mounce_re, parses_re, count)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/basic_noun_ending_regex.py",
+    "line": 466,
+    "text": "#     parses, mounce, form))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 9,
+    "text": "indeclinables = load_wordset(\"nominal-indeclinable.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 50,
+    "text": "\"\u1f11\u03ba\u03b1\u03c4\u03bf\u03bd\u03c4\u03ac\u03c1\u03c7\u03b7\u03c2\",  # @@@ fix lemma in sblgnt"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 80,
+    "text": "# \"\u03ba\u03b1\u03ba\u03bf\u03c0\u03bf\u03b9\u03cc\u03c2\": \"a-3a\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 97,
+    "text": "forms = defaultdict(set)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 99,
+    "text": "# form -> set(mounce)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 106,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 107,
+    "text": "lemma = row[\"lemma\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 110,
+    "text": "if row[\"ccat-pos\"] == \"N-\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 111,
+    "text": "if lemma in indeclinables:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 113,
+    "text": "if row[\"ccat-parse\"][4] == \"V\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 115,
+    "text": "if lemma in SKIP:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 118,
+    "text": "if lemma in MOUNCE_OVERRIDES:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 119,
+    "text": "mounce = MOUNCE_OVERRIDES[lemma]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 120,
+    "text": "elif lemma in lexemes and \"mounce-morphcat\" in lexemes[lemma]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 121,
+    "text": "mounce = lexemes[lemma][\"mounce-morphcat\"]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 123,
+    "text": "mounce = \"\""
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 125,
+    "text": "if mounce == \"n-3g(1)\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 128,
+    "text": "if not isinstance(mounce, list):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 129,
+    "text": "mounce = [mounce]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 130,
+    "text": "for cat in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 134,
+    "text": "parse = row[\"ccat-parse\"][4:7]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 135,
+    "text": "forms[norm].add(parse)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 140,
+    "text": "if parse[2] == \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 141,
+    "text": "if parse[0] == \"N\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 142,
+    "text": "forms[norm].add(\"A\" + parse[1:])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 143,
+    "text": "if parse[0] == \"A\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 144,
+    "text": "forms[norm].add(\"N\" + parse[1:])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 145,
+    "text": "if \"n-1a\" in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 146,
+    "text": "if parse == \"APF\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 147,
+    "text": "forms[norm].add(\"GSF\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 148,
+    "text": "if parse == \"GSF\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 149,
+    "text": "forms[norm].add(\"APF\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 150,
+    "text": "if \"n-1d\" in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 151,
+    "text": "if parse == \"NSM\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 152,
+    "text": "forms[norm].add(\"APM\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 153,
+    "text": "if parse == \"APM\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 154,
+    "text": "forms[norm].add(\"NSM\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 155,
+    "text": "if \"n-3e(3)\" in mounce or \"n-3e(5b)\" in mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 156,
+    "text": "if parse[:2] == \"AP\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 157,
+    "text": "forms[norm].add(\"NP\" + parse[2])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 158,
+    "text": "if parse[:2] == \"NP\":"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 159,
+    "text": "forms[norm].add(\"AP\" + parse[2])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/extract_noun_forms.py",
+    "line": 162,
+    "text": "for form, data in sorted_items(forms):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 9,
+    "text": "def convert(ccat, robinson):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 10,
+    "text": "pair = (ccat, robinson.split(\"-\")[0])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 15,
+    "text": "elif pair == (\"A-\", \"A\"):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 32,
+    "text": "return \"{} {}\".format(ccat, robinson)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 36,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 37,
+    "text": "if row[\"lemma\"].decode(\"utf-8\") not in lexemes and row[\"lemma\"] not in already_output:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 38,
+    "text": "print \"{}:\".format(row[\"lemma\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 39,
+    "text": "print \"    pos: {}\".format(convert(row[\"ccat-pos\"], row[\"robinson\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/generate_lexemes.py",
+    "line": 40,
+    "text": "already_output.add(row[\"lemma\"])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 8,
+    "text": "danker = load_yaml(\"../data-cleanup/danker-concise-lexicon/danker_headwords.yaml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 9,
+    "text": "missing_danker = load_wordset(\"missing_danker.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 14,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 15,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 21,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 22,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 24,
+    "text": "if \"danker-entry\" in metadata:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 25,
+    "text": "print \"    {}: {}\".format(\"danker-entry\", metadata[\"danker-entry\"].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 27,
+    "text": "if lexeme in missing_danker:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 30,
+    "text": "if lexeme in danker:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 31,
+    "text": "entry = danker[lexeme]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 32,
+    "text": "elif metadata.get(\"bdag-headword\") in danker:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 33,
+    "text": "entry = danker[metadata[\"bdag-headword\"]]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 38,
+    "text": "print \"    {}: {}\".format(\"danker-entry\", entry.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 40,
+    "text": "problems.append(\"{} not found (bdag={})\".format(lexeme.encode(\"utf-8\"), metadata.get(\"bdag-headword\", u\"none\").encode(\"utf-8\")))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 42,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 43,
+    "text": "q(\"mounce-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 44,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 46,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 47,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_danker_headwords.py",
+    "line": 48,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 10,
+    "text": "\"gloss\": ur\"\u2018([^\u2019]|\u2019s )+\u2019\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 11,
+    "text": "\"half-gloss\": ur\"\u2018[^\u2019]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 12,
+    "text": "\"text\": ur\"[A-Za-z0-9.,/\\-\u2019(): ]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 13,
+    "text": "\"latin\": ur\"[A-Za-z\u014d]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 14,
+    "text": "\"pie\": ur\"\\*[a-z]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 15,
+    "text": "\"skt\": ur\"[a-z\u00e1\u012b\u0101]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 16,
+    "text": "\"latvian\": ur\"[a-z\u00f4]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 17,
+    "text": "\"lithuanian\": ur\"[a-z\u00e1\u017e]+\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 27,
+    "text": "ur\"2 aor\\. of {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 29,
+    "text": "ur\"=earlier {greek}; {text}, then in past tenses {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 30,
+    "text": "ur\"=fem\\. of {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 31,
+    "text": "ur\"=Hom\\. {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 32,
+    "text": "ur\"=Macedonian {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 35,
+    "text": "ur\"=older {greek}, {text}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 36,
+    "text": "ur\"={greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 43,
+    "text": "ur\"={greek} \u2019 {greek}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 45,
+    "text": "ur\"={greek}, cp\\. {greek} {gloss}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 48,
+    "text": "ur\"=\u1f41 {greek} {gloss}; {see} {greek}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 49,
+    "text": "ur\"\\*{greek} {gloss}, cp\\. {greek} {gloss}; the concept of doubling expressed in {greek} is associated with this verb$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 50,
+    "text": "ur\"\\*{greek} {half-gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 51,
+    "text": "ur\"\\*{greek}-, {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 54,
+    "text": "ur\"a connection w\\. {greek} {gloss} is uncertain$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 55,
+    "text": "ur\"a fixed form derived fr\\. {greek} functioning as {text}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 56,
+    "text": "ur\"a formation developed from \\*{greek} {greek} {gloss} and present in {greek} {greek}, hence the gen\\. {greek} {greek} and associated inflection$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 58,
+    "text": "ur\"a hybrid formation fr\\. \\(\u1f41\\) {greek} {gloss} \\+Lat\\. {latin} \\(hence Vulgate rendering {gloss}\\)$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 63,
+    "text": "ur\"adv\\. of {greek} \\(cp\\. prec\\.\\) {gloss} as in {text}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 65,
+    "text": "ur\"akin to aor\\. {greek} \\({greek}\\) which bears the sense {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 67,
+    "text": "ur\"akin to {greek} {gloss} \\({text}\\) and {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 68,
+    "text": "ur\"akin to {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 69,
+    "text": "ur\"akin to {greek} {gloss}, e\\. g\\. {text}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 70,
+    "text": "ur\"akin to {greek} {gloss}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 72,
+    "text": "ur\"akin to {greek}; {gloss}, {text}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 73,
+    "text": "ur\"also {greek} {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 78,
+    "text": "ur\"also {greek}; Heb\\. {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 82,
+    "text": "ur\"an old form beside {greek}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 85,
+    "text": "ur\"assoc\\. w\\. {greek} {text}, pl\\. as in {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 86,
+    "text": "ur\"assoc\\. w\\. {greek}; {gloss}, also {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 87,
+    "text": "ur\"assoc\\. with {greek}, {text} \\({gloss} and by metonymy {gloss} {text}\\)$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 88,
+    "text": "ur\"associated w\\. the root of {greek} \\({gloss} and {gloss}\\), which in turn generates {greek}. S\\. next\\.$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 89,
+    "text": "ur\"associated w\\. {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 91,
+    "text": "ur\"association has been made principally with {greek} {gloss} {text}, and w\\. {greek} \\({greek}\\) {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 92,
+    "text": "ur\"association with {greek} {gloss} is uncertain$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 93,
+    "text": "ur\"Attic contracted form of {greek} {gloss}, perh\\. Skt\\. assoc\\.$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 94,
+    "text": "ur\"Attic contraction of {greek} {gloss}, Skt\\. assoc\\.$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 98,
+    "text": "ur\"Attic {greek}, etym\\. unknown$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 99,
+    "text": "ur\"Attic {greek}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 100,
+    "text": "ur\"based on the impv\\. {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 101,
+    "text": "ur\"by- form of {greek} \\({greek}, {greek} {gloss}\\)$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 102,
+    "text": "ur\"by- form of {greek} {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/analyze_components.py",
+    "line": 104,
+    "text": "ur\"by- form of {greek}; {gloss}$\","
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 6,
+    "text": "# (ending, parse)->int(count)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 9,
+    "text": "# (ending)->set(parse)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 18,
+    "text": "path, rule, parse, count = line.strip().split()"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 20,
+    "text": "counts[(step, parse)] += int(count)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 21,
+    "text": "parses[step].add(parse)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 40,
+    "text": "\"{}/{}\".format(parse, counts[ending, parse])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/process_ending_tree.py",
+    "line": 41,
+    "text": "for parse in parses[ending]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 25,
+    "text": "# lemma -> pos_gender_degree -> person_number -> set of forms"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 26,
+    "text": "forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 30,
+    "text": "for row in fs[\"sblgnt-lexemes\"].rows():"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 31,
+    "text": "if row[\"ccat-pos\"] in [\"N-\", \"A-\", \"RA\", \"RD\", \"RI\", \"RP\", \"RR\"]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 32,
+    "text": "pos_gender_degree = row[\"ccat-pos\"] + \":\" + row[\"ccat-parse\"][6] + \":\" + row[\"ccat-parse\"][7]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 33,
+    "text": "case_number = row[\"ccat-parse\"][4:6]"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 34,
+    "text": "forms[row[\"lemma\"]][pos_gender_degree][case_number].add(strip_accents(row[\"norm\"]))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 60,
+    "text": "for lemma in forms:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 61,
+    "text": "for pos_gender_degree in forms[lemma]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 62,
+    "text": "t = to_tuple(forms[lemma][pos_gender_degree])"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/nominal_paradigm_lemmas.py",
+    "line": 64,
+    "text": "endings[pos_gender_degree][t].add(lemma)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 10,
+    "text": "missing_mounce = load_wordset(\"missing_mounce.txt\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 15,
+    "text": "mounce = defaultdict(list)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 16,
+    "text": "with open(\"../data-cleanup/mounce-morphcat/mounce-tauber-morphcat-utf8.txt\") as f:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 18,
+    "text": "gk, greek, morphcat = line.strip().decode(\"utf-8\").split(\":\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 19,
+    "text": "mounce[int(gk.split(\"?\")[0])].append(n(greek))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 21,
+    "text": "for lexeme, metadata in sorted_items(lexemes):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 22,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 29,
+    "text": "q(\"pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 30,
+    "text": "q(\"bdag-headword\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 31,
+    "text": "q(\"danker-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 32,
+    "text": "q(\"dodson-entry\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 34,
+    "text": "if not q(\"mounce-headword\"):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 35,
+    "text": "if lexeme in missing_mounce:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 41,
+    "text": "v = mounce.get(k)"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 47,
+    "text": "print \"    {}: {}\".format(\"mounce-headword\", v.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 49,
+    "text": "problems.append(\"{} {} not found\".format(lexeme.encode(\"utf-8\"), k))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 51,
+    "text": "q(\"strongs\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 53,
+    "text": "q(\"dodson-pos\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 54,
+    "text": "q(\"gloss\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/add_mounce_headword.py",
+    "line": 55,
+    "text": "q(\"mounce-morphcat\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 8,
+    "text": "danker = load_yaml(\"../data-cleanup/danker-concise-lexicon/components.yaml\")"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 15,
+    "text": "for lexeme, metadata in sorted_items(danker):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 18,
+    "text": "print \"{}:\".format(lexeme.encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 19,
+    "text": "if lexeme in derivation:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 20,
+    "text": "if derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 23,
+    "text": "if key in derivation[lexeme]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 24,
+    "text": "if isinstance(derivation[lexeme][key], list):"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 26,
+    "text": "for item in derivation[lexeme][key]:"
+  },
+  {
+    "path": "morphgnt/lexicon/scripts/check_derivation.py",
+    "line": 29,
+    "text": "print \"    {}: {}\".format(key, derivation[lexeme][key].encode(\"utf-8\"))"
+  },
+  {
+    "path": "morphgnt/lexicon/morphgnt/filesets.py",
+    "line": 21,
+    "text": "(\"bcv\", \"ccat-pos\", \"ccat-parse\", \"robinson\", \"text\", \"word\", \"norm\", \"lemma\"),"
+  },
+  {
+    "path": "morphgnt/lexicon/morphgnt/utils.py",
+    "line": 19,
+    "text": "[word.split(\"#\")[0].strip() for word in f if word.split(\"#\")[0].strip()]"
+  }
+]

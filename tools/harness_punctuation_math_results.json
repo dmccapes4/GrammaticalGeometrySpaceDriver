@@ -1,0 +1,52 @@
+[
+  {
+    "criterion": "PM1 token-invariance",
+    "pass": true,
+    "detail": "surface sequence == clean field for all 10 verses"
+  },
+  {
+    "criterion": "PM2 mark-counts",
+    "pass": true,
+    "detail": "cadence counts == raw printed-field counts, 10/10"
+  },
+  {
+    "criterion": "PM3 matthew-totals",
+    "pass": true,
+    "detail": "gates=168 (expect 168), ano=761 (761), comma=910 (910), full=753 (753)"
+  },
+  {
+    "criterion": "PM4 matthew-4:10",
+    "pass": true,
+    "detail": "gates=0, ano_teleia=3, Σατανᾶ perispomeni/final, Ὕπαγε apparatus: [('Ὕπαγε', 'acute', True), ('Σατανᾶ', 'perispomeni', False)]"
+  },
+  {
+    "criterion": "PM5 matthew-27:46",
+    "pass": true,
+    "detail": "2 gates; last return=left-open, head=target_limit"
+  },
+  {
+    "criterion": "PM6 matthew-6:26",
+    "pass": true,
+    "detail": "gates=1, mu_terms=['μᾶλλον']"
+  },
+  {
+    "criterion": "PM7 take-primitive",
+    "pass": true,
+    "detail": "TAKE(100,99)={'quantity': 100, 'unit': 99, 'takes': 1, 'remainder': 1}; TAKE(1,100) takes=0 remainder=1; unit=0 rejected"
+  },
+  {
+    "criterion": "PM8 kai-status",
+    "pass": true,
+    "detail": "8 καὶ-equality claims over 10 verses, all status=proposed"
+  },
+  {
+    "criterion": "PM9 schema-guard",
+    "pass": true,
+    "detail": "primitive with punctuation validates; elimination via math rule rejected"
+  },
+  {
+    "criterion": "PM10 accent-breathing",
+    "pass": true,
+    "detail": "Ἰησοῦς tokens breathing=['smooth']"
+  }
+]

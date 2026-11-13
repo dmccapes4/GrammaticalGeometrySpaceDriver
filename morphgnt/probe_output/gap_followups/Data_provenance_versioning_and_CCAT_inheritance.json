@@ -1,0 +1,9 @@
+{
+  "topic": "Data provenance, versioning, and CCAT inheritance",
+  "gap_ann": "provenance version schema definitions",
+  "gap_ts": [
+    "ProvenanceRecord",
+    "CCATSchema"
+  ],
+  "hits": []
+}

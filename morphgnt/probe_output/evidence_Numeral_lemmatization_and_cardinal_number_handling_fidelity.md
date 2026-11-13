@@ -1,0 +1,148 @@
+# Evidence for Numeral lemmatization and cardinal number handling (εἷς fidelity)
+
+- `model.py:0-5` → One model per run. The model id is configuration the operator supplies.
+- `model.py:0-5` → Your job is to fill the variable fields for one Greek word.
+- `model.py:0-5` → numeral refers to from context outside this verse), you must label it \
+- `model.py:0-5` → Be direct. One or two paragraphs. Do not summarise the decoding back at the reader.
+- `ggsd.py:0-5` → verse.jsonl                     — one primitive per word, in verse order
+- `ggsd.py:0-5` → """Append one JSON line to verse_log.jsonl."""
+- `ggsd.py:0-5` → slug = re.sub(r"[^a-zA-Z0-9]", "_", verse_ref)
+- `report.py:0-5` → The report does not say what the verse means while more than one member remains.
+- `report.py:0-5` → "The following words have more than one translation standing. "
+- `report.py:0-5` → "The verse does not yet mean one thing. The set is open."
+- `report.py:0-5` → "Every word has one translation standing. "
+- `schema.py:0-5` → A primitive is one JSON object for one word in a verse.
+- `schema.py:0-5` → One record = two or more sources independently stating the same value
+- `schema.py:0-5` → Divergences are also stored: source_ids length == 1 means only one source
+- `sources.py:0-5` → (skipped when hint_lemma is provided — saves one Logeion request)
+- `sources.py:0-5` → Returns a dict keyed by source_id, one entry per dictionary that has content.
+- `sources.py:0-5` → # one Logeion API call per word and avoids the "word" vs "lemma" mismatch
+- `sources.py:0-5` → # when available (e.g. ἓν → "word":"ἐν" but parses[0]["lemma"]:"εἷς").
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ου, ὁ$", r"^a-3a$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ου, ὁ$", r"^a-1a\(1\)$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$", r"^a-1a\(1\)$", r"^N:M$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, η, ον$", r"^a-1a\(2a\)$", r"^N:M$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ον$", r"^a-3a$", r"^N:M$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ## indeclinable
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$",           r"^a-1a\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$",           r"^a-3b\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, \(α\), ον$",       r"^a-3b\(1\)$",     r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$",           r"^a-1a\(1\)$",     r"^A,"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$",           r"^a-1a\(1\)$",     r"^$"),  "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, α, ον$",           r"^a-1a\(1\)$",     r"^ADV-S$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, η, ον$",           r"^a-1a\(2[ab]\)$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, η, ον$",           r"^a-1a\(2a\)$",    r"^A,"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, η, ον$",           r"^a-1a\(2a\)$",    r"^$"),  "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, η, ον$",           r"^a-3b\(2\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, \(η\), ον$",       r"^a-3b\(2\)$",     r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ρους, α, ουν$",        r"^a-1b$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ους, η, ουν$",         r"^a-1b$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ων, ουσα, ον$",        r"^a-2a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"υς, εια, υ$",          r"^a-2b$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^(\w+)$",              r"^a-2b$",          r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^πραϋς, πραεια, πραϋ$", r"^a-2b$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ον$",              r"^a-3a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ον$",              r"^a-3a$",          r"^$"),  "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος, ον$",              r"^a-3a$",          r"^A,"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ος$",                  r"^a-3a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"(.+)ους, ουν, gen\. \1οδος$", r"^a-5$",       r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^(\w+), ὁ/ἡ/το$", r"^a-5$", r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^ἱλεως, nt\. \(Attic 2 decl\.\) ων$", r"^a-5$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^(\w+)$", r"^a-5$", r"^A,A-NUI$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ης, ες$",              r"^a-4a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ης, ες$",              r"^a-4a$",          r"^$"),  "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ης, ες, gen\. ους$",   r"^a-4a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ης, ες, ους$",         r"^a-4a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^(\w+)ης, ες, acc\. \1η$", r"^a-4a$", r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ων, ον$",              r"^a-4b\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"^ἐλασσων/ἐλασσον$",    r"^a-4b\(1\)$",     r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ην, εν, gen\. ενος$",  r"^a-4b\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ων, ον, gen\. ονος$",  r"^a-4b\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ων, ον, gen\. ονος$",  r"^a-4b\(1\)$",     r"^$"),  "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"οι, αι, α$",           r"^a-1a\(1\)$",     r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"τερος, τερα, ον$",     r"^a-1a\(1\)$",     r"^A$"), "", []),  # @@@
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ((r"ας, ασα, αν$",         r"^a-2a$",          r"^A$"), "", []),
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "δέκα":             "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "δεκαοκτώ":         "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "δεκαπέντε":        "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "δεκατέσσαρες":     "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "δώδεκα":           "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἑβδομήκοντα":      "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "εἴκοσι(ν)":        "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἑκατόν":           "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἕνδεκα":           "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἐνενήκοντα":       "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἐννέα":            "a-indecl",  # danker has citation form with articles
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἕξ":               "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἑξήκοντα":         "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ἑπτά":             "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ὀγδοήκοντα":       "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "ὀκτώ":             "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "πέντε":            "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "πεντήκοντα":       "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "τεσσεράκοντα":     "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/full_citation_patterns.py:0-5` → "τριάκοντα":        "a-indecl",
+- `morphgnt/lexicon/projects/citation_forms/retired/check_A_citation.py:0-5` → "ἑδραῖος", "εἴκοσι(ν)", "εἷς", "ἑκατόν", "ἐλάσσων", "ἐλωΐ", "ἕνδεκα",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → # we will ignore indeclinable nominals
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → IGNORE_SET = load_wordset("../../nominal-indeclinable.txt")
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "αἴτιον": "a-1a(1)",  # should it be αἴτιος?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἄκων": "a-2a(2)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "βασίλειον": "a-3a",  # should it be βασίλειος in Luke?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "δεκάτη": "a-1a(2a)",  # should it be δέκατος
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "δοῦλος": "a-1a(2a)",  # @@@
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "δύο": "a-5(DUO)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "εἰδωλόθυτον": "a-3a",  # should it be εἰδωλόθυτος ?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "εἷς": "a=4b(2-EIS)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἑκών": "a-2a(2)",  # made up subcategory to select n-3c(5b) in masculine/neuter
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἔννυχα": "a-3a",  # incorrect lemma?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἔρημος": "a-3a",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "εὐπάρεδρον": "a-3a",  # should it be εὐπάρεδρος?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ἱππικόν": "a-1a(2a)",  # should it be ἱππικός?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "κακοποιός": "a-3a",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "λεπτόν": "a-1a(2a)",  # @@@ lemma?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "μάταιος": "a=1a(1)/a-3",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "μέλαν": "a-2a(3)",  # made up subcategory
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "νηφάλιος": "a-3a",  # @@@
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "ὅσιος": "a-3a",  # @@@
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "παραπλήσιον": "a-1a(1)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "πυκνά": "a-1a(2a)",  # change to πυκνός in Luke?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "τέσσαρες": "a-4c",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "τίς": "a-4b(2-TIS)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "τις": "a-4b(2-TIS)",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "τρίμηνον": "a-3a",  # should it be τρίμηνος?
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → "χρύσεος": "a-1b",
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → if cat == "a-1a(1)":
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → elif cat == "a=1a(1)/a-3":
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → elif cat == "a-1a(2a)":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → INDECLINABLE = load_wordset("nominal-indeclinable.txt")
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if row["lemma"] in INDECLINABLE:
+- `morphgnt/lexicon/scripts/indeclinable-nouns.py:0-5` → already = load_wordset("nominal-indeclinable.txt")
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs that morphcat thinks is an adjective
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"V@V@a-1a\(1\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # indeclinable verb
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in dodson
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A@ADV-S@a-1a\(1\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A/ADV-S\?@A@a-1a\(2a\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A/ADV-C@A@a-1a\(1\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A/ADV@A@a-1a\(1\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A@A,A-NUI@a-5$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A@A-NUI@n-3g\(2\)$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective / adverb conflation
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"A/ADV@ADV@\['a-1a\(1\)', 'adverb'\]$", # @@@
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # indeclinable proper nouns
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # indeclinable letter names
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # indeclinable hebrew nouns
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # indeclinable aramaic nouns
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # noun / adjective / cross-over conflation
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → r"N@A@a-2a$", # @@@
+- `morphgnt/lexicon/scripts/basic_noun_ending_regex.py:0-5` → (r"GS.$",           r"n-2[a-d]",            r("-(ου|οῦ)")),           # 112
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → indeclinables = load_wordset("nominal-indeclinable.txt")
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → # "κακοποιός": "a-3a",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "text": ur"[A-Za-z0-9.,/\-’(): ]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "latin": ur"[A-Za-zō]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "pie": ur"\*[a-z]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "skt": ur"[a-záīā]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "latvian": ur"[a-zô]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "lithuanian": ur"[a-záž]+",

@@ -1,0 +1,136 @@
+# Homeric Punctuation Baseline
+
+**Source:** Perseus canonical-greekLit (PerseusDL/canonical-greekLit, GitHub)
+**Generated:** GGSD tools/analyze_homer_punctuation.py
+**Purpose:** Baseline punctuation distribution for Maththew GGSD analysis
+
+---
+
+## Corpus
+
+| Work | Lines | Chars |
+|------|-------|-------|
+| Iliad | 15,687 | 674,887 |
+| Odyssey | 12,222 | 528,559 |
+| **Combined** | **27,909** | **1,203,446** |
+
+---
+
+## Punctuation Frequency (Combined Iliad + Odyssey)
+
+| Mark | Name | Count | Per 100 lines | Function |
+|------|------|-------|---------------|----------|
+| `ʼ` (MODIFIER LETTER APOSTROPHE) | elision_mark | 20,101 | 72.02 | elided vowel (U+02BC MODIFIER LETTER APOSTROPHE) |
+| `,` (COMMA) | comma | 15,381 | 55.11 | phrase boundary / breath pause |
+| `·` (MIDDLE DOT) | ano_teleia | 7,744 | 27.75 | high stop — strong internal pause (semicolon equivalent) |
+| `.` (FULL STOP) | full_stop | 6,944 | 24.88 | sentence end |
+| `;` (SEMICOLON) | question_mark | 459 | 1.64 | Greek question mark — conditional/dependent clause gate |
+| `—` (EM DASH) | em_dash | 30 | 0.11 | em dash — parenthetical or editorial |
+
+---
+
+## Per-Work Comparison
+
+| Mark | Name | Iliad count | Iliad/100L | Odyssey count | Odyssey/100L |
+|------|------|-------------|------------|---------------|--------------|
+| `ʼ` | elision_mark | 11,158 | 71.13 | 8,943 | 73.17 |
+| `,` | comma | 7,027 | 44.8 | 8,354 | 68.35 |
+| `·` | ano_teleia | 4,587 | 29.24 | 3,157 | 25.83 |
+| `.` | full_stop | 3,599 | 22.94 | 3,345 | 27.37 |
+| `;` | question_mark | 231 | 1.47 | 228 | 1.87 |
+| `—` | em_dash | 0 | 0 | 30 | 0.25 |
+
+---
+
+## Context Examples
+
+### `ʼ` — elision_mark (MODIFIER LETTER APOSTROPHE)
+
+- `οὐλομένην, ἣ μυρίʼ Ἀχαιοῖς ἄλγεʼ ἔθηκε,`
+- `οὐλομένην, ἣ μυρίʼ Ἀχαιοῖς ἄλγεʼ ἔθηκε,`
+- `πολλὰς δʼ ἰφθίμους ψυχὰς Ἄϊδι προΐαψεν`
+- `οἰωνοῖσί τε πᾶσι, Διὸς δʼ ἐτελείετο βουλή,`
+- `τίς τʼ ἄρ σφωε θεῶν ἔριδι ξυνέηκε μάχεσθαι;`
+
+### `,` — comma (COMMA)
+
+- `οὐλομένην, ἣ μυρίʼ Ἀχαιοῖς ἄλγεʼ ἔθηκε,`
+- `οὐλομένην, ἣ μυρίʼ Ἀχαιοῖς ἄλγεʼ ἔθηκε,`
+- `ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε κύνεσσιν`
+- `οἰωνοῖσί τε πᾶσι, Διὸς δʼ ἐτελείετο βουλή,`
+- `οἰωνοῖσί τε πᾶσι, Διὸς δʼ ἐτελείετο βουλή,`
+
+### `·` — ano_teleia (MIDDLE DOT)
+
+- `Λητοῦς καὶ Διὸς υἱός· ὃ γὰρ βασιλῆϊ χολωθεὶς`
+- `Ἀτρεΐδης· ὃ γὰρ ἦλθε θοὰς ἐπὶ νῆας Ἀχαιῶν`
+- `Ἀτρεΐδα δὲ μάλιστα δύω, κοσμήτορε λαῶν·`
+- `ἐκπέρσαι Πριάμοιο πόλιν, εὖ δʼ οἴκαδʼ ἱκέσθαι·`
+- `αἰδεῖσθαί θʼ ἱερῆα καὶ ἀγλαὰ δέχθαι ἄποινα·`
+
+### `.` — full_stop (FULL STOP)
+
+- `Ἀτρεΐδης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.`
+- `ἁζόμενοι Διὸς υἱὸν ἑκηβόλον Ἀπόλλωνα.`
+- `ἀλλʼ ἴθι μή μʼ ἐρέθιζε σαώτερος ὥς κε νέηαι.`
+- `τίσειαν Δαναοὶ ἐμὰ δάκρυα σοῖσι βέλεσσιν.`
+- `αὐτοῦ κινηθέντος· ὃ δʼ ἤϊε νυκτὶ ἐοικώς.`
+
+### `;` — question_mark (SEMICOLON)
+
+- `τίς τʼ ἄρ σφωε θεῶν ἔριδι ξυνέηκε μάχεσθαι;`
+- `πῶς γάρ τοι δώσουσι γέρας μεγάθυμοι Ἀχαιοί;`
+- `ἧσθαι δευόμενον, κέλεαι δέ με τήνδʼ ἀποδοῦναι;`
+- `ἢ ὁδὸν ἐλθέμεναι ἢ ἀνδράσιν ἶφι μάχεσθαι;`
+- `τίπτʼ αὖτʼ αἰγιόχοιο Διὸς τέκος εἰλήλουθας;`
+
+### `—` — em_dash (EM DASH)
+
+- `ἐξ Ἐφύρης ἀνιόντα παρʼ Ἴλου Μερμερίδαο—`
+- `ἀλλὰ πατήρ οἱ δῶκεν ἐμός· φιλέεσκε γὰρ αἰνῶς—`
+- `δήμῳ ἔνι Τρώων, ὅθι πάσχομεν ἄλγεʼ Ἀχαιοί—`
+- `ὡς κείνῳ ἀναφανδὰ παρίστατο Παλλὰς Ἀθήνη—`
+- `τρεῖς δὲ ἕκαστον φῶτʼ ὄιες φέρον· αὐτὰρ ἐγώ γε—`
+
+
+---
+
+## Homer vs Pindar Comparison
+
+Pindar's odes are metrically structured (strophe/antistrophe/epode triads).
+In Pindar, the metrical boundary IS the cadence mark — punctuation follows
+the strophic structure. A comma in Pindar often marks a colon boundary
+(metrical unit), not just a breath pause.
+
+**Pindar corpus:** 3,415 lines across 4 ode collections
+(Olympian 997,
+ Pythian, Nemean, Isthmian).
+
+| Mark | Name | Homer/100L | Pindar/100L | Δ |
+|------|------|-----------|------------|---|
+| `ʼ` (MODIFIER LETTER APOSTROPHE) | elision_mark | 72.02 | 45.39 | -26.63 |
+| `,` (COMMA) | comma | 55.11 | 48.73 | -6.38 |
+| `·` (MIDDLE DOT) | ano_teleia | 27.75 | 20.64 | -7.11 |
+| `.` (FULL STOP) | full_stop | 24.88 | 26.44 | +1.56 |
+| `;` (SEMICOLON) | question_mark | 1.64 | 1.11 | -0.53 |
+| `—` (EM DASH) | em_dash | 0.11 | 0.09 | -0.02 |
+| `᾽` (GREEK KORONIS) | coronis | 0 | 0.03 | +0.03 |
+
+---
+
+## Notes on Homeric Punctuation
+
+The punctuation in the Perseus transmission of Homer reflects the Alexandrian
+editorial tradition (Aristophanes of Byzantium, c. 200 BCE; Aristarchus).
+It is NOT original to Homer's composition but is the oldest systematic
+punctuation applied to these texts, pre-dating the NT by ~200 years.
+
+**The elision mark** (`ʼ` U+02BC) is not punctuation in the cadence sense —
+it marks vowel elision at word boundaries, a phonological feature of Greek
+that affects how lines are scanned metrically.
+
+**Key distinction for Maththew comparison:**
+- Where Maththew's punctuation matches Homeric frequency → standard oration convention
+- Where Maththew diverges significantly → potential signal / authored emphasis
+
+*Generated by GGSD tools/analyze_homer_punctuation.py*

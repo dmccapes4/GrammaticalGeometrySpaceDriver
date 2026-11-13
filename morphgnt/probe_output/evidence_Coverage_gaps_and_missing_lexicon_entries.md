@@ -1,0 +1,85 @@
+# Evidence for Coverage gaps and missing lexicon entries
+
+- `model.py:0-5` → f"Unknown model_id prefix: {model_id!r}. "
+- `model.py:0-5` → raise ValueError(f"Unknown model_id: {model_id!r}")
+- `ggsd.py:0-5` → Returns a list of surface forms in order.
+- `ggsd.py:0-5` → f"Unknown model_id: {model_id!r}. "
+- `schema.py:0-5` → raise SchemaError(f"missing field: {f}")
+- `morphgnt/run_ai_probe.sh:0-5` → # ── Phase 4: Gap ────────────────────────────────────────────────────────────
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ## nouns missing articles?
+- `morphgnt/lexicon/projects/citation_forms/retired/noun_full_citation_patterns.py:0-5` → ## missing full citation
+- `morphgnt/lexicon/projects/nominal_distinguishers/make_noun_lexicon.py:0-5` → # and override the lemmatization of some forms
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → # lemma -> tense_voice -> person_number -> set of forms
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → forms = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → forms[row["lemma"]][tense_voice][person_number].add(strip_accents(row["norm"]))
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → for lemma, form_dict in sorted_items(forms):
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → for lemma in forms:
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → for tense_voice in forms[lemma]:
+- `morphgnt/lexicon/projects/principal_parts/retired/paradigm.py:0-5` → t = to_tuple(forms[lemma][tense_voice])
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → forms = load_yaml("forms.yaml")
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → for row in fs["sblgnt-forms"].rows():
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → form_entry = forms.get(row["lemma"].decode("utf-8"))
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → # lemma -> pos_gender_degree -> person_number -> set of forms
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → forms[row["lemma"]][pos_gender_degree][case_number].add(strip_accents(row["norm"]))
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → for pos_gender_degree in forms[lemma]:
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → t = to_tuple(forms[lemma][pos_gender_degree])
+- `morphgnt/lexicon/scripts/generate_differences.py:0-5` → v = metadata.get(metadata_name, "<missing>")
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → # lemma -> person_number -> set of forms
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → forms = defaultdict(lambda: defaultdict(set))
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → forms[key][case_number].add(strip_accents(row["norm"]))
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → for lemma in sorted(forms, key=collator.sort_key):
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if DEBUG: print(lemma, forms[lemma])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if DEBUG: print("        {} {} {}".format(case_number, forms[lemma][case_number], ending[case_number]))
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if not forms[lemma][case_number]:
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → form_list = sorted(forms[lemma][case_number])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → print("{} {}: {}".format(fail, morphcat, dict(forms[fail])))
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → forms = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → forms[row["lemma"]][row["norm"]][row["ccat-parse"][4:7]] += 1
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → for form in forms[lemma]:
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → for parse in forms[lemma][form]:
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → form, parse, forms[lemma][form][parse]
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → missing_dodson = load_wordset("missing_dodson.txt")
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → print >>sys.stderr, "missing"
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → if word.decode("utf-8") not in missing_dodson:
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → missing_bdag = load_wordset("missing_bdag.txt")
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → if word.decode("utf-8") not in missing_bdag:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(person_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault(tense_voice_mood, {}).setdefault(gender, {}).setdefault(case_number, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → form_list = forms.setdefault(lemma, {}).setdefault("forms", [])
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for form, metadata in sorted_items(forms):
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → print "            forms:"
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for form in metadata[gender][case_number]["forms"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → print "        forms:"
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for form in metadata[case_number]["forms"]:
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → for form in metadata[tense_voice_mood]["forms"]:
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs missing in dodson
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs with unknown morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # verbs missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # compound verbs missing in dodson
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # compound verbs missing full morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in dodson
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # adjective missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # nouns missing in dodson
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # nouns missing in morphcat
+- `morphgnt/lexicon/scripts/check_pos.py:0-5` → # nouns missing in dodson and morphcat
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms = defaultdict(set)
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add(parse)
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("A" + parse[1:])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("N" + parse[1:])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("GSF")
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("APF")
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("APM")
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("NSM")
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("NP" + parse[2])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → forms[norm].add("AP" + parse[2])
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → for form, data in sorted_items(forms):
+- `morphgnt/lexicon/scripts/add_danker_headwords.py:0-5` → missing_danker = load_wordset("missing_danker.txt")
+- `morphgnt/lexicon/scripts/add_danker_headwords.py:0-5` → if lexeme in missing_danker:
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"Attic {greek}, etym\. unknown$",
+- `morphgnt/lexicon/scripts/add_mounce_headword.py:0-5` → missing_mounce = load_wordset("missing_mounce.txt")
+- `morphgnt/lexicon/scripts/add_mounce_headword.py:0-5` → if lexeme in missing_mounce:

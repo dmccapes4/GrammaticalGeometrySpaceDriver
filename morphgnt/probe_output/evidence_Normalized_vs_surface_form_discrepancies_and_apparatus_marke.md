@@ -1,0 +1,152 @@
+# Evidence for Normalized vs surface form discrepancies and apparatus markers
+
+- `model.py:0-5` → Your job is to fill the variable fields for one Greek word.
+- `model.py:0-5` → "description": "string — what this word is, from the sources only. Do not interpret.",
+- `model.py:0-5` → Do NOT output meta_data, verse, or word — those are already filled. Output only the 7 keys above.
+- `model.py:0-5` → parts.append(entry.get("entry_text", "[no text]")[:400])
+- `model.py:0-5` → f"Greek text: {greekbible_result.get('greek_text', '[not retrieved]')}",
+- `model.py:0-5` → parts.append(f"  [{t.get('version','')}] {t.get('text','')}")
+- `model.py:0-5` → f"  {pw['word']['surface']}: {pw.get('description','')[:120]}"
+- `model.py:0-5` → # Find the first block that has a .text attribute.
+- `model.py:0-5` → text = None
+- `model.py:0-5` → if hasattr(block, "text"):
+- `model.py:0-5` → text = block.text.strip()
+- `model.py:0-5` → if text is None:
+- `model.py:0-5` → raise ValueError(f"No text block in model response. Content: {response.content}")
+- `model.py:0-5` → return _parse_json_response(text)
+- `model.py:0-5` → text = response.choices[0].message.content.strip()
+- `model.py:0-5` → text = result["message"]["content"].strip()
+- `model.py:0-5` → def _parse_json_response(text: str) -> dict[str, Any]:
+- `model.py:0-5` → text = _re.sub(r"<think>.*?</think>", "", text, flags=_re.DOTALL).strip()
+- `model.py:0-5` → if text.startswith("```"):
+- `model.py:0-5` → lines = text.split("\n")
+- `model.py:0-5` → text = "\n".join(inner)
+- `model.py:0-5` → return json.loads(text)
+- `model.py:0-5` → start = text.find("{")
+- `model.py:0-5` → raise ValueError(f"No JSON object found in model response:\n{text[:500]}")
+- `model.py:0-5` → for i, ch in enumerate(text[start:], start=start):
+- `model.py:0-5` → candidate = text[start : i + 1]
+- `model.py:0-5` → raise ValueError(f"Unbalanced braces in model response:\n{text[:500]}")
+- `model.py:0-5` → You are reading a verse decoded word by word from original Greek Koine.
+- `model.py:0-5` → Each word entry contains what the sources say: grammatical rules, lexical rules,
+- `model.py:0-5` → surface = w.get("word", {}).get("surface", "?")
+- `model.py:0-5` → Ask a question about a fully decoded verse. Returns a plain-text answer.
+- `model.py:0-5` → verse_decoding: list of word primitives from the full run.
+- `ggsd.py:0-5` → verse.jsonl                     — one primitive per word, in verse order
+- `ggsd.py:0-5` → Split Greek text into word tokens.
+- `ggsd.py:0-5` → Strips punctuation, preserves polytonic Unicode.
+- `ggsd.py:0-5` → Load already-completed word primitives from an existing verse.jsonl.
+- `ggsd.py:0-5` → "surface":                p.get("word", {}).get("surface", "?"),
+- `ggsd.py:0-5` → print(f"checkpoint: {len(completed)} word(s) already completed — resuming")
+- `ggsd.py:0-5` → # ── Verse text source ────────────────────────────────────────────────────
+- `ggsd.py:0-5` → greek_text = " ".join(w["word"] for w in morphgnt_tokens)
+- `ggsd.py:0-5` → print(f"  greek text: [MorphGNT] {greek_text[:120]}")
+- `ggsd.py:0-5` → print(f"  greek text: [manual] {greek_text[:120]}")
+- `ggsd.py:0-5` → print(f"  greek text: {greek_text[:120] or '[not retrieved]'}")
+- `ggsd.py:0-5` → "WARNING: no Greek text available. "
+- `ggsd.py:0-5` → # Use MorphGNT word list.
+- `ggsd.py:0-5` → # word (field 4) is clean — no ⸀ apparatus markers or trailing punctuation.
+- `ggsd.py:0-5` → # text (field 3) is the as-printed form and may include ⸀ markers.
+- `ggsd.py:0-5` → surface_tokens = [w["word"] for w in morphgnt_tokens]
+- `ggsd.py:0-5` → "note": "fetched once for the verse; shared across all word primitives",
+- `ggsd.py:0-5` → filled["word"]["surface"]   = surface
+- `ggsd.py:0-5` → filled["word"]["letters"]   = list(surface)
+- `ggsd.py:0-5` → "Supply the Greek text of the verse manually. "
+- `ggsd.py:0-5` → "When provided, supplies Greek text AND lemma hints — skips /find calls."
+- `report.py:0-5` → f"- Word count: {len(primitives)}",
+- `report.py:0-5` → word = p["word"]["surface"]
+- `report.py:0-5` → lines.append(f"**{word}**")
+- `report.py:0-5` → # Per-word: the set that remains
+- `report.py:0-5` → lines += ["## The set (per word)", ""]
+- `report.py:0-5` → lines.append(f"### {word}")
+- `report.py:0-5` → open_words.append(p["word"]["surface"])
+- `report.py:0-5` → "Every word has one translation standing. "
+- `schema.py:0-5` → A primitive is one JSON object for one word in a verse.
+- `schema.py:0-5` → "word",
+- `schema.py:0-5` → """Return an empty primitive for a word."""
+- `schema.py:0-5` → "word": {
+- `schema.py:0-5` → for the same field on the same word.
+- `schema.py:0-5` → Call this after all source retrievals have been processed for a word.
+- `schema.py:0-5` → if not p["word"].get("surface"):
+- `schema.py:0-5` → raise SchemaError("word.surface is empty")
+- `sources.py:0-5` → greekbible.com   — Bible source. Retrieves verse text and available translations.
+- `sources.py:0-5` → /find?w={word}   — lemma + grammatical parse
+- `sources.py:0-5` → # pipeline — each word is looked up once and the result is kept. Keep the
+- `sources.py:0-5` → Retrieve verse text and available translations from greekbible.com.
+- `sources.py:0-5` → greek_text: str          — the Greek text of the verse (SBL GNT or similar)
+- `sources.py:0-5` → translations: list[dict] — each entry: {version, text}
+- `sources.py:0-5` → soup = BeautifulSoup(r.text, "lxml")
+- `sources.py:0-5` → raw_snippet = r.text[:3000]
+- `sources.py:0-5` → # Extract Greek text — look for the main verse display
+- `sources.py:0-5` → # Handle multi-word books: "1 Corinthians 3:4"
+- `sources.py:0-5` → """Best-effort extraction of the Greek text from greekbible.com."""
+- `sources.py:0-5` → for selector in ["span.greek", "div.greek", ".greek-text", "#greek", "span[lang='grc']"]:
+- `sources.py:0-5` → # Fallback: look for any text that looks Greek (has Unicode Greek characters)
+- `sources.py:0-5` → text = el.get_text()
+- `sources.py:0-5` → if any("\u0370" <= c <= "\u03ff" for c in text):
+- `sources.py:0-5` → return text.strip()[:500]
+- `sources.py:0-5` → text_el = el.select_one(".version-text, .text, td:last-child")
+- `sources.py:0-5` → "text": text_el.get_text().strip(),
+- `sources.py:0-5` → def _strip_html(text: str) -> str:
+- `sources.py:0-5` → return BS(text, "lxml").get_text(separator=" ").strip()
+- `sources.py:0-5` → def fetch_logeion(word: str, hint_lemma: str | None = None) -> dict[str, Any]:
+- `sources.py:0-5` → Retrieve dictionary entries for a Greek word from Logeion via the
+- `sources.py:0-5` → 1. /find?w={word}   — returns lemma + grammatical parses
+- `sources.py:0-5` → web_url = f"{LOGEION_WEB}/{requests.utils.quote(word)}"
+- `sources.py:0-5` → # one Logeion API call per word and avoids the "word" vs "lemma" mismatch
+- `sources.py:0-5` → lemma = hint_lemma or word
+- `sources.py:0-5` → "word": word,
+- `sources.py:0-5` → r_find = _logeion_get("find", {"w": word})
+- `sources.py:0-5` → # IMPORTANT: "word" in the API response is the deaccented/debreathed lookup
+- `sources.py:0-5` → # when available (e.g. ἓν → "word":"ἐν" but parses[0]["lemma"]:"εἷς").
+- `sources.py:0-5` → lemma = parses[0].get("lemma", found.get("word", word))
+- `sources.py:0-5` → lemma = found.get("word", word)
+- `morphgnt/embed_morphgnt.py:0-5` → # Skip large NT data files — they contain tokenized text, not methodology.
+- `morphgnt/embed_morphgnt.py:0-5` → parser.add_argument("--model", default="text-embedding-3-small")
+- `morphgnt/embed_morphgnt.py:0-5` → text = open(fpath, encoding="utf-8", errors="ignore").read()
+- `morphgnt/embed_morphgnt.py:0-5` → line_count = text.count("\n")
+- `morphgnt/embed_morphgnt.py:0-5` → for chunk in splitter.split_text(text):
+- `morphgnt/embed_morphgnt.py:0-5` → corpus.append({"path": rel_path, "text": chunk})
+- `morphgnt/embed_morphgnt.py:0-5` → input=[c["text"] for c in batch],
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → "text", "word", "norm", "lemma"
+- `morphgnt/lexicon/projects/citation_forms/citation_form_data.py:0-5` → ## multi-word
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → for word in n_missed:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → print("\t{}".format(word), file=sys.stderr)
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → for word in non_n_found:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_full_citation.py:0-5` → for word in not_used:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → # for word in n_missed:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → #     print("\t{}".format(word), file=sys.stderr)
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → # for word in non_n_found:
+- `morphgnt/lexicon/projects/citation_forms/retired/add_A_citations.py:0-5` → # for word in not_used:
+- `morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py:0-5` → body = tree.getroot().find("TEIOSIS:text/TEIOSIS:body", ns)
+- `morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py:0-5` → if form.text:
+- `morphgnt/lexicon/projects/merge_abbott_smith/extract_headwords.py:0-5` → s = form.text
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → words = [n(word) for word in set(danker.keys()).union(set(greenlee.keys()))]
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → for word in sorted(words, key=collator.sort_key):
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → print "{}:".format(word.encode("utf-8"))
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → if word in danker:
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → print "    danker-full-entry: \"{}\"".format(danker[word]["full-entry"].encode("utf-8"))
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → print "    danker-components: \"{}\"".format(danker[word]["components"].encode("utf-8"))
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → if word in greenlee:
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → print "    greenlee-full-entry: \"{}\"".format(greenlee[word]["full-entry"].encode("utf-8"))
+- `morphgnt/lexicon/scripts/combine_components.py:0-5` → print "    greenlee-components: \"{}\"".format(greenlee[word]["components"].encode("utf-8"))
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → for word in not_in_dodson:
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → if word.decode("utf-8") not in missing_dodson:
+- `morphgnt/lexicon/scripts/add_dodson.py:0-5` → print >>sys.stderr, "\t", word
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → for word in existing_not_in_headwords:
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → for word in missing_not_in_headwords:
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → if word.decode("utf-8") not in missing_bdag:
+- `morphgnt/lexicon/scripts/add_bdag_headword.py:0-5` → for word in added:
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → "text": ur"[A-Za-z0-9.,/\-’(): ]+",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=earlier {greek}; {text}, then in past tenses {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"=older {greek}, {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"a fixed form derived fr\. {greek} functioning as {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"adv\. of {greek} \(cp\. prec\.\) {gloss} as in {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss} \({text}\) and {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek} {gloss}, e\. g\. {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"akin to {greek}; {gloss}, {text}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"assoc\. w\. {greek} {text}, pl\. as in {greek} {gloss}$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"assoc\. with {greek}, {text} \({gloss} and by metonymy {gloss} {text}\)$",
+- `morphgnt/lexicon/scripts/analyze_components.py:0-5` → ur"association has been made principally with {greek} {gloss} {text}, and w\. {greek} \({greek}\) {gloss}$",
+- `morphgnt/lexicon/morphgnt/filesets.py:0-5` → ("bcv", "ccat-pos", "ccat-parse", "robinson", "text", "word", "norm", "lemma"),
+- `morphgnt/lexicon/morphgnt/utils.py:0-5` → [word.split("#")[0].strip() for word in f if word.split("#")[0].strip()]

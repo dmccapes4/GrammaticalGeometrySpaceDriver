@@ -1,0 +1,9 @@
+{
+  "topic": "Numeral lemmatization and cardinal number handling (\u03b5\u1f37\u03c2 fidelity)",
+  "gap_ann": "greek numeral regex rules",
+  "gap_ts": [
+    "numeral_parser",
+    "morphcat_rules"
+  ],
+  "hits": []
+}

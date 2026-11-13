@@ -1,0 +1,30 @@
+{
+  "topic": "GGSD compatibility \u2014 can MorphGNT hint_lemma be trusted as-is?",
+  "gap_ann": "hint_lemma usage and overrides",
+  "gap_ts": [
+    "hint_lemma",
+    "lemma_overrides"
+  ],
+  "hits": [
+    {
+      "path": "sources.py",
+      "line": 240,
+      "text": "def fetch_logeion(word: str, hint_lemma: str | None = None) -> dict[str, Any]:"
+    },
+    {
+      "path": "sources.py",
+      "line": 247,
+      "text": "(skipped when hint_lemma is provided \u2014 saves one Logeion request)"
+    },
+    {
+      "path": "sources.py",
+      "line": 250,
+      "text": "hint_lemma: supply the lemma directly (e.g. from MorphGNT) to skip /find."
+    },
+    {
+      "path": "sources.py",
+      "line": 264,
+      "text": "lemma = hint_lemma or word"
+    }
+  ]
+}

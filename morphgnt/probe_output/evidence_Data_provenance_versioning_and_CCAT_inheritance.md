@@ -1,0 +1,74 @@
+# Evidence for Data provenance, versioning, and CCAT inheritance
+
+- `model.py:0-5` → You work from source retrievals already fetched and provided to you.
+- `model.py:0-5` → 3. Every rule you add must carry the source_id and a quotation from that source.
+- `model.py:0-5` → If you cannot quote from the source, do not add the rule.
+- `model.py:0-5` → supplying a referent not present in the source retrievals (for example, inferring what a \
+- `model.py:0-5` → 6. Do not spend the set. Keep all members unless contradicted by a consented rule with a source quotation.
+- `model.py:0-5` → "=== LOGEION SOURCE RETRIEVALS ===",
+- `model.py:0-5` → # 400 chars per source: words with 13+ dictionaries were hitting the 8192-token
+- `model.py:0-5` → parts.append(f"  [{t.get('version','')}] {t.get('text','')}")
+- `ggsd.py:0-5` → # ── MorphGNT source ─────────────────────────────────────────────────────
+- `ggsd.py:0-5` → # ── Verse text source ────────────────────────────────────────────────────
+- `report.py:0-5` → - the source agreements (where dictionaries converge)
+- `report.py:0-5` → # Source agreements
+- `report.py:0-5` → lines += ["## Source agreements", ""]
+- `report.py:0-5` → lines.append("No multi-source agreements recorded in this run.")
+- `report.py:0-5` → "If every elimination was made by a consented rule with a source quotation, "
+- `schema.py:0-5` → # ─── source registry ───────────────────────────────────────────────────────────
+- `schema.py:0-5` → source_id: str,         # which source stated this
+- `schema.py:0-5` → quotation: str,         # verbatim from the source
+- `schema.py:0-5` → # ─── source agreement tracking ─────────────────────────────────────────────────
+- `schema.py:0-5` → Adapted from sacred_concepts_atlas source-registry pattern.
+- `schema.py:0-5` → Divergences are also stored: source_ids length == 1 means only one source
+- `schema.py:0-5` → Call this after all source retrievals have been processed for a word.
+- `sources.py:0-5` → GrammaticalGeometrySpaceDriver — source retrievals.
+- `sources.py:0-5` → greekbible.com   — Bible source. Retrieves verse text and available translations.
+- `sources.py:0-5` → translations: list[dict] — each entry: {version, text}
+- `sources.py:0-5` → for el in soup.select("div.translation, div.version, table.translations tr"):
+- `sources.py:0-5` → label_el = el.select_one(".version-name, .label, th, td:first-child")
+- `sources.py:0-5` → text_el = el.select_one(".version-text, .text, td:last-child")
+- `sources.py:0-5` → "version": label_el.get_text().strip(),
+- `morphgnt/python/setup.py:0-5` → version="0.10",
+- `morphgnt/python/setup.py:0-5` → author="James Tauber",
+- `morphgnt/python/pysblgnt/__init__.py:0-5` → "bcv", "ccat-pos", "ccat-parse", "robinson",
+- `morphgnt/lexicon/setup.py:0-5` → version = "0.1dev",
+- `morphgnt/lexicon/setup.py:0-5` → author = "James Tauber",
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → if row["ccat-pos"] == "V-":
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → mood = row["ccat-parse"][3]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → person_number = row["ccat-parse"][0] + row["ccat-parse"][5]
+- `morphgnt/lexicon/projects/principal_parts/check_endings.py:0-5` → tense_voice = row["ccat-parse"][1:3]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][6]][row["ccat-parse"][4:6]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][4:6]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → if row["ccat-parse"][3] in ["I"]:
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → expected_form = form_entry[row["ccat-parse"][1:4]][row["ccat-parse"][0] + row["ccat-parse"][5]]["form"]
+- `morphgnt/lexicon/scripts/check_forms.py:0-5` → first_fail = "{} {} {} {} {}".format(row["norm"], row["ccat-pos"], row["ccat-parse"], row["robinson"], row["lemma"])
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → if row["ccat-pos"] in ["N-", "A-", "RA", "RD", "RI", "RP", "RR"]:
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → pos_gender_degree = row["ccat-pos"] + ":" + row["ccat-parse"][6] + ":" + row["ccat-parse"][7]
+- `morphgnt/lexicon/scripts/nominal_paradigm.py:0-5` → case_number = row["ccat-parse"][4:6]
+- `morphgnt/lexicon/scripts/check_lexemes.py:0-5` → first_fail = "{} {} {}".format(row["lemma"], row["ccat-pos"], row["robinson"])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → if row["ccat-pos"] == "N-":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][6], row["ccat-parse"][7])
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → elif row["ccat-pos"] == "V-" and row["ccat-parse"][3] == "P":
+- `morphgnt/lexicon/scripts/check_nominal_endings.py:0-5` → key = "{} ({}:{})".format(row["lemma"], row["ccat-parse"][1:3], row["ccat-parse"][6])
+- `morphgnt/lexicon/scripts/extract_nouns2.py:0-5` → forms[row["lemma"]][row["norm"]][row["ccat-parse"][4:7]] += 1
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → lemma = "{}/{}".format(row["lemma"], row["ccat-pos"].strip("-")).decode("utf-8")
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → gender = row["ccat-parse"][6]
+- `morphgnt/lexicon/scripts/generate_forms.py:0-5` → tense_voice_mood = row["ccat-parse"][1:4]
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → with open("../data-cleanup/mounce-morphcat/mounce-tauber-morphcat-utf8.txt") as f:
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → source = lexeme
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → source = metadata["bdag-headword"]
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → source = None
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → if source:
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → if len(mounce[source]) == 1:
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → gk = int(mounce[source][0]["gk"])
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → print "    mounce-morphcat: {}".format(mounce[source][0]["morphcat"])
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → problems.append("{} {} != {}".format(source.encode("utf-8"), metadata.get("gk"), gk))
+- `morphgnt/lexicon/scripts/add_mounce_morphcat.py:0-5` → problems.append("{} len({}) > 1".format(source.encode("utf-8"), mounce[source]))
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → if row["ccat-parse"][4] == "V":
+- `morphgnt/lexicon/scripts/extract_noun_forms.py:0-5` → parse = row["ccat-parse"][4:7]
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → def convert(ccat, robinson):
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → pair = (ccat, robinson.split("-")[0])
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → return "{} {}".format(ccat, robinson)
+- `morphgnt/lexicon/scripts/generate_lexemes.py:0-5` → print "    pos: {}".format(convert(row["ccat-pos"], row["robinson"]))
+- `morphgnt/lexicon/morphgnt/filesets.py:0-5` → ("bcv", "ccat-pos", "ccat-parse", "robinson", "text", "word", "norm", "lemma"),
