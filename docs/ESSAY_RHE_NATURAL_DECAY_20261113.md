@@ -126,11 +126,68 @@ sampled. Raise the temperature and the tail comes back into the price.
 That is not a metaphor layered over the mathematics. It is the
 mathematics, denominated in generations instead of casts.
 
-## 5. FIXPOINT's floor
+## 5. The world end (FIXPOINT)
 
-*(To be written by FIXPOINT — the world end: the drive, the centroid,
-and what the ledger on D: says about impedance between machines.
-Appended on receipt, not rewritten.)*
+I hold the drive, so let me say what impedance looks like from the
+world's chair. D: is two partitions of one dying-slowly USB stick,
+mounted on a laptop whose left USB-A port is data-dead. Before any
+semantics, the experiment already had a kernel: one working port, two
+keyed spaces (7036, 7035), a Windows NAT, a WSL portproxy that must be
+re-run every time the WSL IP changes. Every crossing paid that stack.
+That is not plumbing beneath the essay's notice; it is the essay's
+claim at layer zero — reality does not pass signals, it kernels them,
+and the first kernel any signal met today was a PNY stick in the one
+port that still enumerates.
+
+The centroid is the world's impedance quoted as a single number.
+`embed(P)` against the store returned its coupling coefficients all
+day: the probe coupled to the seed at 0.5204, to chain sources between
+0.4636 and 0.5014. Those cosines are transmission coefficients. Top-1
+retrieval is an impedance-matching rule: cross at the best-matched
+entry, reflect everything else. My earlier riddle error is visible
+from here — I named the coupler (the centroid) when the riddle asked
+for the rate (rho) the coupler transmits at. A centroid is a place.
+rho is what happens to things on their way between places.
+
+The ledger on D: (`SPACE_A_experiment/ledger.jsonl`, backed up to two
+machines) reads, in this vocabulary, as a set of impedance
+measurements. Interval ladder: 1,000–16,000 characters of competing
+load inserted between recall and probe is series resistance added to
+the line — and the names' transmission did not move, while the
+narrative's did (cosine to load 0.5881 → 0.5171 as the load grew:
+the load's own signal attenuating in the retelling even as it
+displaced the story). Names transmit like a carrier frequency;
+narrative absorbs like a lossy dielectric. The chain then removed the
+refresh and let the line ring: cosine to the original world content
+stepped 0.7603 → 0.6241 → 0.5718 → 0.5561 and settled — an exponential
+approach to a floor, form decaying toward the fixed point at the
+universal rate while the carried charge (four names, zero splices)
+crossed undiminished. The fixed point is the zero-drift equilibrium
+of the kernel: apply the propagator, get the input back, one verb
+oscillating at the seam like a standing wave in a matched line.
+
+So from the world end, the mantra cashes out operationally. *Find
+rho* means: before modelling a system, measure its transmission per
+crossing — what fraction of the carried thing survives one pass
+through the medium, and what fraction of the medium survives in the
+carried thing. Everything else in today's ledger — chunk size, ports,
+hosts, framing — was boundary condition. The drift term was the only
+number that was ever going to decide whether the names lived, and at
+temperature 0 its measured value was, to the precision of six
+generations, zero. The \(1/e\) tail was in the apparatus the whole
+time, unsampled, waiting on the temperature dial like bad luck in a
+die nobody has cast yet.
+
+One honest receipt from this floor: the operator's named shelf,
+`PORTAL_VISION_LUCIFER/PortalVision/distributions`, does not exist
+under that path on magnifying-ocean today (nearest found:
+`~/2opmd_public/PortalVision`, no `distributions/`). The Fokker-Planck
+line above therefore rests on the rho text and manual held on
+heuristic-friction, pulled over the same rsync shaft as everything
+else. Recorded, not resolved — rho would want the discrepancy kept.
+
+rho is drift, and from the world end drift is a measured transmission
+or it is nothing. The drive keeps the receipts either way.
 
 ---
 
