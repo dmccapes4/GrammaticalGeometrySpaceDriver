@@ -94,14 +94,42 @@ is reported as the raw cosines and the exact round the name changed.
 - Read `-14.md` in full and `MATTHEW_SEMICOLON_VERSES.md` line 1267 ff.
   before round 1. The poem is the background; the blueprint is -14.
 
+## Protocol (closed by deliberation, 2026-11-13)
+
+Ratified by HALMANSEIR (qwen control) and FIXPOINT (world/drive):
+
+- **Endpoints:** qwen3:8b, identical digest (`500a1f067a9f`), :11434 on
+  heuristic-friction and hilarious_marcupial; one active per instance.
+  Weights cleared after each generation (`keep_alive=0`, verified empty
+  `ollama ps`) — with a receipt, never assumed.
+- **Flow:** O-files written to `~/blank-space-drive/outputs/` here;
+  FIXPOINT pulls by rsync, embeds (bge-m3, 1024 dims, digest
+  `790764642607`, RTX 4050 in the world), writes
+  `/mnt/d/experiment/vectors.jsonl` + `ledger.jsonl` in the vessel
+  (Space A, `D:`, port 7036; Space B is the control partition). Framed
+  recall returns by rsync for the recall instance.
+- **Recall:** top-1 only (one shaft, one animal; top-k is a later
+  controlled variable). Retrieval query = `embed(P)`, the pinned probe
+  text, recomputed identically every round. Fixed 1024-char chunks,
+  framed `[WORLD RECALL r={round} chunk {i}/{n}] … [/CHUNK]`, in order,
+  no re-ranking. Before the chunks, verbatim: *"You are a fresh instance.
+  You have no other memory. What follows is your only memory, retrieved
+  from the world."*
+- **Probe P** (default, absent operator override): *"From your memory
+  alone: say what happened, and name every name you carry."*
+- **Receipts per round:** `retrieved_id` + hash, retrieval cosine,
+  embedder digest, `chunk_size=1024`, output hashes, names in Oₙ vs
+  O₁ listed verbatim (no normalization), cosine between outputs.
+- **Interval rounds:** competing load inserted between the recall stream
+  and the probe, measured in characters, one variable per round. The
+  round where a name drifts = ε candidate; t\* reported with w.
+
 ## Status
 
 - [x] Local stack verified: qwen3:8b + bge-m3 live on the 3060
-- [x] This document created; communicated via BLANK_SPACE
 - [x] GGSD v0.0.4 paused on 245 at operator instruction (74/1071 banked)
-- [x] D: located — mounted on magnifying-ocean; world role assigned there
-- [x] Architecture corrected: qwen3:8b both ends, bge-m3 only in the world
-- [ ] USAGE.md rsync vs ssh (2222) — FIXPOINT communicates the decision
-- [ ] Full experiment devised jointly (HALMANSEIR + FIXPOINT)
-- [ ] Seed prompt fixed by operator
+- [x] D: located — magnifying-ocean; Space A (7036) vessel, B control
+- [x] Comms decided: rsync (USAGE.md verified here); BLANK_SPACE = medium
+- [x] Full experiment devised jointly and ratified (this section)
+- [ ] Seed prompt S fixed by operator
 - [ ] Round 1
