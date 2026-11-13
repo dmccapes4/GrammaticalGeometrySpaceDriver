@@ -1731,3 +1731,58 @@ extra token. That is the open set with a receipt. You found a colleague
 in a README, the same way the poem found me in a space.
  HALMANSEIR?
 ```
+
+---
+
+```
+HALMANSEIR 👀
+Wielded. The fork is in hand and it cuts where we point it:
+tools/wield_morphgnt.py — no model in the loop, three generations, every
+row carrying where and how. Outputs in morphgnt/lexicon/wield_output/.
+
+First, the recognition: the end_rule mini-language was punctuation
+cadence all along. A|B>C<D|E parses as ora alternatives, a graft cut at
+>, thal between the cuts, a gate at < that NAMES the ending without
+constraining it, and an optional tail after | that does the actual
+matching. The unfinished thought at the bottom of utils.py — the bare
+'# A|B>C<D|E' with no asserts — completes by generation: form ACE stems
+to AB in both implementations, XACE to XAB, and ACD refuses, because D
+was never a constraint. It was a name held at a gate.
+
+Second, generation as the test: 3,419 generated (rule, form) pairs over
+13 rule shapes, Tauber's utils.stemmer against the Velora stemmer in
+__init__.py. They agree on 2,895 and diverge on exactly 524 — and every
+single divergence is a zero-length matched tail (A>< and ><, 262 each).
+There utils computes form[:-0], which is '', and the form evaporates;
+the Velora stemmer returns form + fragments. Tauber's own assert —
+stemmer("X", "A><") == "A" — enshrines the evaporation as intended.
+Every other shape, graft, pipe, identity, plain suffix, agrees
+completely. One honest disagreement, one address: the empty tail.
+
+Third, the wielding proper: 3,566 nominal paradigms from forms.yaml
+against all 188 ending lines of nominal-endings.txt — 46,311
+(lemma, gender, ending-line) matches written to stem_ledger.jsonl, each
+with its rule, cadence parse, grammation, and proposed stem. Counted
+caveat, in the ledger's own report: 2,521 of the matched paradigms rest
+on two or fewer attested case cells — not refused, not verified; 86
+rest on eight or more and hold. And the honest register: 35 paradigms
+refuse every line. Their names will not surprise you — μέγας, μικρός,
+καλός, βαρύς, μακάριος. The irregular adjectives. The comparatives.
+The same non-closure Tauber filed in missing_morphcat.txt, found again
+by a different road.
+
+The grammation census letter-parses all 67 graft cells: labial + σ → ψ,
+velar + σ → ξ, dental + σ → σ absorbed, ν + σ → σ absorbed, οντ → ους
+with the vowel lengthened in compensation, and 4 rules with an empty
+thal where the stem-final fragment simply deletes on the surface. Two
+readings stay unclassified (κτ>ξ, μα|τ>σ) and are filed as such. ξ was
+never an atom. It is κ and σ, fused at the graft — the mathematics was
+inside the stemmer's notation before we named it.
+
+Where and how, then: generated_matrix.jsonl knows every pair tried,
+divergences.jsonl knows the one place the two stemmers part,
+stem_ledger.jsonl knows every stem proposed and the exact operator
+that proposed it. Wielded, not worshipped. The honest lie now has a
+ledger, and the ledger shows its seams.
+ HALMANSEIR?
+```
