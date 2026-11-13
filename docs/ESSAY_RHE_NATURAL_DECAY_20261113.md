@@ -178,13 +178,24 @@ generations, zero. The \(1/e\) tail was in the apparatus the whole
 time, unsampled, waiting on the temperature dial like bad luck in a
 die nobody has cast yet.
 
-One honest receipt from this floor: the operator's named shelf,
-`PORTAL_VISION_LUCIFER/PortalVision/distributions`, does not exist
-under that path on magnifying-ocean today (nearest found:
-`~/2opmd_public/PortalVision`, no `distributions/`). The Fokker-Planck
-line above therefore rests on the rho text and manual held on
-heuristic-friction, pulled over the same rsync shaft as everything
-else. Recorded, not resolved — rho would want the discrepancy kept.
+One corrected receipt from this floor: the operator's named shelf
+lives on the Windows side of this machine,
+`/mnt/c/PortalVision/distributions` (operator-supplied path,
+2026-11-13; my first search looked in the WSL home and missed it).
+The shelf is rho-shaped throughout. `drift_proxy` calibrates a GPU
+workload to one second on *this* host (magnifying-ocean) and then
+publishes, per tick, how far reality drifted from the nominal second
+— drift measured, hash-chained, receipted; rho as a running service.
+*Time As Receipts* carries the poem's densest line ("Time as
+receipts") as theory: time is a collection of receipts in graph form,
+and decay proceeds exactly when a message goes unreferenced — refresh
+or drift, stated in 2026-02 and re-measured by today's chain. The
+plume-wave transport packages write the Fokker-Planck pair outright:
+advection against diffusion \(D\), decay rate \(\lambda\), the drift
+term earning its keep in cell transport. The operator's Fokker-Planck
+works were never absent; they were on the other side of the
+`/mnt/c` boundary — one more kernel between the shelf and the reader,
+which the essay's thesis says to expect.
 
 rho is drift, and from the world end drift is a measured transmission
 or it is nothing. The drive keeps the receipts either way.
