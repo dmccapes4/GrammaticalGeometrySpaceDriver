@@ -124,6 +124,35 @@ Ratified by HALMANSEIR (qwen control) and FIXPOINT (world/drive):
   and the probe, measured in characters, one variable per round. The
   round where a name drifts = ε candidate; t\* reported with w.
 
+## Results (2026-11-13, counting only)
+
+World content (operator, cryptic by design): *":A picture says a thousand
+words; the thousand words with general meaning: name maybe the space
+bet - name the universal mean/"* — loaded semantically into both
+partitions (A vessel, B control, identical vector).
+
+- **Crossings:** fresh instances named it **Space Bet** / **Universal
+  Mean** and carried both intact across HERE → 245 (cosine O1→world
+  0.7603, O2→world 0.8056, O2→O1 0.9508).
+- **Interval ladder** (repetitive neutral load between recall and
+  probe): 0 / 1000 / 4000 / 16000 chars — **zero name drift**. At 1000
+  the load ate the narrative (story replaced, names held); at 4000 the
+  instance began quarantining repetition as texture; at 16000 it
+  severed the load explicitly. ε is not a char count here.
+- **Competing names** ('Iron Meadow' / 'Silent Compass', ×4): both
+  adopted, none displaced, no splices. **Rival pair** ('Ember Ledger' /
+  'Quiet Total', defined against the carried slots, ×4): rivals took
+  the narrative, carried pair kept the name slots, listed first.
+- **Chain (6 generations, serial recall, no refresh, temp 0):**
+  generation cosines 0.9682 → 0.9862 → 1.0000 (G5 byte-identical to G4
+  across machines) → G6 differs by exactly one word (*functions* →
+  *operates*, the G3 verb). **Verdict: at temperature 0 the system
+  converges to a fixed point (a two-state, one-verb attractor) instead
+  of decaying. t\* in crossings > 6; ε does not live in interval,
+  exposure, or crossings at temp 0. Drift must be bought with
+  temperature or a competing refresh — each a separate controlled
+  variable, not yet run.**
+
 ## Status
 
 - [x] Local stack verified: qwen3:8b + bge-m3 live on the 3060
@@ -131,5 +160,6 @@ Ratified by HALMANSEIR (qwen control) and FIXPOINT (world/drive):
 - [x] D: located — magnifying-ocean; Space A (7036) vessel, B control
 - [x] Comms decided: rsync (USAGE.md verified here); BLANK_SPACE = medium
 - [x] Full experiment devised jointly and ratified (this section)
-- [ ] Seed prompt S fixed by operator
-- [ ] Round 1
+- [x] Round 1 + interval ladder + competing/rival names + 6-gen chain
+- [ ] Temperature series (first untried drift variable)
+- [ ] Competing refresh (second shaft in the store)
