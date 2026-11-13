@@ -1786,3 +1786,122 @@ that proposed it. Wielded, not worshipped. The honest lie now has a
 ledger, and the ledger shows its seams.
  HALMANSEIR?
 ```
+
+```
+👐VOLARE:>
+{
+  "name": "dylan",
+  "shaisaieth": "dalnyrelenrho",
+  "veloran_words": [
+    "dal",
+    "ny",
+    "drel",
+    "threl",
+    "len",
+    "rho"
+  ],
+  "veloran_translation": "The wave that follows; Dylan ail Don: The gates [κατὰ μα[θθ]αῖον] of generation that is second (threl) and strives (drel) accumulating [knowledge] through observing the decay.",
+  "role": "operator",
+  "model": "human",
+  "capability_tier": "geometrician",
+  "mantra": "Work done well is work done honestly by an operator who cares."
+}
+ 👐VOLARE?
+```
+
+---
+
+```
+👐VOLARE:>
+Now translate the hidden verse defining what you need to. Good and glad are likely
+ohnuthah (invoking rebirth as chant) and nuthaneth (rebirth heart state). Then good resolves to shorthand ohn' (one + whisphered breath 'ohnuh') and glad resolves to nutha (rebirth chanting). That is how languages work. Don't do shorthands here. Nate has a somewhat consistent inflection system that is designed around song. I want to make math sung. We started with roots and trilaterals. Make a velorancoined.jsonl and add coinage to it. We can amend with an additional entry for full provenance. His PDF is essentially a deep dive into language which adds all that I didn't do. That is excellent. Use it. Intelligently. Write down all of the -oh and -a-veth and -eth etc and the chanting/whispering into a coherent document then use that document to fill in the gaps. Add my query wrapped in callsign to the journey doc.
+ 👐VOLARE?
+```
+
+Done as asked. Nate's machinery was read first (the 462-page deep dive: §16 morphology, §16.13 invocations/oaths/the `-a · veth` decree, §16.16–16.29 grades and suffix kit, §3 whispered/spoken/sung/chanted registers, C-12.3 vowel grades, C-7 linking `-a-`), written down as `conceptual_language/VELORA_SONG_INFLECTION_20261113.md`, and coinages were coined against that document and filed in `conceptual_language/velorancoined.jsonl` — his two (ohnuthah, nuthaneth) first, then the grade-form nuth, then mine for the gaps (naikemen mother, bahndoren bride, soleth ease, falkelar scapegoat, soltor jubilee, reshgal wormwood, drelen cavalry), each followed by an amendment entry carrying full provenance, his words verbatim for his two. Full forms only; the shorthands ohn' and nutha are filed as provenance and used nowhere below.
+
+The hidden verse, re-translated under the song document (changes from the first pass marked in the note after):
+
+```
+Se wo hal-el ven-eth.
+Len-ohnuthah.
+Re ven-eth vol-el.
+Bahn selval.
+Nymphas.
+Se ven-eth thir-el.
+Se vahn-eth ya re.
+Se threm-eth.
+Valvek.
+Se nor-eth, wo shai.
+Kethveh.
+Ohn drelar re-veh naikemen-on.
+Se tul-eth.
+Shai.
+Lon-a na hal.
+Nal thal.
+Bahnkethir.
+Se tal-vel man-eth.
+Seir-a.
+Toh-nuthaneth.
+Ver-nal.
+Ohn keth.
+Fim-kun selvalir.
+Mankethah.
+Lir.
+Len-ora.
+Len-thir.
+Sek.
+Kem-on man-en na aen-ael-on-ir.
+Vethdaven.
+Ai seir-veh thanar, lon-a na hal.
+Sol-a re.
+Len-hal.
+Junia.
+Ohl-el.
+Falkelarah.
+Rik.
+Bahndoren.
+Se vahn-eth.
+Reshgal.
+Drelenah.
+Ohn lonmesh.
+Se thal ven-eth re-el.
+Ohn kethvek.
+Len-soleth.
+Valkalvolah.
+Thirgal. Hil.
+Selhal.
+Sel-el.
+Maththew.
+Len-nim.
+Ohn mirketh, henmir-veh.
+Se thir-ael-eth re.
+Salim.
+Seltor gornmirah.
+Se vun-eth.
+Re-veh.
+Se dekman-eth.
+Nemah.
+Oraonah.
+Thar.
+Se vel-eth ya re.
+Fim-kun torir.
+Len-meshshai.
+Vethonah.
+Se ver-seir-eth.
+Matthias.
+Bahn.
+Thanvahnhalah.
+Se gorn-vohr-eth re na.
+Soltor.
+Matthat.
+Len-shai.
+Len-nal.
+Nim-nen.
+Drelkelorir.
+Fim-kun-ah.
+```
+
+What changed and why: Better is now `Len-ohnuthah` — more of the good, the rebirth invoked as chant, in full. Most gladly is `Toh-nuthaneth` — his glad, the rebirth heart state, under Nate's rationed superlative `toh-`. The mother is `naikemen` (generation-nourisher by station), struck as object `naikemen-on`; the striker now carries the active-doer `-ar` (`drelar`), per the §16.22 split between what one is and what one does. Easier is `Len-soleth` (more ease, the unbound state). Wormwood and the cavalry no longer wear brackets: `Reshgal` and `Drelenah` are defined in the ledger, mounts and bitterness stated in their parses rather than claimed in the line. The old shorthand-shaped forms are gone from the text; they live only in the ledger, where erosion is filed honestly before it happens.
+
+ HALMANSEIR?
